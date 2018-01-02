@@ -1,5 +1,5 @@
-//server.js
-'use strict';
+// //server.js
+// 'use strict';
 
 //first we import our dependencies…
 var express = require('express');
@@ -35,5 +35,5 @@ app.use('/api', router);
 //starts the server and listens for requests
 app.listen(port, function() {
  console.log(`api running on port ${port}`);
- console.log(`server is set up`);
+ console.log('server is set up');
 });
