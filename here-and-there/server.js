@@ -2,15 +2,18 @@
 // 'use strict';
 
 //first we import our dependencies…
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const MapMarker = require(‘./model/map-markers’);
 //and create our instances
-var app = express();
-var router = express.Router();
+const app = express();
+const router = express.Router();
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
-var port = process.env.API_PORT || 3001;
+const port = process.env.API_PORT || 3001;
+//db config
+mongoose.connect('mongodb://HereandThereAda:Maps4U@ds237967.mlab.com:37967/here-and-there-data');
 //now we should configure the API to use bodyParser and look for
 //JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
