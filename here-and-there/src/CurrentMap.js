@@ -1,8 +1,6 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 export class CurrentMap extends React.Component {
   // adding constructor to make Map objects stateful(have state)
