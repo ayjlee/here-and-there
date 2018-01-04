@@ -12,12 +12,14 @@ import {
 import Home from './components/pages/Home';
 import Library from './components/pages/Library';
 import BuildMap from './components/pages/BuildMap';
+import MapContainer from './components/widgets/MapContainer';
+import CurrentMap from './components/widgets/CurrentMap';
 
 class App extends Component {
   render() {
     return (
       <HashRouter>
-        <div>
+        <div id="main">
           <h1>Here and there</h1>
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
@@ -30,6 +32,10 @@ class App extends Component {
               <Route path="/buildmap" component={BuildMap}/>
               <Route path="/library" component={Library}/>
             </Switch>
+            <div id="map-container">
+              <h4> Map will go here </h4>
+              <Route component={MapContainer}/>
+            </div>
           </div>
         </div>
       </HashRouter>

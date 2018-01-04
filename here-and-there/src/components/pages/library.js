@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Library extends Component {
   render() {
     return (
-      <div>
+      <div className= "sidepane-placeholder">
         <h2>welcome to library</h2>
         <h4>my maps</h4>
 

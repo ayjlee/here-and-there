@@ -95,19 +95,38 @@ export class CurrentMap extends React.Component {
   }
   render() {
     // JSX below
+      // return (
+      // // original 'ref' way
+      // // <div ref = 'map'>
+      // //   Loading map...
+      // //   {this.renderChildren()}
+      // // </div>
+      // // trying to use callbacks:
+      // // renderChildren() will be responsible for calling the methods on the children. we'll use React.cloneElement() to add props to child inside component and append the map instance, google prop, and map center
+      //   <div ref = {node => this.node = node} >
+      //     Loading map...
+      //     {this.renderChildren()}
+      //   </div>
+      // );
+    if (!this.props.loaded) {
+      return <div>Loading...</div>
+    }
+
     return (
-    // original 'ref' way
-    // <div ref = 'map'>
-    //   Loading map...
-    //   {this.renderChildren()}
-    // </div>
-    // trying to use callbacks:
-    // renderChildren() will be responsible for calling the methods on the children. we'll use React.cloneElement() to add props to child inside component and append the map instance, google prop, and map center
-      <div ref = {node => this.node = node} >
-        Loading map...
-        {this.renderChildren()}
-      </div>
-    );
+      <Map google={this.props.google}
+          style={{width: '100%', height: '100%', position: 'relative'}}
+          className={'map'}
+          zoom={14}>
+        <Marker
+          title={'The marker`s title will appear as a tooltip.'}
+          name={'SOMA'}
+          position={{lat: 37.778519, lng: -122.405640}} />
+        <Marker
+          name={'Dolores park'}
+          position={{lat: 37.759703, lng: -122.428093}} />
+        <Marker />
+      </Map>
+    )
   }
 }
 

@@ -4,6 +4,9 @@ body {
   font-family: sans-serif;
 }
 
+.content div {
+  display: inline-block;
+}
 
 /*default styling from https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.html tutorial*/
 ul.header li {
@@ -25,7 +28,6 @@ ul.header li a {
 .content {
   background-color: #FFF;
   padding: 20px;
-  width: 30vw;
 }
 .content h2 {
   padding: 0;
@@ -34,7 +36,21 @@ ul.header li a {
 .content li {
   margin-bottom: 10px;
 }
+/*end default styling from tutorial*/
+
+
 /*React Router automatically assigns a class value of 'active' when you click on a link*/
 .active {
   background-color: #0099FF;
+}
+
+.sidepane-placeholder {
+  width: 25vw;
+  border: green solid 3px;
+}
+
+#map-container {
+  min-width: 65vw;
+  padding-left: 5px;
+  border: black solid 2px;
 }

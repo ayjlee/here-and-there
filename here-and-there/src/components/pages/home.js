@@ -5,7 +5,7 @@ import React, { Component } from "react";
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className= "sidepane-placeholder">
         <h2>Hello</h2>
         <p>it me</p>
 

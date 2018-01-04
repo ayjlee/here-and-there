@@ -5,12 +5,12 @@ import CurrentMap from './CurrentMap';
 export class MapContainer extends Component {
   render() {
     const style = {
-      width: '100vw',
-      height: '100vh',
+      width: '60vw',
+      height: '100%',
     }
     const pos = { lat: 37.759703, lng: -122.428093 };
     return (
-      <div style={style}>
+      <div className= "map-container2" style={style}>
         <Map google={this.props.google}>
           <Marker / >
           <Marker position= {pos} />
