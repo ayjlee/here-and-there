@@ -1,6 +1,6 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
-import MapMarker from './MapMarker';
+import CurrentMap from './CurrentMap';
 
 export class MapContainer extends Component {
   render() {

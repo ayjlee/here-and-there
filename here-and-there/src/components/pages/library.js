@@ -5,9 +5,9 @@ class Library extends Component {
     return (
       <div>
         <h2>welcome to library</h2>
-        <p>my maps</p>
+        <h4>my maps</h4>
 
-        <p>my markers</p>
+        <h4>my markers</h4>
       </div>
     );
   }

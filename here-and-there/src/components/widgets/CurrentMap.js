@@ -1,6 +1,7 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 export class CurrentMap extends React.Component {
   // adding constructor to make Map objects stateful(have state)
@@ -79,33 +80,34 @@ export class CurrentMap extends React.Component {
       // maps.Map() constructor accepts a DOM node and a configuration object to create a map. To instantiate a map, we need at least two config options: center, and zoom
     }
   }
-  render() {
-    // JSX below
-    return (
-    // original 'ref' way
-      // <div ref = 'map'>
-      //   Loading map...
-      // </div>
-    // trying to use callbacks:
-    // renderChildren() will be responsible for calling the methods on the children. we'll use React.cloneElement() to add props to child inside component and append the map instance, google prop, and map center
-      <div ref = {node => this.node = node} >
-        Loading map...
-        {this.renderChildren()};
-      </div>
-    )
-  }
   renderChildren() {
     const { children } = this.props;
     // return null if there are no children passed to Map instance
     if (!children) return;
 
-    return React.Children.map(children, c => {
+    return React.Children.map(children, (c) => {
       return React.cloneElement(c, {
         map: this.map,
         google: this.props.google,
         mapCenter: this.state.currentLocation,
       });
     });
+  }
+  render() {
+    // JSX below
+    return (
+    // original 'ref' way
+    // <div ref = 'map'>
+    //   Loading map...
+    //   {this.renderChildren()}
+    // </div>
+    // trying to use callbacks:
+    // renderChildren() will be responsible for calling the methods on the children. we'll use React.cloneElement() to add props to child inside component and append the map instance, google prop, and map center
+      <div ref = {node => this.node = node} >
+        Loading map...
+        {this.renderChildren()}
+      </div>
+    );
   }
 }
 
