@@ -5,8 +5,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import CurrentMap from './CurrentMap';
-import MapContainer from './MapContainer';
+import CurrentMap from './components/widgets/CurrentMap';
+import MapContainer from './components/widgets/MapContainer';
+import MapMarker from './components/widgets/MapMarker';
+
 
 ReactDOM.render(<MapContainer />, document.getElementById('root'));
 registerServiceWorker();
