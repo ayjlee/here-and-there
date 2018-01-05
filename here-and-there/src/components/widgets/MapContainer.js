@@ -2,11 +2,13 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
 
+// const { REACT_APP_GMAPI_KEY } = process.env;
+
 export class MapContainer extends Component {
   render() {
     const style = {
-      width: '60vw',
-      height: '100%',
+      width: '300px',
+      height: '300px',
     }
     const pos = { lat: 37.759703, lng: -122.428093 };
     return (
@@ -19,7 +21,7 @@ export class MapContainer extends Component {
     )
   }
 }
-
+console.log(process.env.REACT_APP_GMAPI_KEY);
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],

@@ -114,9 +114,9 @@ export class CurrentMap extends React.Component {
 
     return (
       <Map google={this.props.google}
-          style={{width: '100%', height: '100%', position: 'relative'}}
-          className={'map'}
-          zoom={14}>
+        style={{width: '80%', height: '80%', position: 'relative'}}
+        className={'map'}
+        zoom={14}>
         <Marker
           title={'The marker`s title will appear as a tooltip.'}
           name={'SOMA'}

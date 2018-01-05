@@ -5,7 +5,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const MapMarker = require('./model/map-markers');
+const Map = require('./model/maps');
 //and create our instances
 const app = express();
 const router = express.Router();
@@ -33,6 +33,36 @@ app.use(function(req, res, next) {
 router.get('/', function(req, res) {
  res.json({ message: 'API Initialized!'});
 });
+
+//adding the /comments route to our /api router
+router.route('/maps')
+ //retrieve all maps from the database
+ .get(function(req, res) {
+ //looks at our Map Schema
+   Map.find(function(err, comments) {
+    if (err) {
+      res.send(err);
+    }
+      //responds with a json object of our database comments.
+    res.json(comments)
+  });
+  })
+ //post new comment to the database
+ .post(function(req, res) {
+  var comment = new Map();
+  //body parser lets us use the req.body
+  map.author = req.body.author;
+  map.name = req.body.text;
+  map.city = req.body.city;
+  map.country = req.body.country;
+  map.save(function(err) {
+   if (err) {
+     res.send(err);
+   }
+   res.json({ message: 'Comment successfully added!' });
+  });
+});
+
 //Use our router configuration when we call /api
 app.use('/api', router);
 //starts the server and listens for requests
