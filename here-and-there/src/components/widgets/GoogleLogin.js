@@ -17,7 +17,6 @@ class GoogleLogin extends Component {
   }
   googleLogin = () => {
     let response = null;
-    console.log(process.env.REACT_APP_GOAUTH_CLIENT_ID);
     window.gapi.auth.signIn({
       callback: function(authResponse) {
         this.googleSignInCallback( authResponse)
@@ -63,7 +62,10 @@ class GoogleLogin extends Component {
     }
   render() {
     return(
-      <img src={google} title="google login" alt="google" onClick={ () => this.googleLogin() }/>
+      <div>
+        <span> Sign in with: </span>
+        <img src={google} title="google login" alt="google" onClick={ () => this.googleLogin() }/>
+      </div>
     )
   }
 }
