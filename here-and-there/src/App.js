@@ -25,12 +25,14 @@ class App extends Component {
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/buildmap">Build a New Map</NavLink></li>
             <li><NavLink to="/library">Library</NavLink></li>
+            <li><NavLink to="/sign-in">Sign In</NavLink></li>
           </ul>
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/Buildmap" component={BuildMap}/>
               <Route path="/Library" component={Library}/>
+              <Route path="/SignIn" component={SignIn}/>
             </Switch>
             <div id="map-container">
               <h4> Map will go here </h4>
