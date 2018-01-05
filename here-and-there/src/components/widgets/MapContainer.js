@@ -13,7 +13,10 @@ export class MapContainer extends Component {
     const pos = { lat: 37.759703, lng: -122.428093 };
     return (
       <div className= "map-container2" style={style}>
-        <Map google={this.props.google}>
+        <Map google={this.props.google} initialCenter={{
+            lat: 47.6062,
+            lng: -122.3321
+          }}>
           <Marker / >
           <Marker position= {pos} />
         </Map>

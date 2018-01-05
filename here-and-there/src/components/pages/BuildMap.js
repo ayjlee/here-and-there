@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NewMapForm from '../forms/AddMapForm';
+// import NewMapForm from '../forms/AddMapForm';
 
 class BuildMap extends Component {
   render() {
@@ -11,7 +11,6 @@ class BuildMap extends Component {
         <h4>places to add </h4>
 
         <p> what happens to div height when I add more text </p>
-        // <NewMapForm />
       </div>
     );
   }
