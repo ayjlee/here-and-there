@@ -9,6 +9,7 @@ var MapsSchema = new Schema({
  name: String,
  city: String,
  country: String,
+ markers: Array,
 });
 //export our module to use in server.js
 module.exports = mongoose.model('Map', MapsSchema);
