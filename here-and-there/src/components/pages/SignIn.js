@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import GoogleLogin from '../widgets/GoogleLogin';
 
-class Home extends Component {
+class SignIn extends Component {
   render() {
     return (
       <div className= "sidepane-placeholder">
-        <p sign in button will be here>
+        <h2> sign in button will be here </h2>
+        <p> where did it go </p>
+        <GoogleLogin />
       </div>
     );
   }
 }
 
-export default Home;
+export default SignIn;

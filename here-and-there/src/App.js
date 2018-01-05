@@ -12,6 +12,7 @@ import {
 import Home from './components/pages/Home';
 import Library from './components/pages/Library';
 import BuildMap from './components/pages/BuildMap';
+import SignIn from './components/pages/SignIn';
 import MapContainer from './components/widgets/MapContainer';
 import CurrentMap from './components/widgets/CurrentMap';
 
@@ -30,9 +31,9 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/Buildmap" component={BuildMap}/>
-              <Route path="/Library" component={Library}/>
-              <Route path="/SignIn" component={SignIn}/>
+              <Route path="/buildmap" component={BuildMap}/>
+              <Route path="/library" component={Library}/>
+              <Route path="/sign-in" component={SignIn}/>
             </Switch>
             <div id="map-container">
               <h4> Map will go here </h4>
