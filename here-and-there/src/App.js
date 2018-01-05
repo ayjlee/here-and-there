@@ -29,8 +29,8 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/buildmap" component={BuildMap}/>
-              <Route path="/library" component={Library}/>
+              <Route path="/Buildmap" component={BuildMap}/>
+              <Route path="/Library" component={Library}/>
             </Switch>
             <div id="map-container">
               <h4> Map will go here </h4>
