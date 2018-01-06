@@ -4,6 +4,17 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export class CurrentMap extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const {lat, lng} = this.props.initialCenter;
+    this.state = {
+      currentLocation: {
+        lat: lat,
+        lng: lng,
+      },
+    }
+  }
   componentDidMount() {
     this.loadMap();
   }
@@ -25,9 +36,8 @@ export class CurrentMap extends React.Component {
       const node= ReactDOM.findDOMNode(mapRef);
       console.log('node is:');
       console.log(node);
-      let zoom = 14;
-      let lat = 47.6062;
-      let lng = -122.3321;
+      const { initialCenter, zoom } = this.props;
+      const {lat, lng} = this.state.currentLocation;
       const center = new maps.LatLng(lat,lng);
       const mapConfig = Object.assign({}, {
         center: center,
@@ -49,5 +59,18 @@ export class CurrentMap extends React.Component {
     );
   }
 }
+CurrentMap.propTypes = {
+  google: PropTypes.object,
+  zoom: PropTypes.number,
+  initialCenter: PropTypes.object,
+}
+CurrentMap.defaultProps = {
+  zoom: 13,
+  // Seattle location by default
+  initialCenter: {
+    lat: 47.6062,
+    lng: -122.3321,
+  },
+};
 
 export default CurrentMap;
