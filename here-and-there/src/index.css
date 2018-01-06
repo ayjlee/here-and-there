@@ -5,9 +5,6 @@ body {
   font-family: 'Inconsolata', monospace;
 }
 
-.content div {
-  display: inline-block;
-}
 
 /*default styling from https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.html tutorial*/
 ul.header li {
