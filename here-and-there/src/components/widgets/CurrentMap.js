@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+const evtNames = ['ready', 'click', 'dragend'];
+const camelize = function(str) {
+  return str.split(' ').map(function(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join('');
+};
+
 export class CurrentMap extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +60,21 @@ export class CurrentMap extends Component {
       map.panTo(center);
     }
   }
+  handleEvent(evtName) {
+    let timeout;
+    const handlerName = `on${camelize(evtName)}`;
+    return (e) => {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      timeout = setTimeout(() => {
+        if (this.props[handlerName]) {
+          this.props[handlerName](this.props, this.map, e);
+        }
+      }, 0);
+    }
+  }
   loadMap() {
     console.log('in loadMap');
     if (this.props && this.props.google) {
@@ -72,7 +94,27 @@ export class CurrentMap extends Component {
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-      this.forceUpdate();
+
+      // adding a timeout to the event listener
+        // let centerChangedTimeout;
+        //
+        //
+        // this.map.addListener('dragend', (e) => {
+        //   if (centerChangedTimeout) {
+        //     clearTimeout(centerChangedTimeout);
+        //     centerChangedTimeout = null;
+        //   }
+        //   centerChangedTimeout = setTimeout(() => {
+        //     this.props.onMove(this.map);
+        //   }, 0);
+        // })
+      // refactored the above commented out code to handle multiple events
+      evtNames.forEach((e) => {
+        this.map.addListener(e, this.handleEvent(e));
+      });
+
+      maps.event.trigger(this.map, 'ready');
+      // this.forceUpdate();
     }
   }
   render() {
@@ -101,6 +143,15 @@ CurrentMap.defaultProps = {
     lng: -122.3321,
   },
   centerAroundCurrentLocation: false,
+  onDragend() {
+    console.log('moving');
+  },
+  onClick() {
+    console.log('clicking');
+  }
 };
+evtNames.forEach((e) => {
+  CurrentMap.propTypes[camelize(e)] = PropTypes.func;
+});
 
 export default CurrentMap;
