@@ -2,22 +2,28 @@ import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
 import SearchBox from  './SearchBox';
+import MapMarker from './MapMarker';
 
 export class MapContainer extends React.Component {
   render() {
     const style = {
       width: '80vw',
       height: '80vh',
-    }
+    };
+    const pos = {
+      lat: 47.6062,
+      lng: -122.3321,
+    };
     if (!this.props.loaded) {
       return <div>Loading Map Container...</div>
     }
-    console.log('this.props.google is:');
-    console.log(this.props.google);
     return (
       <div>
-        <SearchBox google={this.props.google }/>
-        <CurrentMap google= {this.props.google}/>
+        <SearchBox google={this.props.google}/>
+        <CurrentMap google= {this.props.google}>
+          <MapMarker />
+          <MapMarker position={pos} />
+        </CurrentMap>
       </div>
     )
   }

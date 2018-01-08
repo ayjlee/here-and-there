@@ -25,7 +25,7 @@ export class CurrentMap extends Component {
   componentDidMount() {
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
-        navigator.geolcation.getCurrentPosition((pos) => {
+        navigator.geolocation.getCurrentPosition((pos) => {
           const coords = pos.coords;
           this.setState({
             currentLocation: {
@@ -84,8 +84,6 @@ export class CurrentMap extends Component {
       const maps = google.maps;
       const mapRef = this.refs.map;
       const node= ReactDOM.findDOMNode(mapRef);
-      console.log('node is:');
-      console.log(node);
       const { initialCenter, zoom } = this.props;
       const {lat, lng} = this.state.currentLocation;
       const center = new maps.LatLng(lat,lng);
@@ -94,7 +92,6 @@ export class CurrentMap extends Component {
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-
       // adding a timeout to the event listener
         // let centerChangedTimeout;
         //
@@ -114,8 +111,25 @@ export class CurrentMap extends Component {
       });
 
       maps.event.trigger(this.map, 'ready');
-      // this.forceUpdate();
+
+      // need to trgger this.forceupdate because MArker(children) will be rendered first; we need to forceUpdate when the map is loaded so that MapMarker has a this.map
+      this.forceUpdate();
     }
+  }
+  renderChildren() {
+    // use React.cloneElement() to add props to a child inside a component; here we use to append the map instance, map center, and google prop; return null if there are no children passed so we can have CurrentMaps without children;
+    const {children} = this.props;
+
+    if (!children) return;
+
+    // React.Children.map() is a React method that lets us iterate over each of the children passed by a component and run a function on it
+    return React.Children.map(children, (c) => {
+      return React.cloneElement(c, {
+        map: this.map,
+        google: this.props.google,
+        mapCenter: this.state.currentLocation,
+      });
+    })
   }
   render() {
     const style = {
@@ -125,6 +139,7 @@ export class CurrentMap extends Component {
     return (
       <div ref="map" style= {style}>
         The CurrentMap will load here
+        {this.renderChildren()}
       </div>
     );
   }
@@ -148,6 +163,9 @@ CurrentMap.defaultProps = {
   },
   onClick() {
     console.log('clicking');
+  },
+  onReady() {
+    console.log('ready');
   }
 };
 evtNames.forEach((e) => {
