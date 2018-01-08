@@ -1,6 +1,7 @@
 import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
+import SearchBox from  './SearchBox';
 
 export class MapContainer extends React.Component {
   render() {
@@ -15,6 +16,7 @@ export class MapContainer extends React.Component {
     console.log(this.props.google);
     return (
       <div>
+        <SearchBox google={this.props.google }/>
         <CurrentMap google= {this.props.google}/>
       </div>
     )

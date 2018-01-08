@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-export class CurrentMap extends React.Component {
+export class CurrentMap extends Component {
   constructor(props) {
     super(props);
 

@@ -4,7 +4,6 @@ import './App.css';
 import {
   Route,
   NavLink,
-  HashRouter,
   BrowserRouter,
   Switch,
 } from 'react-router-dom';
@@ -19,7 +18,7 @@ import CurrentMap from './components/widgets/CurrentMap';
 class App extends Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div id="main">
           <h1 id= "title">here and there</h1>
           <ul className="header">
@@ -41,7 +40,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
