@@ -20,6 +20,7 @@ export class CurrentMap extends Component {
         lat: lat,
         lng: lng,
       },
+      nameOfMap: 'Untitled',
     }
   }
   componentDidMount() {
@@ -145,7 +146,6 @@ export class CurrentMap extends Component {
   }
 }
 CurrentMap.propTypes = {
-  name: PropTypes.text,
   google: PropTypes.object,
   zoom: PropTypes.number,
   initialCenter: PropTypes.object,
@@ -153,7 +153,6 @@ CurrentMap.propTypes = {
   savedToAccount: PropTypes.bool,
 };
 CurrentMap.defaultProps = {
-  name: 'Untitled',
   zoom: 13,
   // Seattle location by default
   initialCenter: {
