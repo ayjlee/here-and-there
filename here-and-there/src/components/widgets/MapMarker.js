@@ -35,6 +35,10 @@ export class MapMarker extends Component {
 MapMarker.propTypes = {
   position: PropTypes.object,
   map: PropTypes.object,
+  savedToMap: Proptypes.bool,
 };
+MapMarker.defaultProps = {
+  savedToMap: false,
+}
 
 export default MapMarker;

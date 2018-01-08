@@ -145,12 +145,15 @@ export class CurrentMap extends Component {
   }
 }
 CurrentMap.propTypes = {
+  name: PropTypes.text,
   google: PropTypes.object,
   zoom: PropTypes.number,
   initialCenter: PropTypes.object,
   centerAroundCurrentLocation: PropTypes.bool,
-}
+  savedToAccount: PropTypes.bool,
+};
 CurrentMap.defaultProps = {
+  name: 'Untitled',
   zoom: 13,
   // Seattle location by default
   initialCenter: {
@@ -158,6 +161,7 @@ CurrentMap.defaultProps = {
     lng: -122.3321,
   },
   centerAroundCurrentLocation: false,
+  savedToAccount: false,
   onDragend() {
     console.log('moving');
   },
