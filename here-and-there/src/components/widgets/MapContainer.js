@@ -13,7 +13,6 @@ export class MapContainer extends React.Component {
   //     selectedPlace: {},
   //   };
   // }
-  // TODO: Refactor onClick={this.onMarkerClick.bind(this) to not use the bind method;
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +20,17 @@ export class MapContainer extends React.Component {
       activeMarker: {},
       selectedPlace: {},
     };
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onMapClick = this.onMapClick.bind(this);
+  }
+  onMapClick() {
+    console.log( 'in MapContainer onMapClick()');
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
   }
   onMarkerClick(props, marker, e) {
     console.log(this);
@@ -45,9 +55,9 @@ export class MapContainer extends React.Component {
     return (
       <div>
         <SearchBox google={this.props.google}/>
-        <CurrentMap google={this.props.google}>
+        <CurrentMap google={this.props.google} onClick={this.onMapClick}>
           <MapMarker />
-          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick.bind(this)}/>
+          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
           <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
             <div>
               <h2> this is the info window </h2>
