@@ -22,6 +22,11 @@ export class MapMarker extends Component {
       this.renderMarker();
     }
   }
+  componentWillUnmount() {
+    if (this.marker) {
+      this.marker.setMap(null);
+    }
+  }
   renderMarker() {
     let { map, google, position, mapCenter } = this.props;
 
