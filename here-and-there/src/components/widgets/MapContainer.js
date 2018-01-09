@@ -22,6 +22,14 @@ export class MapContainer extends React.Component {
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
+    this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
+  }
+  onInfoWindowClose() {
+    console.log('in MapContainer.onInfoWindowClose()');
+    this.setState({
+      showingInfoWindow: false,
+      activeMarker: null,
+    });
   }
   onMapClick() {
     console.log( 'in MapContainer onMapClick()');
@@ -58,7 +66,7 @@ export class MapContainer extends React.Component {
         <CurrentMap google={this.props.google} onClick={this.onMapClick}>
           <MapMarker />
           <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
             <div>
               <h2> this is the info window </h2>
               <p>Name: {this.state.selectedPlace.name} </p>
