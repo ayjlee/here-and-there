@@ -3,16 +3,27 @@ import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
 import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
+import InfoWindow from './InfoWindow';
 
 export class MapContainer extends React.Component {
-  getInitialState() {
-    return {
+  // getInitialState() {
+  //   return {
+  //     showingInfoWindow: false,
+  //     activeMarker: {},
+  //     selectedPlace: {},
+  //   };
+  // }
+  // TODO: Refactor onClick={this.onMarkerClick.bind(this) to not use the bind method;
+  constructor(props) {
+    super(props);
+    this.state = {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
     };
   }
   onMarkerClick(props, marker, e) {
+    console.log(this);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -34,19 +45,19 @@ export class MapContainer extends React.Component {
     return (
       <div>
         <SearchBox google={this.props.google}/>
-        <CurrentMap google= {this.props.google}>
+        <CurrentMap google={this.props.google}>
           <MapMarker />
-          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick}/>
+          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick.bind(this)}/>
           <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
             <div>
-              <h2> this is the info window <h2>
+              <h2> this is the info window </h2>
               <p>Name: {this.state.selectedPlace.name} </p>
             </div>
 
           </InfoWindow>
         </CurrentMap>
       </div>
-    )
+    );
   }
 }
 
