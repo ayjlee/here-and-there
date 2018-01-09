@@ -5,6 +5,20 @@ import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 
 export class MapContainer extends React.Component {
+  getInitialState() {
+    return {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+    };
+  }
+  onMarkerClick(props, marker, e) {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+  }
   render() {
     const style = {
       width: '80vw',
@@ -22,7 +36,14 @@ export class MapContainer extends React.Component {
         <SearchBox google={this.props.google}/>
         <CurrentMap google= {this.props.google}>
           <MapMarker />
-          <MapMarker position={pos} />
+          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick}/>
+          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}>
+            <div>
+              <h2> this is the info window <h2>
+              <p>Name: {this.state.selectedPlace.name} </p>
+            </div>
+
+          </InfoWindow>
         </CurrentMap>
       </div>
     )
