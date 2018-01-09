@@ -19,21 +19,25 @@ export class SearchBox extends Component {
     const {google, map} =this.props;
     console.log('the props in renderAutocomplete are:')
     console.log(this.props);
-    console.log(google);
+    console.log('the map for the current search box:');
+    console.log(map);
     // TODO: Change conditional back to the commented out one below
-    if (!google || !map) return;
+      // if (!google || !map) return;
+    if (!google) return;
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
     console.log('the node for renderAutoComplete is:')
     console.log(node);
-    let autocomplete = new google.maps.places.Autcomplete(node);
+    let autocomplete = new google.maps.places.Autocomplete(node);
     console.log('the autocomplete object is:');
     console.log(autocomplete);
-    autocomplete.bindTo('bounds', map);
-
+    // autocomplete.bindTo('bounds', map);
+    //
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-    })
+      console.log('the autocomplete place is:');
+      console.log(place);
+    });
   }
 
   render() {
