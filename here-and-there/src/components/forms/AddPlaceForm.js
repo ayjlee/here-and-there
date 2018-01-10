@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 
-class NewMapForm extends Component {
+class NewPlaceForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { author: '', name: '', city: '', country: '' };
+    this.state = {
+      author: '',
+      place_name: '',
+      place_id: '',
+      city: '',
+      country: '',
+      position: {
+      lat: lat,
+      lng: lng
+      },
+      notes: [],
+      labels: [],
+      categories: [],
+      maps: [],
+      saved_to_acct: false, saved_to_current_map: false
+    };
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCityChange = this.handleCityChange.bind(this);
@@ -34,7 +49,7 @@ class NewMapForm extends Component {
     if (!author || !name || !city || !country ){
       return;
     }
-    this.props.onCommentSubmit( {
+    this.props.onPlaceSubmit( {
       author: author, name: name, city: city, country: country
     });
     this.setState({ author: '', name: '', city: '', country: '' });
@@ -64,10 +79,10 @@ class NewMapForm extends Component {
           onChange={ this.handleCountryChange } />
         <input
           type='submit'
-          value='Build New Map'/>
+          value='Post'/>
       </form>
     )
   }
 }
 
-export default NewMapForm;
+export default NewPlaceForm;

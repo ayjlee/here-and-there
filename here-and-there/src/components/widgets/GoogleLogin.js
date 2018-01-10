@@ -54,7 +54,8 @@ class GoogleLogin extends Component {
 
             } else if (e.id) {
                 //Profile data
-                alert("Successfull login from google : "+ e.displayName )
+                alert("Successfull login from google : "+ e.displayName );
+                console.log('e after sign in and getting usergoogle profile is:')
                 console.log( e );
                 return;
             }

@@ -22,8 +22,7 @@ export class SearchBox extends Component {
     console.log('the map for the current search box:');
     console.log(map);
     // TODO: Change conditional back to the commented out one below
-      // if (!google || !map) return;
-    if (!google) return;
+    if (!google || !map) return;
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
     console.log('the node for renderAutoComplete is:')
@@ -34,9 +33,40 @@ export class SearchBox extends Component {
     // autocomplete.bindTo('bounds', map);
     //
     autocomplete.addListener('place_changed', () => {
+
       const place = autocomplete.getPlace();
       console.log('the autocomplete place is:');
       console.log(place);
+      console.log('the autocomplete object is:');
+      console.log(autocomplete);
+      if (!place.geometry) {
+        return;
+      }
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+        const pref = {
+          map: map,
+          position: place.geometry.location,
+        };
+        const newPlaceMarker = new google.maps.Marker(pref);
+        console.log('the new place marker is:');
+        console.log(newPlaceMarker);
+
+        const iw = new google.maps.InfoWindow({
+          content: `place is: ${place}`,
+        });
+
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);  // Why 17? Because it looks good.
+        const pref = {
+          map: map,
+          position: place.geometry.location,
+        };
+        const newPlaceMarker = new google.maps.Marker(pref);
+        console.log('the new place marker is:');
+        console.log(newPlaceMarker);
+      }
     });
   }
 

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import NewMapForm from '../forms/AddMapForm';
 import { Route } from 'react-router-dom';
 import MapContainer from '../widgets/MapContainer';
+import EditMapContainer from '../widgets/EditMapContainer';
 
 class BuildMap extends Component {
   // onSubmit(e) {
@@ -29,20 +30,7 @@ class BuildMap extends Component {
   render() {
     return (
       <section id="build-map-page-content">
-        <div className= "sidepane-placeholder">
-          <h2>Build Your New Map</h2>
-          <h4>name</h4>
-
-          <h4> where to? </h4>
-          <SearchBox />
-          <h4>places to add </h4>
-
-          <p> what happens to div height when I add more text </p>
-        </div>
-        <div id="map-container">
-          <h4> Map will go here </h4>
-          <Route component={MapContainer}/>
-        </div>
+        <Route component={EditMapContainer}/>
       </section>
     );
   }

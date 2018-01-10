@@ -112,6 +112,9 @@ export class CurrentMap extends Component {
       });
 
       maps.event.trigger(this.map, 'ready');
+      console.log('this.map, which we pass to this.props.action is:');
+      console.log(this.map);
+      this.props.action(this.map);
 
       // need to trgger this.forceupdate because MArker(children) will be rendered first; we need to forceUpdate when the map is loaded so that MapMarker has a this.map
       this.forceUpdate();
@@ -151,6 +154,7 @@ CurrentMap.propTypes = {
   initialCenter: PropTypes.object,
   centerAroundCurrentLocation: PropTypes.bool,
   savedToAccount: PropTypes.bool,
+  action: PropTypes.func,
 };
 CurrentMap.defaultProps = {
   zoom: 13,

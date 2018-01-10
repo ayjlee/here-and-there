@@ -42,14 +42,14 @@ ul.header li a {
   background-color: #0099FF;
 }
 
-.sidepane-placeholder {
+.sidepane-placeholder, #building-map-info {
   width: 30vw;
   border: green solid 3px;
   display: inline-block;
   vertical-align: top;
 }
 
-#map-container {
+#map-container, #holds-map {
   width: 60vw;
   border: black solid 2px;
   display: inline-block;
@@ -62,5 +62,13 @@ ul.header li a {
 }
 
 .full-page {
+  text-align: center;
+}
+
+#building-map-info, #holds-map {
+  display: inline-block;
+}
+
+.page-name {
   text-align: center;
 }

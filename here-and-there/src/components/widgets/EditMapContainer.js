@@ -5,20 +5,14 @@ import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
 
-export class MapContainer extends React.Component {
-  // getInitialState() {
-  //   return {
-  //     showingInfoWindow: false,
-  //     activeMarker: {},
-  //     selectedPlace: {},
-  //   };
-  // }
+export class EditMapContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
+      map: null,
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
@@ -68,21 +62,37 @@ export class MapContainer extends React.Component {
     if (!this.props.loaded) {
       return <div>Loading Map Container...</div>
     }
+    if (this.state.map) {
+      console.log('in map container rendering conditional, showing this.state.map');
+      console.log(this.state.map);
+    }
     return (
-      <div>
-        <SearchBox google={this.props.google}/>
-        <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
-          <MapMarker />
-          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
-            <div>
-              <h2> this is the info window </h2>
-              <p>Name: {this.state.selectedPlace.name} </p>
-            </div>
+      <section id="map-container-section">
+        <h2 className="page-name"> Currently Editing Map: (fill in later) </h2>
+        <div id="building-map-info">
+          This will hold all of the info for the map we are currently building, including:
 
-          </InfoWindow>
-        </CurrentMap>
-      </div>
+          <h3>Map Name:</h3>
+          <h3>List of Locations Saved to the Current Map:</h3>
+            <ul>
+              <li>none so far </li>
+            </ul>
+        </div>
+        <div id="holds-map">
+          <SearchBox google={this.props.google} map={this.state.map} />
+          <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
+            <MapMarker />
+            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+              <div>
+                <h2> this is the info window </h2>
+                <p>Name: {this.state.selectedPlace.name} </p>
+              </div>
+
+            </InfoWindow>
+          </CurrentMap>
+        </div>
+      </section>
     );
   }
 }
@@ -90,4 +100,4 @@ export class MapContainer extends React.Component {
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],
-})(MapContainer);
+})(EditMapContainer);
