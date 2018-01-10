@@ -5,6 +5,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const Map = require('./model/maps');
 const User = require('./model/users');
 //and create our instances
@@ -13,7 +14,7 @@ const router = express.Router();
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
 const port = process.env.API_PORT || 3001;
-//db config
+//db config- connect to my MongoDB database
 mongoose.connect('mongodb://HereandThereAda:Maps4U@ds237967.mlab.com:37967/here-and-there-data');
 //now we should configure the API to use bodyParser and look for
 //JSON data in the request body
@@ -30,6 +31,18 @@ app.use(function(req, res, next) {
  res.setHeader('Cache-Control', 'no-cache');
  next();
 });
+
+// use sessions for tracking logins
+  // secret is used to sign the session ID cookie
+  // saveUninitialized forces a session that is uninitialized to be saved to store
+  // resave forces session to be saved back to the session store, even if session was never modified during the request
+app.use(session({
+  secret: 'isWizard',
+  resave: true,
+  saveUninitialized: false,
+}));
+
+
 //now we can set the route path & initialize the API
 router.get('/', function(req, res) {
  res.json({ message: 'API Initialized!'});
@@ -60,6 +73,8 @@ router.route('/users')
         if (err) {
           return next(err);
         } else {
+          // on successful user creation, set current session id to user's id
+          req.session.userId = user._id;
           // when logged in, redirect to user's library. TODO: setup library path
           return res.redirect('/library');
         }
@@ -94,6 +109,21 @@ router.route('/maps')
    }
    res.json({ message: 'Map successfully added!' });
   });
+});
+
+// setup route to logout at GET /logout
+router.get('/logout', function(req, res, next) {
+  if (req.session) {
+    // delete current session object
+    req.session.destroy(function(err) {
+      if (err) {
+        return next(err);
+      } else {
+        // redirect to home page
+        return res.redirect('/');
+      }
+    });
+  }
 });
 
 //Use our router configuration when we call /api
