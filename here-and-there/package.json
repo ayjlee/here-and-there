@@ -5,7 +5,10 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "foreman": "^2.0.0",
     "google-auth-library": "^1.0.0",
     "google-maps-react": "^1.1.2",

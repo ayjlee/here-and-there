@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const UsersSchema = new Schema({
   name: String,
   email: String,
+  googleIdToken: String,
   savedMaps: Array,
   savedMarkers: Array,
 });
