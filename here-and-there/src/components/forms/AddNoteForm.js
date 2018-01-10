@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NewPlaceForm extends Component {
+class NewNoteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,28 +22,25 @@ class NewPlaceForm extends Component {
   handleTypeChange(e) {
     this.setState({ type: e.target.value });
   }
-  handleCityChange(e) {
-    this.setState({ city: e.target.value});
-  }
-  handleCountryChange(e) {
-    this.setState({ country: e.target.value });
-  }
   handleSubmit(e) {
     e.preventDefault();
     const author = this.state.author;
     // need to trim?
       // const author = this.state.author.trim();
     const name = this.state.name;
-    const city = this.state.city;
-    const country = this.state.country;
+    const map = this.props.map;
+    const place = this.props.place;
+    const marker = this.props.marker;
 
-    if (!author || !name || !city || !country ){
+    if (!author || !text || !type ){
       return;
     }
     this.props.onPlaceSubmit( {
-      author: author, name: name, city: city, country: country
+      author: author, text: text, type: type, saved_to_current_map: true, map_id: map, place_id: place, marker_id: marker,
     });
-    this.setState({ author: '', name: '', city: '', country: '' });
+    this.setState({
+      author: '', text: '', type: [], saved_to_current_map: false, map_id: '',   place_id: '', marker_id: ''
+    });
   }
   render() {
     return (
@@ -55,25 +52,23 @@ class NewPlaceForm extends Component {
           onChange={ this.handleAuthorChange } />
         <input
           type='text'
-          placeholder='Name of your new map'
-          value={ this.state.name }
-          onChange={ this.handleNameChange } />
+          placeholder='Your note'
+          value={ this.state.text }
+          onChange={ this.handleTextChange }
+        />
         <input
           type='text'
-          placeholder='City'
-          value={ this.state.city }
-          onChange={ this.handleCityChange } />
-        <input
-          type='text'
-          placeholder='Country'
-          value={ this.state.country }
-          onChange={ this.handleCountryChange } />
+          placeholder='Type'
+          value={ this.state.type }
+          onChange={ this.handleTypeChange }
+        />
         <input
           type='submit'
-          value='Post'/>
+          value='Add Note'
+        />
       </form>
     )
   }
 }
 
-export default NewPlaceForm;
+export default NewNoteForm;
