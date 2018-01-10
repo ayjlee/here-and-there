@@ -70,9 +70,7 @@ export class MapContainer extends React.Component {
     }
     return (
       <div>
-        <SearchBox google={this.props.google}/>
         <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
-          <MapMarker />
           <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
           <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
             <div>

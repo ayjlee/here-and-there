@@ -4,6 +4,7 @@ import CurrentMap from './CurrentMap';
 import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
+import NewNoteForm from '../forms/AddNoteForm';
 
 export class EditMapContainer extends React.Component {
   constructor(props) {
@@ -87,6 +88,8 @@ export class EditMapContainer extends React.Component {
               <div>
                 <h2> this is the info window </h2>
                 <p>Name: {this.state.selectedPlace.name} </p>
+                <h2> This is the form to add a new note</h2>
+                <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map}/>
               </div>
 
             </InfoWindow>

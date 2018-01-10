@@ -30,7 +30,7 @@ class BuildMap extends Component {
   render() {
     return (
       <section id="build-map-page-content">
-        <Route component={EditMapContainer}/>
+        <Route path="/buildmap" component={EditMapContainer}/>
       </section>
     );
   }
