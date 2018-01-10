@@ -44,7 +44,28 @@ router.route('/users')
       }
       res.json(users);
     })
-  });
+  })
+  .post(function(req, res) {
+    if (req.body.email && req.body.googleIdToken) {
+      const userData = {
+        name: req.body.name,
+        email: req.body.email,
+        googleIdToken: req.body.googleIdToken,
+        savedMaps: req.body.savedMaps,
+        savedMarkers: req.body.savedMarkers,
+      };
+
+      // using schema.create to create new User and insert their data into the database
+      User.create(userData, function (err, user) {
+        if (err) {
+          return next(err);
+        } else {
+          // when logged in, redirect to user's library. TODO: setup library path
+          return res.redirect('/library');
+        }
+      })
+    }
+  })
 
 //adding the /maps route to our /api router
 router.route('/maps')
