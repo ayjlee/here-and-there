@@ -1,5 +1,21 @@
 import React, { Component } from 'react';
-import google from './google.png'
+import google from './google.png';
+
+// const GoogleAuth = require('google-auth-library');
+//
+// const auth = new GoogleAuth;
+//
+// const client = new auth.OAuth2(CLIENT_ID, '', '');
+// client.verifyIdToken(
+//   token,
+//   CLIENT_ID,
+//   function(e, login) {
+//     const payload = login.getPayload();
+//     const userid = payload['sub'];
+//     // if request specified a G suite domain:
+//       // const domain = payload['hd'];
+//   }
+// )
 
 class GoogleLogin extends Component {
   constructor(props) {
