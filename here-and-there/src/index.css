@@ -60,3 +60,7 @@ ul.header li a {
   font-family: 'Inconsolata', monospace;
   text-align: center;
 }
+
+.full-page {
+  text-align: center;
+}

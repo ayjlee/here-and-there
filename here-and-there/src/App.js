@@ -34,10 +34,6 @@ class App extends Component {
               <Route path="/library" component={Library}/>
               <Route path="/sign-in" component={SignIn}/>
             </Switch>
-            <div id="map-container">
-              <h4> Map will go here </h4>
-              <Route component={MapContainer}/>
-            </div>
           </div>
         </div>
       </BrowserRouter>
