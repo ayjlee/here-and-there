@@ -1,10 +1,12 @@
 import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
+import axios from 'axios';
 import CurrentMap from './CurrentMap';
 import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
 import NewNoteForm from '../forms/AddNoteForm';
+
 
 export class EditMapContainer extends React.Component {
   constructor(props) {

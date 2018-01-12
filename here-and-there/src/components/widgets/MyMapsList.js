@@ -23,7 +23,10 @@ class MyMapsList extends Component {
   render() {
     let mapNodes = this.state.data.map(map => {
       return (
-        <li key={map._id}> Map name: {map.name}, map author: {map.author}, key: {map._id}, markers: {map.markers} </li>
+        <li key={map._id} className="myMap">
+          <h3> Map name: {map.name} </h3>
+          <p>author: {map.author}, key: {map._id}, markers: {map.markers}</p>
+        </li>
       );
 
     });
