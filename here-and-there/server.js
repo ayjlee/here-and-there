@@ -102,7 +102,7 @@ router.route('/maps')
     res.json(maps)
   });
   })
- //post new comment to the database
+ //post new map to the database
  .post(function(req, res) {
   var map = new Map();
   //body parser lets us use the req.body
@@ -115,6 +115,41 @@ router.route('/maps')
    res.json({ message: `Map successfully added! the request body is ${req.body}` });
   });
 });
+
+router.route('/maps/:map_id')
+  .get(function(req, res) {
+  //looks at our Map Schema
+    Map.findById(req.params.map_id, function(err, map) {
+     if (err) {
+       res.send(err);
+     }
+      //responds with a json object of our database maps.
+     res.json(map);
+    });
+  })
+  .put(function(req, res) {
+    Map.findById(req.params.map_id, function(err, map) {
+      if (err) {
+        res.send(err);
+      }
+      (req.body.author) ? map.author = req.body.author : null;
+      (req.body.name) ? map.name : null;
+      map.save(function(err) {
+        if (err) {
+          res.send(err);
+        }
+        res.json({ message: 'Map has been updated' });
+      });
+    });
+  })
+  .delete(function(req, res) {
+    Map.remove({ _id: req.params.map_id }, function(err, map) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: 'map has been deleted' });
+    });
+  });
 
 // setup route to logout at GET /logout
 router.get('/logout', function(req, res, next) {

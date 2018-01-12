@@ -4,6 +4,7 @@ import './App.css';
 import {
   Route,
   NavLink,
+  Redirect,
   BrowserRouter,
   Switch,
 } from 'react-router-dom';

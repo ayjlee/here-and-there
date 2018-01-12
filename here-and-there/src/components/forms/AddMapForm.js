@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  Redirect,
+  Route,
+  BrowserRouter,
+} from 'react-router-dom';
+import Library from '../pages/Library';
 
 class NewMapForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { author: '', name: '' };
+    this.state = { author: '', name: '', savedtoUser: false };
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.redirectLibrary = this.redirectLibrary.bind(this);
   }
   handleAuthorChange(e) {
     this.setState({ author: e.target.value });
@@ -15,12 +22,18 @@ class NewMapForm extends Component {
   handleNameChange(e) {
     this.setState({ name: e.target.value });
   }
+  redirectLibrary() {
+    console.log('in redirectlibrary method');
+    <BrowserRouter>
+      <Redirect to="/library" />;
+    </BrowserRouter>
+  }
   postNewMap(newMap) {
     console.log(' in postNew Map, the url is:');
     console.log(this.props.url);
     axios.post(this.props.url, newMap)
     .then(res => {
-      this.setState({ data:res });
+      this.setState({ data:res, savedtoUser: true });
     })
     .catch(err => {
       console.log(err);

@@ -61,7 +61,6 @@ export class MapMarker extends Component {
 MapMarker.propTypes = {
   position: PropTypes.object,
   map: PropTypes.object,
-  userMapId: PropTypes.text,
   savedToMap: PropTypes.bool,
   notes: PropTypes.array,
   placeId: PropTypes.number
