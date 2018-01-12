@@ -1,7 +1,5 @@
 import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
-import CurrentMap from './CurrentMap';
-import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 // use ReactDomServer to translate the children of the <InfoWindow /> component in our <MapContainer /> into an HTML string
 import ReactDOMServer from 'react-dom/server';

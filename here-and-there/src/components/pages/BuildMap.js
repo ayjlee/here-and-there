@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import SearchBox from  '../widgets/SearchBox';
-import ReactDOM from 'react-dom';
-import NewMapForm from '../forms/AddMapForm';
 import { Route } from 'react-router-dom';
-import MapContainer from '../widgets/MapContainer';
-import EditMapContainer from '../widgets/EditMapContainer';
 
 class BuildMap extends Component {
   // onSubmit(e) {

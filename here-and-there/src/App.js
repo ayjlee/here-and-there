@@ -11,10 +11,7 @@ import {
 // TODO: look up pros/cons of using Hashrouter over BrowserRouter
 import Home from './components/pages/Home';
 import Library from './components/pages/Library';
-import BuildMap from './components/pages/BuildMap';
 import SignIn from './components/pages/SignIn';
-import MapContainer from './components/widgets/MapContainer';
-import CurrentMap from './components/widgets/CurrentMap';
 import NewMapPage from './components/pages/NewMap';
 import EditMapContainer from './components/widgets/EditMapContainer';
 

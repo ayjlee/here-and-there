@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Route } from 'react-router-dom';
 import axios from 'axios';
-import MapContainer from '../widgets/MapContainer';
-import CurrentMap from '../widgets/CurrentMap';
 
 class MyMapsList extends Component {
   constructor(props) {

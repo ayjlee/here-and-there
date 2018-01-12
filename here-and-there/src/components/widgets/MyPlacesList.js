@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Route } from 'react-router-dom';
-import MapContainer from '../widgets/MapContainer';
 import axios from 'axios';
 
 class MyPlacesList extends Component {

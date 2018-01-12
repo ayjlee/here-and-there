@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Route } from 'react-router-dom';
-import MapContainer from '../widgets/MapContainer';
 import MyMapsList from '../widgets/MyMapsList';
 import MyPlacesList from '../widgets/MyPlacesList';
+import MapContainer from '../widgets/MapContainer';
 
 const DATA = [
   { author: 'some dudette', name: 'map alpha', key: 'bogus map id', markers: [] },

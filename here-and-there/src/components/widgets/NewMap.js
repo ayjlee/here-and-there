@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import marked from 'marked';
+
 class NewMap extends Component {
   rawMarkup() {
     const rawMarkup = marked(this.props.children.toString());
