@@ -7,7 +7,7 @@ const MapSchema = new Schema({
   author: String,
   name: String,
   url: String,
-  savedPlaces: Array,
+  savedMarkers: Array,
 });
 //export our module to use in server.js
 module.exports = mongoose.model('Map', MapSchema);

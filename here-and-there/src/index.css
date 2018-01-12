@@ -42,7 +42,7 @@ ul.header li a {
   background-color: #0099FF;
 }
 
-.sidepane-placeholder, #building-map-info {
+.sidepane-placeholder, #building-map-info, #edit-map-pane {
   max-width: 30vw;
   border: green solid 3px;
   display: inline-block;

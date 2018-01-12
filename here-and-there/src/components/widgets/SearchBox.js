@@ -15,30 +15,20 @@ export class SearchBox extends Component {
     }
   }
   renderAutoComplete() {
-    console.log('in renderAutoComplete')
-    const {google, map} =this.props;
-    console.log('the props in renderAutocomplete are:')
-    console.log(this.props);
-    console.log('the map for the current search box:');
-    console.log(map);
+    const {google, map} = this.props;
     // TODO: Change conditional back to the commented out one below
     if (!google || !map) return;
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
-    console.log('the node for renderAutoComplete is:')
-    console.log(node);
+
     let autocomplete = new google.maps.places.Autocomplete(node);
-    console.log('the autocomplete object is:');
-    console.log(autocomplete);
+
     // autocomplete.bindTo('bounds', map);
     //
     autocomplete.addListener('place_changed', () => {
 
       const place = autocomplete.getPlace();
-      console.log('the autocomplete place is:');
-      console.log(place);
-      console.log('the autocomplete object is:');
-      console.log(autocomplete);
+
       if (!place.geometry) {
         return;
       }
@@ -64,8 +54,7 @@ export class SearchBox extends Component {
           position: place.geometry.location,
         };
         const newPlaceMarker = new google.maps.Marker(pref);
-        console.log('the new place marker is:');
-        console.log(newPlaceMarker);
+
       }
     });
   }

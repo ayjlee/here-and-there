@@ -41,9 +41,7 @@ export class CurrentMap extends Component {
     this.loadMap();
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log('in componentDidUpdate');
     if (prevProps.google !== this.props.google) {
-      console.log('in componentDidUpdate');
       this.loadMap();
     }
     if (prevState.currentLocation !== this.state.currentLocation) {
@@ -77,10 +75,8 @@ export class CurrentMap extends Component {
     }
   }
   loadMap() {
-    console.log('in loadMap');
     if (this.props && this.props.google) {
       // google is available
-      console.log('google is available');
       const {google} = this.props;
       const maps = google.maps;
       const mapRef = this.refs.map;
@@ -112,8 +108,6 @@ export class CurrentMap extends Component {
       });
 
       maps.event.trigger(this.map, 'ready');
-      console.log('this.map, which we pass to this.props.action is:');
-      console.log(this.map);
       this.props.action(this.map);
 
       // need to trgger this.forceupdate because MArker(children) will be rendered first; we need to forceUpdate when the map is loaded so that MapMarker has a this.map

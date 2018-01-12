@@ -35,7 +35,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/newmap" component={NewMapPage}/>
+              <Route path="/newmap" component={NewMapPage} />
               <Route path="/edit-map" component={EditMapContainer} />
               <Route path="/library" component={Library}/>
               <Route path="/sign-in" component={SignIn}/>

@@ -3,12 +3,13 @@ const Schema = mongoose.Schema;
 
 //create new instance of the mongoose.schema. the schema takes an
 //object that shows the shape of your database entries.
-const MapMarkersSchema = new Schema({
+const MapMarkerSchema = new Schema({
   author: String,
-  name: String,
+  place_name: String,
+  map_id: String,
   position: Object,
-  place: Number,
+  place_id: String,
   notes: Array,
 });
 
-module.exports = mongoose.model('MapMarker', MapMarkersSchema);
+module.exports = mongoose.model('MapMarker', MapMarkerSchema);

@@ -59,14 +59,14 @@ class NewMapForm extends Component {
       <form onSubmit={ this.handleSubmit }>
         <input
           type='text'
-          placeholder='Your name...'
-          value={ this.state.author }
-          onChange={ this.handleAuthorChange } />
-        <input
-          type='text'
           placeholder='Name of your new map'
           value={ this.state.name }
           onChange={ this.handleNameChange } />
+        <input
+          type='text'
+          placeholder='Your name...'
+          value={ this.state.author }
+          onChange={ this.handleAuthorChange } />
         <input
           type='submit'
           value='Build New Map'/>

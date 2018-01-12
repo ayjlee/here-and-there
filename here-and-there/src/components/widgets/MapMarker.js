@@ -16,7 +16,6 @@ export class MapMarker extends Component {
   //   this.renderMarker();
   // }
   componentDidUpdate(prevProps) {
-    console.log('in MapMArker componentdid update');
     if ((this.props.map !== prevProps.map) || (this.props.position !== prevProps.position)) {
       // change the relevant props
       this.renderMarker();
@@ -53,7 +52,6 @@ export class MapMarker extends Component {
     }
   }
   render() {
-    console.log('in MapMarker render');
     return null;
   }
 }
