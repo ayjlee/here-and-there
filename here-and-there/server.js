@@ -6,81 +6,88 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+
 const Map = require('./model/maps');
 const User = require('./model/users');
+
 //and create our instances
 const app = express();
 const router = express.Router();
+
 //set our port to either a predetermined port number if you have set
 //it up, or 3001
 const port = process.env.API_PORT || 3001;
+
 //db config- connect to my MongoDB database
 mongoose.connect('mongodb://HereandThereAda:Maps4U@ds237967.mlab.com:37967/here-and-there-data');
+
 //now we should configure the API to use bodyParser and look for
 //JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 //To prevent errors from Cross Origin Resource Sharing, we will set
 //our headers to allow CORS with middleware like so:
 app.use(function(req, res, next) {
- res.setHeader('Access-Control-Allow-Origin', '*');
- res.setHeader('Access-Control-Allow-Credentials', 'true');
- res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
- res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-//and remove cacheing so we get the most recent comments
- res.setHeader('Cache-Control', 'no-cache');
- next();
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
+  //and remove cacheing so we get the most recent comments
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
 });
 
 // use sessions for tracking logins
   // secret is used to sign the session ID cookie
   // saveUninitialized forces a session that is uninitialized to be saved to store
   // resave forces session to be saved back to the session store, even if session was never modified during the request
-app.use(session({
-  secret: 'isWizard',
-  resave: true,
-  saveUninitialized: false,
-}));
+  // app.use(session({
+  //   secret: 'isWizard',
+  //   resave: true,
+  //   saveUninitialized: false,
+  // }));
 
 
 //now we can set the route path & initialize the API
 router.get('/', function(req, res) {
- res.json({ message: 'API Initialized!'});
+  res.json({ message: 'API Initialized!'});
 });
 
 //adding the /users route to our /api router
-router.route('/users')
-  .get(function(req, res) {
-    User.find(function(err, users) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(users);
-    })
-  })
-  .post(function(req, res) {
-    if (req.body.email && req.body.googleIdToken) {
-      const userData = {
-        name: req.body.name,
-        email: req.body.email,
-        googleIdToken: req.body.googleIdToken,
-        savedMaps: req.body.savedMaps,
-        savedMarkers: req.body.savedMarkers,
-      };
-
-      // using schema.create to create new User and insert their data into the database
-      User.create(userData, function (err, user) {
-        if (err) {
-          return next(err);
-        } else {
-          // on successful user creation, set current session id to user's id
-          req.session.userId = user._id;
-          // when logged in, redirect to user's library. TODO: setup library path
-          return res.redirect('/library');
-        }
-      })
-    }
-  })
+  // router.route('/users')
+  //   .get(function(req, res) {
+  //     User.find(function(err, users) {
+  //       if (err) {
+  //         res.send(err);
+  //       }
+  //       res.json(users);
+  //     })
+  //   })
+  //   .post(function(req, res) {
+  //     if (req.body.email && req.body.googleIdToken) {
+  //       const userData = {
+  //         name: req.body.name,
+  //         email: req.body.email,
+  //         googleIdToken: req.body.googleIdToken,
+  //         savedMaps: req.body.savedMaps,
+  //         savedMarkers: req.body.savedMarkers,
+  //       };
+  //
+  //       // using schema.create to create new User and insert their data into the database
+  //       User.create(userData, function (err, user) {
+  //         if (err) {
+  //           return next(err);
+  //         } else {
+  //           // on successful user creation, set current session id to user's id
+  //           req.session.userId = user._id;
+  //           // when logged in, redirect to user's library. TODO: setup library path
+  //           return res.redirect('/library');
+  //         }
+  //       })
+  //     }
+  //   });
 
 //adding the /maps route to our /api router
 router.route('/maps')
@@ -100,14 +107,12 @@ router.route('/maps')
   var map = new Map();
   //body parser lets us use the req.body
   map.author = req.body.author;
-  map.name = req.body.text;
-  map.city = req.body.city;
-  map.country = req.body.country;
+  map.name = req.body.name;
   map.save(function(err) {
    if (err) {
      res.send(err);
    }
-   res.json({ message: 'Map successfully added!' });
+   res.json({ message: `Map successfully added! the request body is ${req.body}` });
   });
 });
 

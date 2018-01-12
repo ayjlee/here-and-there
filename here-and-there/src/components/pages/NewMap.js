@@ -5,8 +5,8 @@ import NewMapForm from '../forms/AddMapForm';
 class NewMapPage extends Component {
   render() {
     return (
-      <div className= "full-page">
-        <NewMapForm />
+      <div className="full-page">
+        <NewMapForm url="http://localhost:3001/api/maps" pollInterval={2000}/>
       </div>
     );
   }

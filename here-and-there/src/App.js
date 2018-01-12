@@ -18,11 +18,15 @@ import NewMapPage from './components/pages/NewMap';
 import EditMapContainer from './components/widgets/EditMapContainer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
   render() {
     return (
       <BrowserRouter>
         <div id="main">
-          <h1 id= "title">here and there</h1>
+          <h1 id="title">here and there</h1>
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/newmap">Build a New Map</NavLink></li>
@@ -33,7 +37,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
-              <Route path="/newmap" component={NewMapPage} />
+              <Route path="/newmap" component={NewMapPage}/>
               <Route path="/edit-map" component={EditMapContainer} />
               <Route path="/library" component={Library}/>
               <Route path="/sign-in" component={SignIn}/>

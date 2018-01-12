@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
 
-const evtNames = ['click', 'mouseover'];
+const evtNames = ['click', 'mouseover', 'clickadd'];
 const camelize = function(str) {
   return str.split(' ').map(function(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -61,8 +61,10 @@ export class MapMarker extends Component {
 MapMarker.propTypes = {
   position: PropTypes.object,
   map: PropTypes.object,
+  userMapId: PropTypes.text,
   savedToMap: PropTypes.bool,
   notes: PropTypes.array,
+  placeId: PropTypes.number
 }
 MapMarker.defaultProps = {
   savedToMap: false,
@@ -71,6 +73,9 @@ MapMarker.defaultProps = {
   },
   onMouseover() {
     console.log('mousing over a mapmarker');
+  },
+  onClickadd() {
+    console.log(`adding this mapmarker to the map: ${this.props.userMapId}`);
   }
 }
 evtNames.forEach((e) => {

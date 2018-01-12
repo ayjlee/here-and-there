@@ -1,29 +1,34 @@
 import React, { Component } from "react";
 import { Route } from 'react-router-dom';
 import MapContainer from '../widgets/MapContainer';
+import MyMapsList from '../widgets/MyMapsList';
+import MyPlacesList from '../widgets/MyPlacesList';
 
+const DATA = [
+  { author: 'some dudette', name: 'map alpha', key: 'bogus map id', markers: [] },
+  { author: 'some dude', name: 'map beta', key: 'bogus map id 2', markers: [] }
+];
+
+// TODO: replace hardcoded userId with dynamic variable
 class Library extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [] };
+  }
   render() {
     return (
       <section id="library-page-content">
         <div className= "sidepane-placeholder">
-          <h2>welcome to library</h2>
+          <h2>shh, this is library!</h2>
           <h4>my maps</h4>
-            <ul>
-              <li> list of maps </li>
-              <li> add view options to view by location </li>
-            </ul>
+            <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} />
 
-          <h4>my markers</h4>
-            <ul>
-              <li> View by Category </li>
-              <li> View by Location </li>
-              <li> List View vs. map diplay view options? </li>
-            </ul>
+          <h4>my saved places</h4>
+            <MyPlacesList />
         </div>
         <div id="map-container">
           <h4> Map will go here </h4>
-          <Route component={MapContainer}/>
+          <MapContainer />
         </div>
       </section>
     );

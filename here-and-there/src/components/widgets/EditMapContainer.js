@@ -19,6 +19,7 @@ export class EditMapContainer extends React.Component {
     this.onMapClick = this.onMapClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.onMapAdded = this.onMapAdded.bind(this);
+    this.loadMapDataFromServer = this.loadMapDataFromServer.bind(this);
   }
   onInfoWindowClose() {
     console.log('in MapContainer.onInfoWindowClose()');
@@ -37,7 +38,6 @@ export class EditMapContainer extends React.Component {
     }
   }
   onMarkerClick(props, marker, e) {
-    console.log(this);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -50,6 +50,15 @@ export class EditMapContainer extends React.Component {
     });
     console.log('in onMapAdded, after we set state, this is:');
     console.log(this);
+  }
+  loadMapDataFromServer() {
+    axios.get(this.props.url)
+    .then((res) => {
+      this.setState({ data: res.data });
+    });
+  }
+  handleMarkerSubmit() {
+    // axios post or patch method for adding a marker to a place
   }
   render() {
     const style = {
