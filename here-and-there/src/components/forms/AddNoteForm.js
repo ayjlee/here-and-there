@@ -5,15 +5,12 @@ class NewNoteForm extends Component {
     super(props);
     this.state = {
       author: '',
-      map_id: '',
-      place_id: '',
-      marker_id: '',
       text: '',
       type: '',
-      saved_to_current_map: false
     };
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleTextChange(e) {
@@ -24,20 +21,22 @@ class NewNoteForm extends Component {
     console.log('handling type change in newnoteform');
     this.setState({ type: e.target.value });
   }
+  handleAuthorChange(e) {
+    console.log('handling author change in newnoteform');
+    this.setState({ type: e.target.value });
+  }
   handleSubmit(e) {
-    console.log('in addnote form handlesubmit');
     e.preventDefault();
-    const author = this.state.author;
-    // need to trim?
-      // const author = this.state.author.trim();
-    const name = this.state.name;
     const map = this.props.map;
     const place = this.props.place;
     const marker = this.props.marker;
+    // need to trim?
+      // const author = this.state.author.trim();
+    const author = this.state.author;
     const text = this.state.text;
     const type = this.state.type;
 
-    if (!author || !text || !type ) {
+    if (!author || !text || !type) {
       return;
     }
     console.log(`saved the note for this place: ${place} on this marker: ${marker} with this type: ${type}, with this map: ${map} and this text: ${text}`);
@@ -49,25 +48,23 @@ class NewNoteForm extends Component {
     });
   }
   render() {
-    console.log('rendering new note form');
+    console.log('in the new Map form, this is:')
+    console.log(this);
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <select value={this.state.typeValue} onChange={this.handleTypeChange}>
+      <form onSubmit={this.handleSubmit}>
+        <select value={this.state.type} onChange={this.handleTypeChange}>
           <option value="misc">Misc.</option>
           <option value="recommendation">Recommendation</option>
           <option value="tip">`Insider Tip`</option>
         </select>
-        <textarea
-          placeholder="Your note here"
-          value={ this.state.text }
-          onChange={ this.handleTextChange }
-        />
+        <input type="text" placeholder="Author" value={this.state.author} onChange={this.handleAuthorChange} />
+        <textarea placeholder="Your note here" value={this.state.text} onChange={this.handleTextChange} />
         <input
           type="submit"
           value="Add Note"
         />
       </form>
-    )
+    );
   }
 }
 

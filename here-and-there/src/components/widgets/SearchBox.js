@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import MapMarker from './MapMarker';
 
 export class SearchBox extends Component {
   onSubmit(e) {
@@ -14,19 +15,41 @@ export class SearchBox extends Component {
       this.renderAutoComplete();
     }
   }
+  createMapMarker(place) {
+    console.log('in createMapMarker');
+    const {google, map} = this.props;
+    console.log(`position is ${place.geometry.location}`);
+    return <MapMarker map={map} google={google} position={place.geometry.location} placeId={place.place_id} />
+  }
+  // makeIwContent(place) {
+  //   const address = [
+  //             (place.address_components[0] && place.address_components[0].short_name || ''),
+  //             (place.address_components[1] && place.address_components[1].short_name || ''),
+  //             (place.address_components[2] && place.address_components[2].short_name || '')
+  //           ].join(' ');
+  //   return (
+  //     <div className="iw-content">
+  //       <h2> this is the info window for the place: {place.name} </h2>
+  //       <p>Address: {address} </p>
+  //     </div>
+  //   )
+  // }
   renderAutoComplete() {
     const {google, map} = this.props;
-    // TODO: Change conditional back to the commented out one below
     if (!google || !map) return;
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
+    let infoWindow = new google.maps.InfoWindow()
+    const infoWindowContent = document.getElementById('info-window-content');
+    console.log('infoWindowContent is:')
+    console.log(infoWindowContent);
 
-    let autocomplete = new google.maps.places.Autocomplete(node);
+    const autocomplete = new google.maps.places.Autocomplete(node);
 
     // autocomplete.bindTo('bounds', map);
     //
     autocomplete.addListener('place_changed', () => {
-
+      infoWindow.close();
       const place = autocomplete.getPlace();
 
       if (!place.geometry) {
@@ -38,13 +61,25 @@ export class SearchBox extends Component {
           map: map,
           position: place.geometry.location,
         };
+        console.log('in autocomplete, when we get a place, the available information is:');
+        console.log(place);
+        console.log('infoWindowContent is:')
+        console.log(infoWindowContent);
         const newPlaceMarker = new google.maps.Marker(pref);
-        console.log('the new place marker is:');
-        console.log(newPlaceMarker);
+
+        // const iwContent = this.makeIwContent(place);
+        // console.log('iwContent is:');
+        // console.log(iwContent);
+        const address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
 
         const iw = new google.maps.InfoWindow({
-          content: `place is: ${place}`,
+          content: `Place is: ${place.name}, address is: ${address}`,
         });
+        iw.open(map, newPlaceMarker);
 
       } else {
         map.setCenter(place.geometry.location);
@@ -54,7 +89,6 @@ export class SearchBox extends Component {
           position: place.geometry.location,
         };
         const newPlaceMarker = new google.maps.Marker(pref);
-
       }
     });
   }
@@ -73,8 +107,6 @@ export class SearchBox extends Component {
               type='submit'
               value='Go' />
           </form>
-
-      Search Box should be added here
       </div>
     );
   }

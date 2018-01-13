@@ -1,4 +1,3 @@
-import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import CurrentMap from './CurrentMap';
@@ -18,6 +17,7 @@ export class MapMarker extends Component {
   componentDidUpdate(prevProps) {
     if ((this.props.map !== prevProps.map) || (this.props.position !== prevProps.position)) {
       // change the relevant props
+      console.log('in Map Marker Component did mount');
       this.renderMarker();
     }
   }
@@ -26,9 +26,19 @@ export class MapMarker extends Component {
       this.marker.setMap(null);
     }
   }
+  handleEvent(evt) {
+    return (e) => {
+      const evtName = `on${camelize(evt)}`;
+      if (this.props[evtName]) {
+        this.props[evtName](this.props, this.marker, e);
+      }
+    }
+  }
   renderMarker() {
     let { map, google, position, mapCenter } = this.props;
 
+    console.log('in render marker, the positions is');
+    console.log(position);
     let pos = position || mapCenter;
     position = new google.maps.LatLng(pos.lat, pos.lng);
 
@@ -37,19 +47,12 @@ export class MapMarker extends Component {
       position: position,
     };
     this.marker = new google.maps.Marker(pref);
+    console.log(this.marker);
 
     // adding event listeners:
     evtNames.forEach((evt) => {
       this.marker.addListener(evt, this.handleEvent(evt));
     })
-  }
-  handleEvent(evt) {
-    return (e) => {
-      const evtName = `on${camelize(evt)}`;
-      if (this.props[evtName]) {
-        this.props[evtName](this.props, this.marker, e);
-      }
-    }
   }
   render() {
     return null;

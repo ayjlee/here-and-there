@@ -20,7 +20,9 @@ class Library extends Component {
         <div className= "sidepane-placeholder">
           <h2>shh, this is library!</h2>
           <h4>my maps</h4>
+          <ul>
             <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} />
+          </ul>
 
           <h4>my saved places</h4>
             <MyPlacesList />
