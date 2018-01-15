@@ -1,9 +1,11 @@
 import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
+import axios from 'axios';
 import CurrentMap from './CurrentMap';
 import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
+import ViewMapPane from '../panes/ViewMapPane';
 
 export class MapContainer extends React.Component {
   // getInitialState() {
@@ -19,11 +21,17 @@ export class MapContainer extends React.Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
+      map: null,
+      data: {},
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.onMapAdded = this.onMapAdded.bind(this);
+    this.loadMapDataFromServer = this.loadMapDataFromServer.bind(this);
+  }
+  componentDidMount() {
+    this.loadMapDataFromServer();
   }
   onInfoWindowClose() {
     console.log('in MapContainer.onInfoWindowClose()');
@@ -49,6 +57,17 @@ export class MapContainer extends React.Component {
       showingInfoWindow: true,
     });
   }
+  loadMapDataFromServer() {
+    console.log('in loadMapDatafromServer, the map url is:')
+    const map_id = this.props.match.params.map_id;
+    const map_url = `${this.props.url}/${map_id}`;
+    axios.get(map_url )
+    .then((res) => {
+      this.setState({ data: res.data });
+      console.log('the data after the map fetch is: ');
+      console.log(this.state.data);
+    });
+  }
   onMapAdded(map) {
     this.setState({
       map: map,
@@ -69,24 +88,49 @@ export class MapContainer extends React.Component {
       return <div>Loading Map Container...</div>
     }
     return (
-      <div>
-        <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
-          <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-          <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
-            <div>
-              <h2> this is the info window </h2>
-              <p>Name: {this.state.selectedPlace.name} </p>
-            </div>
+      <section id="view-map-container">
+        <ViewMapPane mapData={this.state.data} />
+        <div>
+          <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
+            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+              <div>
+                <h2> this is the info window </h2>
+                <p>Name: {this.state.selectedPlace.name} </p>
+              </div>
 
-          </InfoWindow>
-        </CurrentMap>
-        <div id="place-note-details-pane">
-          <p> This will hold details about a particular place/marker </p>
+            </InfoWindow>
+          </CurrentMap>
+          <div id="place-note-details-pane">
+            <p> This will hold details about a particular place/marker </p>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
+MapContainer.defaultProps = {
+  zoom: 13,
+  // Seattle location by default
+  initialCenter: {
+    lat: 47.6062,
+    lng: -122.3321,
+  },
+  centerAroundCurrentLocation: false,
+  savedToAccount: false,
+  map_id: '5a58014c1985bc3c3dd8a041',
+  url: 'http://localhost:3001/api/maps',
+  pollInterval: 10000,
+  onDragend() {
+    console.log('moving');
+  },
+  onClick() {
+    console.log('clicking');
+  },
+  onReady() {
+    console.log('ready');
+  }
+};
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,

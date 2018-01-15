@@ -34,7 +34,8 @@ import { Link } from 'react-router-dom';
 //     </li>);
 // };
 const MapListItem = ({ map, onMapSelect }) => {
-  const path = `edit-map/${map._id}`;
+  const editPath = `edit-map/${map._id}`;
+  const mapPath = `maps/${map._id}`;
   if (!map) {
     return <div> Loading map... </div>
   }
@@ -48,7 +49,10 @@ const MapListItem = ({ map, onMapSelect }) => {
         <p>Map Id: {map._id} </p>
       </div>
       <div>
-        <Link to={path}>
+        <Link to={mapPath}>
+          View Map
+        </Link>
+        <Link to={editPath}>
           Edit Map
         </Link>
       </div>
