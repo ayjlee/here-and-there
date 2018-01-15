@@ -34,9 +34,7 @@ import { Link } from 'react-router-dom';
 //     </li>);
 // };
 const MapListItem = ({ map, onMapSelect }) => {
-  console.log(map);
   const path = `edit-map/${map._id}`;
-  console.log(path);
   if (!map) {
     return <div> Loading map... </div>
   }

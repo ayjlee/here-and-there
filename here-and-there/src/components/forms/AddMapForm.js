@@ -10,7 +10,7 @@ import Library from '../pages/Library';
 class NewMapForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { author: '', name: '', savedtoUser: false };
+    this.state = { author: '', name: '', savedToUser: false };
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +33,7 @@ class NewMapForm extends Component {
     console.log(this.props.url);
     axios.post(this.props.url, newMap)
     .then(res => {
-      this.setState({ data:res, savedtoUser: true });
+      this.setState({ data:res, savedToUser: true });
       // this.props.history.push('/library');
     })
     .catch(err => {
@@ -56,6 +56,9 @@ class NewMapForm extends Component {
     this.setState({ author: '', name: '' });
   }
   render() {
+    if (this.state.savedToUser) {
+      return <Redirect to="/library" />;
+    }
     return (
       <form onSubmit={this.handleSubmit}>
         <input

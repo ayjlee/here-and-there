@@ -13,6 +13,7 @@ export class EditMapPane extends React.Component {
     return (
       <section id="edit-map-pane">
         <h2 className="page-name"> Currently Editing Map: {this.props.mapData.name} </h2>
+        <h3> Author: {this.props.mapData.author} </h3>
         <div id="building-map-info">
           This will hold all of the info for the map we are currently building, including:
 
