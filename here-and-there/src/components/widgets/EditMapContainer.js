@@ -61,8 +61,8 @@ export class EditMapContainer extends React.Component {
   }
   loadMapDataFromServer() {
     console.log('in loadMapDatafromServer, the map url is:')
-    const map_url = `${this.props.url}/${this.props.map_id}`;
-    console.log(map_url);
+    const map_id = this.props.match.params.map_id;
+    const map_url = `${this.props.url}/${map_id}`;
     axios.get(map_url )
     .then((res) => {
       this.setState({ data: res.data });

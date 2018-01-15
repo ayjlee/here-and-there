@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // class MapListItem extends Component {
 //   constructor(props) {
@@ -34,6 +35,8 @@ import axios from 'axios';
 // };
 const MapListItem = ({ map, onMapSelect }) => {
   console.log(map);
+  const path = `edit-map/${map._id}`;
+  console.log(path);
   if (!map) {
     return <div> Loading map... </div>
   }
@@ -45,6 +48,11 @@ const MapListItem = ({ map, onMapSelect }) => {
       <div className="map-details">
         <p>Map Author: {map.author} </p>
         <p>Map Id: {map._id} </p>
+      </div>
+      <div>
+        <Link to={path}>
+          Edit Map
+        </Link>
       </div>
     </li>);
 };

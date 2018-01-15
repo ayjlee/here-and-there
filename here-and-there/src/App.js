@@ -28,7 +28,7 @@ class App extends Component {
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/newmap">Build a New Map</NavLink></li>
-            <li><NavLink to="/edit-map">Edit a Map</NavLink></li>
+            <li><NavLink to="/edit-map/:map_id">Edit a Map</NavLink></li>
             <li><NavLink to="/library">Library</NavLink></li>
             <li><NavLink to="/sign-in">Sign In</NavLink></li>
           </ul>
@@ -36,7 +36,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home}/>
               <Route path="/newmap" component={NewMapPage} />
-              <Route path="/edit-map" component={EditMapContainer} />
+              <Route path="/edit-map/:map_id" component={EditMapContainer} />
               <Route path="/library" component={Library}/>
               <Route path="/sign-in" component={SignIn}/>
             </Switch>
