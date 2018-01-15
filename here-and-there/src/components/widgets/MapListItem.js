@@ -49,10 +49,11 @@ const MapListItem = ({ map, onMapSelect }) => {
         <p>Map Id: {map._id} </p>
       </div>
       <div>
-        <Link to={mapPath}>
+        <Link to={mapPath} className="map-link">
           View Map
         </Link>
-        <Link to={editPath}>
+        <span />
+        <Link to={editPath} className="map-link">
           Edit Map
         </Link>
       </div>
