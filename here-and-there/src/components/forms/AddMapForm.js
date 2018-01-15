@@ -34,6 +34,7 @@ class NewMapForm extends Component {
     axios.post(this.props.url, newMap)
     .then(res => {
       this.setState({ data:res, savedtoUser: true });
+      // this.props.history.push('/library');
     })
     .catch(err => {
       console.log(err);
