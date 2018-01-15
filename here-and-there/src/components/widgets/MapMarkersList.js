@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import MarkerListItem from './MapMarkerListItem';
 
 class MapMarkersList extends Component {
   constructor(props) {
@@ -50,12 +51,18 @@ class MapMarkersList extends Component {
       );
 
     });
+    const markerItemNodes = this.props.savedMarkers.map(marker => {
+      return (
+        <MarkerListItem key={marker._id} className="mapMarker" marker={marker}  onMarkerSelect={this.props.onMarkerSelect} />
+      );
+
+    });
     return (
       <section id="marker-list-container">
         <ul>
           <li> In the Marker List component </li>
           <li> markers will go here </li>
-          {markerNodes}
+          {markerItemNodes}
         </ul>
       </section>
     );

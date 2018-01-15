@@ -24,7 +24,7 @@ export class ViewMapPane extends React.Component {
           <h3> Author: {this.props.mapData.author} </h3>
         </div>
         <h3> Places on this map: </h3>
-        <MapMarkersList savedMarkers={this.props.mapData.savedMarkers} />
+        <MapMarkersList savedMarkers={this.props.mapData.savedMarkers} onMarkerSelect={this.props.onMarkerSelect}/>
       </section>
     );
   }

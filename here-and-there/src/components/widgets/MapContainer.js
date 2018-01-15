@@ -23,6 +23,7 @@ export class ViewMapContainer extends React.Component {
       selectedPlace: {},
       map: null,
       data: {},
+      selectedMarker: null,
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
@@ -53,7 +54,7 @@ export class ViewMapContainer extends React.Component {
     console.log(this);
     this.setState({
       selectedPlace: props,
-      activeMarker: marker,
+      selectedMarker: marker,
       showingInfoWindow: true,
     });
   }
@@ -89,7 +90,7 @@ export class ViewMapContainer extends React.Component {
     }
     return (
       <section id="view-map-container">
-        <ViewMapPane mapData={this.state.data} />
+        <ViewMapPane mapData={this.state.data} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
         <div className="holds-map">
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
             <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
