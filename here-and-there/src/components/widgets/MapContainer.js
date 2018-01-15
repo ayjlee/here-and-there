@@ -80,6 +80,9 @@ export class MapContainer extends React.Component {
 
           </InfoWindow>
         </CurrentMap>
+        <div id="place-note-details-pane">
+          <p> This will hold details about a particular place/marker </p>
+        </div>
       </div>
     );
   }

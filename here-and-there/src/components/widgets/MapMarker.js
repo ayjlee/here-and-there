@@ -47,6 +47,7 @@ export class MapMarker extends Component {
       position: position,
     };
     this.marker = new google.maps.Marker(pref);
+    console.log('the new marker is:')
     console.log(this.marker);
 
     // adding event listeners:

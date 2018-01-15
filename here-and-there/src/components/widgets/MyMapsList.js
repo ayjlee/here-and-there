@@ -40,12 +40,14 @@ class MyMapsList extends Component {
           <p>author: {map.author}, key: {map._id}, markers: {map.markers}</p>
         </li>
       );
-
+    });
+    const mapItemNodes = this.state.data.map((map) => {
+      return <MapListItem key={map._id} map={map} onMapSelect={this.props.onMapSelect} />;
     });
     return (
       <section id="my-map-list-container">
         <ul>
-          { mapNodes }
+          { mapItemNodes }
         </ul>
       </section>
     );

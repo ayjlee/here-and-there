@@ -12,7 +12,11 @@ const DATA = [
 class Library extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = {
+      data: [],
+      selectedMap: null,
+      selectedPlace: null,
+    };
   }
   render() {
     return (
@@ -21,7 +25,7 @@ class Library extends Component {
           <h2>shh, this is library!</h2>
           <h4>my maps</h4>
           <ul>
-            <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} />
+            <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} onMapSelect={selectedMap => this.setState({selectedMap})}/>
           </ul>
 
           <h4>my saved places</h4>
@@ -29,7 +33,7 @@ class Library extends Component {
         </div>
         <div id="map-container">
           <h4> Map will go here </h4>
-          <MapContainer />
+          <MapContainer onMapSelect={selectedMap => this.setState({selectedMap})} />
         </div>
       </section>
     );
