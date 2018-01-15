@@ -12,14 +12,19 @@ export class ViewMapPane extends React.Component {
   }
   render() {
     return (
-      <section id="view-map-pane">
+      <section id="view-map-pane" className="sidepane-placeholder">
         <Link to={{
           pathname: '/library',
           state: { selectedMap: null }
         }}>
           Back to Library
         </Link>
-        viewing map pane for map: {this.props.mapData.name}
+        <div>
+          <h2>viewing map pane for map: {this.props.mapData.name} </h2>
+          <h3> Author: {this.props.mapData.author} </h3>
+        </div>
+        <h3> Places on this map: </h3>
+        <MapMarkersList savedMarkers={this.props.mapData.savedMarkers} />
       </section>
     );
   }

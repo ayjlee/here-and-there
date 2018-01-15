@@ -7,7 +7,7 @@ import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
 import ViewMapPane from '../panes/ViewMapPane';
 
-export class MapContainer extends React.Component {
+export class ViewMapContainer extends React.Component {
   // getInitialState() {
   //   return {
   //     showingInfoWindow: false,
@@ -34,14 +34,14 @@ export class MapContainer extends React.Component {
     this.loadMapDataFromServer();
   }
   onInfoWindowClose() {
-    console.log('in MapContainer.onInfoWindowClose()');
+    console.log('in ViewMapContainer.onInfoWindowClose()');
     this.setState({
       showingInfoWindow: false,
       activeMarker: null,
     });
   }
   onMapClick() {
-    console.log( 'in MapContainer onMapClick()');
+    console.log( 'in ViewMapContainer onMapClick()');
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -58,7 +58,7 @@ export class MapContainer extends React.Component {
     });
   }
   loadMapDataFromServer() {
-    console.log('in loadMapDatafromServer, the map url is:')
+    console.log('in loadMapDatafromServer in ViewMapcontainer, the map url is:')
     const map_id = this.props.match.params.map_id;
     const map_url = `${this.props.url}/${map_id}`;
     axios.get(map_url )
@@ -90,7 +90,7 @@ export class MapContainer extends React.Component {
     return (
       <section id="view-map-container">
         <ViewMapPane mapData={this.state.data} />
-        <div>
+        <div className="holds-map">
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
             <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
             <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
@@ -109,7 +109,7 @@ export class MapContainer extends React.Component {
     );
   }
 }
-MapContainer.defaultProps = {
+ViewMapContainer.defaultProps = {
   zoom: 13,
   // Seattle location by default
   initialCenter: {
@@ -135,4 +135,4 @@ MapContainer.defaultProps = {
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],
-})(MapContainer);
+})(ViewMapContainer);

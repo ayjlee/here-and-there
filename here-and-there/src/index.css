@@ -49,7 +49,7 @@ ul.header li a {
   vertical-align: top;
 }
 
-#map-container, #holds-map {
+#map-container, .holds-map {
   width: 60vw;
   border: black solid 2px;
   display: inline-block;
@@ -65,7 +65,7 @@ ul.header li a {
   text-align: center;
 }
 
-#building-map-info, #holds-map {
+#building-map-info, .holds-map {
   display: inline-block;
 }
 
