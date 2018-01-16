@@ -127,13 +127,15 @@ router.route('/maps/:map_id')
      res.json(map);
     });
   })
-  .put(function(req, res) {
+  .patch(function(req, res) {
     Map.findById(req.params.map_id, function(err, map) {
       if (err) {
         res.send(err);
       }
       (req.body.author) ? map.author = req.body.author : null;
       (req.body.name) ? map.name : null;
+      (req.body.savedMarkers) ? map.savedMarkers : null;
+      (req.body.savedPlaces) ? map.savedPlaces : null;
       map.save(function(err) {
         if (err) {
           res.send(err);
@@ -171,5 +173,5 @@ app.use('/api', router);
 //starts the server and listens for requests
 app.listen(port, function() {
  console.log(`api running on port ${port}`);
- console.log('server is set up');
+ // console.log('server is set up');
 });
