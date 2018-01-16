@@ -131,7 +131,7 @@ export class EditMapContainer extends React.Component {
       <section id="map-container-section">
         <EditMapPane mapData={this.state.data} />
         <div className="holds-map">
-          <SearchBox google={this.props.google} map={this.state.map} />
+          <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} />
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
             <MapMarker />
             <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />

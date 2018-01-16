@@ -34,6 +34,26 @@ export class InfoWindow extends React.Component {
       content: ''
     });
 
+    // iw.open(map, this.marker);
+    // const iwBox = (<div id="info-window-content">
+    //   <h2> this is the info window </h2>
+    //   <p>Name: {place.name} </p>
+    //   <img src="" width="16" height="16" id="place-icon" />
+    //   <span id="place-name"  className="title"></span>
+    //   <span id="place-address"></span>
+    //   <p> Available Place info: {place.place_id} </p>
+    //     <h2> This is the form to add a new note</h2>
+    //     <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
+    // </div>)
+    //
+    // const iwContent = ReactDOMServer.renderToString(iwBox);
+    // google.maps.event.addListener(newPlaceMarker, 'click', function() {
+    //   iw.setContent(
+    //     iwContent
+    //   );
+    //   iw.open(map, newPlaceMarker);
+    // });
+
     google.maps.event.addListener(iw, 'closeclick', this.onClose.bind(this));
     google.maps.event.addListener(iw, 'domready', this.onOpen.bind(this));
   }
@@ -52,6 +72,7 @@ export class InfoWindow extends React.Component {
   render() {
     return null;
   }
+
 }
 
 export default InfoWindow;

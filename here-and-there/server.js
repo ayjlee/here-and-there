@@ -140,7 +140,7 @@ router.route('/maps/:map_id')
         if (err) {
           res.send(err);
         }
-        res.json({ message: 'Map has been updated' });
+        res.json({ message: `Map has been updated with author ${map.author}, name ${map.name},  saved Markers ${map.savedMarkers}, and savedPlaces ${map.savedPlaces} ` });
       });
     });
   })

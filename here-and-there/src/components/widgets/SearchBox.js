@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MapMarker from './MapMarker';
 import { Link } from 'react-router-dom';
+import ReactDOMServer from 'react-dom/server';
+import NewNoteForm from '../forms/AddNoteForm';
 
 export class SearchBox extends Component {
   onSubmit(e) {
@@ -18,32 +20,13 @@ export class SearchBox extends Component {
   }
   createMapMarker(place) {
     console.log('in createMapMarker');
-    const {google, map} = this.props;
+    const { google, map, mapData } = this.props;
     console.log(`position is ${place.geometry.location}`);
     return <MapMarker map={map} google={google} position={place.geometry.location} placeId={place.place_id} />
   }
-  addToMapLink(marker) {
-    return (
-      <div>
-        <Link to="/library" className="add-marker-link">
-          Add To Map
-        </Link>
-      </div>
-    );
+  addPlaceToMap(marker) {
+    console.log('adding place to map');
   }
-  // makeIwContent(place) {
-  //   const address = [
-  //             (place.address_components[0] && place.address_components[0].short_name || ''),
-  //             (place.address_components[1] && place.address_components[1].short_name || ''),
-  //             (place.address_components[2] && place.address_components[2].short_name || '')
-  //           ].join(' ');
-  //   return (
-  //     <div className="iw-content">
-  //       <h2> this is the info window for the place: {place.name} </h2>
-  //       <p>Address: {address} </p>
-  //     </div>
-  //   )
-  // }
   renderAutoComplete() {
     const {google, map} = this.props;
     if (!google || !map) return;
@@ -51,8 +34,9 @@ export class SearchBox extends Component {
     const node = ReactDOM.findDOMNode(aref);
     let infoWindow = new google.maps.InfoWindow()
     const infoWindowContent = document.getElementById('info-window-content');
-    console.log('infoWindowContent is:')
-    console.log(infoWindowContent);
+    console.log('the map in search box props is a google map object, not the map list');
+    console.log('the map data in search box props is');
+    console.log(this.props.mapData);
 
     const autocomplete = new google.maps.places.Autocomplete(node);
 
@@ -82,17 +66,36 @@ export class SearchBox extends Component {
         // const iwContent = this.makeIwContent(place);
         // console.log('iwContent is:');
         // console.log(iwContent);
-        const link = this.addToMapLink(newPlaceMarker);
         const address = [
                   (place.address_components[0] && place.address_components[0].short_name || ''),
                   (place.address_components[1] && place.address_components[1].short_name || ''),
                   (place.address_components[2] && place.address_components[2].short_name || '')
                 ].join(' ');
 
+        // const iw = new google.maps.InfoWindow({
+        //   content: `<div>Place is: ${place.name}, address is: ${address}</div><button onclick="addPlaceToMap()">Add Me to Map</button>`,
+        // });
         const iw = new google.maps.InfoWindow({
-          content: `Place is: ${place.name}, address is: ${address}, link: ${link}`,
+          content: '',
         });
-        iw.open(map, newPlaceMarker);
+
+        const iwBox = (<div id="info-window-content">
+          <h2> this is the info window </h2>
+          <p>Name: {place.name} </p>
+          <img src="" width="16" height="16" id="place-icon" />
+          <span id="place-name"  className="title"></span>
+          <span id="place-address"></span>
+          <p> Available Place info: {place.place_id} </p>
+            <h2> This is the form to add a new note</h2>
+
+            <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
+        </div>);
+
+        const iwContent = ReactDOMServer.renderToString(iwBox);
+        google.maps.event.addListener(newPlaceMarker, 'click', function() {
+          iw.setContent(iwContent);
+          iw.open(map, newPlaceMarker);
+        });
 
       } else {
         map.setCenter(place.geometry.location);
