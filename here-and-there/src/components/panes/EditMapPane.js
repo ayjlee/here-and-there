@@ -16,8 +16,6 @@ export class EditMapPane extends React.Component {
         <h3> Author: {this.props.mapData.author} </h3>
         <div id="building-map-info">
           This will hold all of the info for the map we are currently building, including:
-
-          <h3>Map Name: {this.props.mapData.name}</h3>
           <h3>List of Locations Saved to the Current Map:</h3>
             <MapMarkersList savedMarkers={this.props.mapData.savedMarkers} />
         </div>

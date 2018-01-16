@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MapMarker from './MapMarker';
+import { Link } from 'react-router-dom';
 
 export class SearchBox extends Component {
   onSubmit(e) {
@@ -20,6 +21,15 @@ export class SearchBox extends Component {
     const {google, map} = this.props;
     console.log(`position is ${place.geometry.location}`);
     return <MapMarker map={map} google={google} position={place.geometry.location} placeId={place.place_id} />
+  }
+  addToMapLink(marker) {
+    return (
+      <div>
+        <Link to="/library" className="add-marker-link">
+          Add To Map
+        </Link>
+      </div>
+    );
   }
   // makeIwContent(place) {
   //   const address = [
@@ -63,6 +73,8 @@ export class SearchBox extends Component {
         };
         console.log('in autocomplete, when we get a place, the available information is:');
         console.log(place);
+        console.log('position lat. is');
+        console.log(place.geometry.location.lat);
         console.log('infoWindowContent is:')
         console.log(infoWindowContent);
         const newPlaceMarker = new google.maps.Marker(pref);
@@ -70,6 +82,7 @@ export class SearchBox extends Component {
         // const iwContent = this.makeIwContent(place);
         // console.log('iwContent is:');
         // console.log(iwContent);
+        const link = this.addToMapLink(newPlaceMarker);
         const address = [
                   (place.address_components[0] && place.address_components[0].short_name || ''),
                   (place.address_components[1] && place.address_components[1].short_name || ''),
@@ -77,7 +90,7 @@ export class SearchBox extends Component {
                 ].join(' ');
 
         const iw = new google.maps.InfoWindow({
-          content: `Place is: ${place.name}, address is: ${address}`,
+          content: `Place is: ${place.name}, address is: ${address}, link: ${link}`,
         });
         iw.open(map, newPlaceMarker);
 

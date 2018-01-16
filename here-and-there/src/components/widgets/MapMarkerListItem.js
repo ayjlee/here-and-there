@@ -38,13 +38,13 @@ const MarkerListItem = ({ marker, onMarkerSelect }) => {
   return (
     <li onClick={() => onMarkerSelect(marker)} className="marker-item">
       <div>
-        <h3>Marker Name: {marker.name} </h3>
+        <h3>Marker Name: {marker.placeName} </h3>
       </div>
       <div className="marker-details">
         <p>Marker Details: {marker} </p>
       </div>
-      <h3> Marker Place: {marker.name} </h3>
-      <p>author: {marker.author}, key: {marker._id}, notes: {marker.notes}</p>
+      <h3> Marker Place: {marker.placeName} </h3>
+      <p>author: {marker.author}, key: {marker.place_id}, notes: {marker.notes}</p>
     </li>
   );
 };

@@ -62,15 +62,17 @@ export class MapMarker extends Component {
 
 MapMarker.propTypes = {
   position: PropTypes.object,
-  map: PropTypes.object,
+  map_id: PropTypes.object,
   savedToMap: PropTypes.bool,
-  notes: PropTypes.array,
-  placeId: PropTypes.number
+  notes: PropTypes.string,
+  place_id: PropTypes.string,
+  placeName: PropTypes.string,
 }
 MapMarker.defaultProps = {
   savedToMap: false,
   onClick() {
     console.log('clicking MapMarker');
+    console.log(this);
   },
   onMouseover() {
     console.log('mousing over a mapmarker');

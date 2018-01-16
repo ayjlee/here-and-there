@@ -25,7 +25,7 @@ export class ViewMapContainer extends React.Component {
       data: {},
       selectedMarker: null,
     };
-    this.onMarkerClick = this.onMarkerClick.bind(this);
+    // this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.onMapAdded = this.onMapAdded.bind(this);
@@ -50,14 +50,15 @@ export class ViewMapContainer extends React.Component {
       });
     }
   }
-  onMarkerClick(props, marker, e) {
-    console.log(this);
-    this.setState({
-      selectedPlace: props,
-      selectedMarker: marker,
-      showingInfoWindow: true,
-    });
-  }
+  // onMarkerClick(props, marker, e) {
+  //   console.log(this);
+  //   console.log(e.latlng);
+  //   // this.setState({
+  //   //   selectedPlace: props,
+  //   //   selectedMarker: marker,
+  //   //   showingInfoWindow: true,
+  //   // });
+  // }
   loadMapDataFromServer() {
     console.log('in loadMapDatafromServer in ViewMapcontainer, the map url is:')
     const map_id = this.props.match.params.map_id;
