@@ -17,7 +17,6 @@ export class MapMarker extends Component {
   componentDidUpdate(prevProps) {
     if ((this.props.map !== prevProps.map) || (this.props.position !== prevProps.position)) {
       // change the relevant props
-      console.log('in Map Marker Component did mount');
       this.renderMarker();
     }
   }
@@ -37,8 +36,6 @@ export class MapMarker extends Component {
   renderMarker() {
     let { map, google, position, mapCenter } = this.props;
 
-    console.log('in render marker, the positions is');
-    console.log(position);
     let pos = position || mapCenter;
     position = new google.maps.LatLng(pos.lat, pos.lng);
 
@@ -47,8 +44,6 @@ export class MapMarker extends Component {
       position: position,
     };
     this.marker = new google.maps.Marker(pref);
-    console.log('the new marker is:')
-    console.log(this.marker);
 
     // adding event listeners:
     evtNames.forEach((evt) => {

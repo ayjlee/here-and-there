@@ -13,12 +13,6 @@ class MyMapsList extends Component {
     this.loadMapsFromServer();
     setInterval(this.loadMapsFromServer, this.props.pollInterval);
   }
-  loadMapsFromServer() {
-    axios.get(this.props.url)
-    .then((res) => {
-      this.setState({ data: res.data });
-    });
-  }
   handleMapDelete(id) {
     axios.delete(`${this.props.url}/${id}`)
     .then(res => {
@@ -32,8 +26,14 @@ class MyMapsList extends Component {
     console.log('you clicked this:');
     console.log(this);
   }
+  loadMapsFromServer() {
+    axios.get(this.props.url)
+    .then((res) => {
+      this.setState({ data: res.data });
+    });
+  }
   render() {
-    const mapNodes = this.state.data.map(map => {
+    const mapNodes = this.state.data.map((map) => {
       return (
         <li key={map._id} map={map} className="myMap" onClick={this.onMyMapClick.bind(map)}>
           <h3> Map name: {map.name} </h3>
@@ -55,15 +55,6 @@ class MyMapsList extends Component {
 }
 
 export default MyMapsList;
-
-//  for getting the actual maps up
-
-// let mapNodes = this.props.data.map(map => {
-//   return (
-//     <CurrentMap author={ map.author} key= { map.id } google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
-//       { map.name }
-//     </CurrentMap>
-//   );
 
 
 // return (

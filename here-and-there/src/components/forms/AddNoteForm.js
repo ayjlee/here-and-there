@@ -48,8 +48,6 @@ class NewNoteForm extends Component {
     });
   }
   render() {
-    console.log('in the new Note form, this is:')
-    console.log(this);
     return (
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.type} onChange={this.handleTypeChange}>

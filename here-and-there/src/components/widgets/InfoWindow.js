@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 
 export class InfoWindow extends React.Component {
   componentDidUpdate(prevProps, prevState) {
-    console.log('in InfoWindow componentDidUpdate()');
+    // console.log('in InfoWindow componentDidUpdate()');
     if (this.props.map !== prevProps.map) {
       this.renderInfoWindow();
     }
@@ -41,11 +41,8 @@ export class InfoWindow extends React.Component {
     //   <img src="" width="16" height="16" id="place-icon" />
     //   <span id="place-name"  className="title"></span>
     //   <span id="place-address"></span>
-    //   <p> Available Place info: {place.place_id} </p>
-    //     <h2> This is the form to add a new note</h2>
-    //     <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
     // </div>)
-    //
+
     // const iwContent = ReactDOMServer.renderToString(iwBox);
     // google.maps.event.addListener(newPlaceMarker, 'click', function() {
     //   iw.setContent(

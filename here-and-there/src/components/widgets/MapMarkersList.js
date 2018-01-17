@@ -42,15 +42,6 @@ class MapMarkersList extends Component {
   //   );
   // }
   render() {
-    let markerNodes = this.props.savedMarkers.map(marker => {
-      return (
-        <li key={marker._id} className="mapMarker">
-          <h3> Marker Place: {marker.name} </h3>
-          <p>author: {marker.author}, key: {marker._id}, notes: {marker.notes}</p>
-        </li>
-      );
-
-    });
     const markerItemNodes = this.props.savedMarkers.map(marker => {
       return (
         <MarkerListItem key={marker._id} className="mapMarker" marker={marker}  onMarkerSelect={this.props.onMarkerSelect} />
@@ -60,7 +51,7 @@ class MapMarkersList extends Component {
     return (
       <section id="marker-list-container">
         <ul>
-          <li> In the Marker List component </li>
+          <li> In the Marker List component for map: {this.props.mapData.name} </li>
           <li> markers will go here </li>
           {markerItemNodes}
         </ul>
@@ -79,3 +70,13 @@ MapMarkersList.defaultProps = {
 };
 
 export default MapMarkersList;
+
+// let markerNodes = this.props.savedMarkers.map(marker => {
+//   return (
+//     <li key={marker._id} className="mapMarker">
+//       <h3> Marker Place: {marker.name} </h3>
+//       <p>author: {marker.author}, key: {marker._id}, notes: {marker.notes}</p>
+//     </li>
+//   );
+//
+// });

@@ -89,13 +89,18 @@ export class ViewMapContainer extends React.Component {
     if (!this.props.loaded) {
       return <div>Loading Map Container...</div>
     }
+    const markerItemNodes = this.state.data.savedMarkers.map(marker => { return (
+        <MapMarker key={marker._id} className="mapMarker" marker={marker} name={marker.place_nsme} onClick={this.onMarkerClick} />
+      );
+    });
     return (
       <section id="view-map-container">
         <ViewMapPane mapData={this.state.data} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
         <div className="holds-map">
-          <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded}>
-            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+          <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} >
+            // <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+            {markerItemNodes}
+            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
               <div>
                 <h2> this is the info window </h2>
                 <p>Name: {this.state.selectedPlace.name} </p>

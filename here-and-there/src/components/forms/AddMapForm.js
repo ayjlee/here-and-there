@@ -10,7 +10,7 @@ import Library from '../pages/Library';
 class NewMapForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { author: '', name: '', savedToUser: false };
+    this.state = { author: '', name: '', savedToUser: false, savedMarkers: [] };
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,14 +46,15 @@ class NewMapForm extends Component {
     // need to trim?
       // const author = this.state.author.trim();
     const name = this.state.name;
+    const savedMarkers = this.state.savedMarkers;
 
     if (!author || !name ) {
       return;
     }
     this.postNewMap( {
-      author: author, name: name
+      author: author, name: name, savedMarkers: savedMarkers
     });
-    this.setState({ author: '', name: '' });
+    this.setState({ author: '', name: '', savedMarkers: [] });
   }
   render() {
     if (this.state.savedToUser) {

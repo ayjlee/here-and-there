@@ -9,7 +9,7 @@ const MapMarkerSchema = new Schema({
   map_id: String,
   position: Object,
   place_id: String,
-  notes: [String],
+  notes: String,
 });
 
 module.exports = mongoose.model('MapMarker', MapMarkerSchema);

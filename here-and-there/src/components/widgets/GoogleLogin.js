@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import google from './google.png';
+import google from '../misc/google.png';
 
 // const GoogleAuth = require('google-auth-library');
 //

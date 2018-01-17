@@ -131,7 +131,7 @@ export class CurrentMap extends Component {
   }
   render() {
     const style = {
-      with: '75vw',
+      width: '100%',
       height: '60vh',
     };
     return (
