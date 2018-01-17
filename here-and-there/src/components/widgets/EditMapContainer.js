@@ -86,7 +86,7 @@ export class EditMapContainer extends React.Component {
     console.log('in updateplace details pane');
     const currentState = this.state.showPlaceDetails;
     // return ReactDOM.createPortal(placeDetails, placeRoot);
-    this.setState({ showPlaceDetails: !currentState, showingPlace: place });
+    this.setState({ showPlaceDetails: true, showingPlace: place });
   }
   displayMarkersForMap() {
     const markerNodes = this.state.data.savedMarkers.map((marker) => {
@@ -135,7 +135,7 @@ export class EditMapContainer extends React.Component {
     const detailsRoot = document.getElementById('place-note-details-pane');
 
     const placeDetails = (this.state.showPlaceDetails) ? (
-      <PlaceDetailsContent place={this.state.showingPlace} map={map} root={detailsRoot} />
+      <PlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} root={detailsRoot} />
     ) : null;
     const style = {
       width: '40vw',

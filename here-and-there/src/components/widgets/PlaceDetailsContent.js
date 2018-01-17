@@ -43,7 +43,7 @@ class PlaceDetailsContent extends Component {
       <img src="" width="16" height="16" id="place-icon" />
       <span id="place-name"  className="title"></span>
       <span id="place-address"></span>
-        <AddMarkerLink onClickonAddMarker={this.addMarkerToMap} place={place}/>
+        <AddMarkerLink onAddMarker={this.addMarkerToMap} map={map} place={place} editingMap= {this.props.editingMap}/>
       <p> Available Place info: {place.place_id} </p>
       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       <h2> This is the form to add a new note</h2>
