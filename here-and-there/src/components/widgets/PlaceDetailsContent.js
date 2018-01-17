@@ -47,7 +47,7 @@ class PlaceDetailsContent extends Component {
       <p> Available Place info: {place.place_id} </p>
       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       <h2> This is the form to add a new note</h2>
-        <NewNoteForm place={place} map={map} />
+        <NewNoteForm place={place} map={map} marker={newMarker} editingMap={this.props.editingMap} />
     </div>)
 
     return ReactDOM.createPortal(

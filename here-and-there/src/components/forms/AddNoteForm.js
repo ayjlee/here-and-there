@@ -35,6 +35,7 @@ class NewNoteForm extends Component {
     const author = this.state.author;
     const text = this.state.text;
     const type = this.state.type;
+    const editingMap = this.props.editingMap;
 
     if (!author || !text || !type) {
       return;
