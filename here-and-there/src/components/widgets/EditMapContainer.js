@@ -100,7 +100,7 @@ export class EditMapContainer extends React.Component {
       return (
         <section className="place-display">
         <MapMarker map={this.state.map} google={this.props.google} position={marker.position} />
-          <InfoWindow map={this.state.map}  google={this.props.google}  marker={this.state.activeMarker}  visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}/>
+          <InfoWindow map={this.state.map} google={this.props.google}  marker={marker}  visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}/>
         </section>
       )
     })
@@ -145,8 +145,7 @@ export class EditMapContainer extends React.Component {
     axios.put(map_url, newMap)
       .then((res) => {
       // this.setState({ data: res.data, currentMarkers: res.data.savedMarkers});
-      console.log('the response is:');
-      console.log(res);
+      this.loadMapDataFromServer();
     });
   }
   render() {

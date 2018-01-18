@@ -90,3 +90,8 @@ ul.header li a {
   padding: 10px;
   width: 35vw;
 }
+
+#building-map-info {
+  height: 30vh;
+  overflow: scroll;
+}
