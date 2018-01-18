@@ -27,10 +27,10 @@ class App extends Component {
         <div id="main">
           <h1 id="title">here and there</h1>
           <ul className="header">
-            <li><NavLink exact to="/">Home</NavLink></li>
+            <li id="home-link"><NavLink exact to="/"> here and there</NavLink></li>
             <li><NavLink to="/newmap">Build a New Map</NavLink></li>
             <li><NavLink to="/library">Library</NavLink></li>
-            <li><NavLink to="/sign-in">Sign In</NavLink></li>
+            <li className="flt-right"><NavLink to="/sign-in">Sign In</NavLink></li>
           </ul>
           <div className="content">
             <Switch>

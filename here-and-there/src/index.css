@@ -10,7 +10,7 @@ body {
 ul.header li {
   display: inline;
   list-style-type: none;
-  margin: 0;
+  /*margin-left: 5px;*/
 }
 ul.header {
   background-color: #111;
@@ -22,6 +22,11 @@ ul.header li a {
   text-decoration: none;
   padding: 20px;
   display: inline-block;
+}
+#home-link a {
+  color: black;
+  background-color: white;
+  border: green 2px solid;
 }
 .content {
   background-color: #FFF;
@@ -38,7 +43,7 @@ ul.header li a {
 
 
 /*React Router automatically assigns a class value of 'active' when you click on a link*/
-.active {
+.active, .active #home-link a {
   background-color: #0099FF;
 }
 
@@ -94,4 +99,8 @@ ul.header li a {
 #building-map-info {
   height: 30vh;
   overflow: scroll;
+}
+
+.flt-right {
+  float: right;
 }
