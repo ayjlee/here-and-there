@@ -15,6 +15,15 @@ class PlaceDetailsContent extends Component {
     // Modal component has its own element, we can render multiple
     // modal components into the modal container.
     this.el = document.createElement('div');
+    const place = this.props.place;
+    const map = this.props.map;
+    this.newMarker = {
+      position: place.geometry.location,
+      place_name: place.name,
+      notes: [],
+      place_id: place.place_id,
+    };
+    this.addNoteToMarker = this.addNoteToMarker.bind(this);
   }
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
@@ -26,28 +35,39 @@ class PlaceDetailsContent extends Component {
     // Remove the element from the DOM when we unmount
     this.props.root.removeChild(this.el);
   }
+  addMarkerToMap(marker) {
+    console.log('adding marker to map in place details content');
+    this.props.addMarkerToMap(marker);
+  }
+  addNoteToMarker(note) {
+    console.log('adding note to marker in place details content')
+    const currentNotes = this.newMarker.notes
+    // const stringNote = `${note.author}: ${note.text} (${note.type})`
+    const updatedNotes = currentNotes.push(note);
+    this.newMarker.notes = currentNotes;
+    console.log('the notes for this marker are:');
+    console.log(this.newMarker.notes);
+  }
   render() {
     const place = this.props.place;
     const map = this.props.map;
     const newMarker = {
       position: place.geometry.location,
       place_name: place.name,
-      notes: '',
+      notes: [],
       place_id: place.place_id,
-      savedToMap: false,
-      map: map,
-    }
+    };
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
       <p>Name: {place.name} </p>
       <img src="" width="16" height="16" id="place-icon" />
       <span id="place-name"  className="title"></span>
       <span id="place-address"></span>
-        <AddMarkerLink onAddMarker={this.addMarkerToMap} map={map} place={place} editingMap= {this.props.editingMap}/>
+        <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
       <p> Available Place info: {place.place_id} </p>
       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       <h2> This is the form to add a new note</h2>
-        <NewNoteForm place={place} map={map} marker={newMarker} editingMap={this.props.editingMap} />
+        <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
     </div>)
 
     return ReactDOM.createPortal(

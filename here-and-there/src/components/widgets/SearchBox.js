@@ -97,14 +97,19 @@ class SearchBox extends Component {
           <img src="" width="16" height="16" id="place-icon" />
           <span id="place-name"  className="title"></span>
           <span id="place-address"></span>
-            <AddMarkerLink onClickonAddMarker={this.addMarkerToMap} place={place}/>
+            <AddMarkerLink onClick={()=> console.log('clicking addmarker button')} onClickonAddMarker={this.addMarkerToMap} place={place}/>
           <p> Available Place info: {place.place_id} </p>
           <a>Add Note<MdIconPack.MdNoteAdd /> </a>
           <h2> This is the form to add a new note</h2>
             <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
       </div>
     );
+
+    // const iwLink = (
+    //   <Link>
+    // )
       const iwContent = ReactDOMServer.renderToString(iwBox);
+
       google.maps.event.addListener(newPlaceMarker, 'click', function() {
         iw.setContent(iwContent);
         iw.open(map, newPlaceMarker);

@@ -35,16 +35,18 @@ import { Link } from 'react-router-dom';
 // };
 const MarkerListItem = ({ marker, onMarkerSelect }) => {
   console.log('in markerListItem');
+  const first_note = marker.notes.length > 0 ? marker.notes.map(note =>
+  { return `${note.author}: ${note.text} (${note.type})`;}) : null;
+
   return (
     <li onClick={() => onMarkerSelect(marker)} className="marker-item">
       <div>
-        <h3>Marker Name: {marker.placeName} </h3>
+        <h3> Marker Place: {marker.place_name} </h3>
       </div>
       <div className="marker-details">
-        <p>Marker Details: {marker} </p>
+        <p>Marker Details: </p>
+        <p>author: {marker.author}, key: {marker.place_id}, notes: {first_note}</p>
       </div>
-      <h3> Marker Place: {marker.placeName} </h3>
-      <p>author: {marker.author}, key: {marker.place_id}, notes: {marker.notes}</p>
     </li>
   );
 };

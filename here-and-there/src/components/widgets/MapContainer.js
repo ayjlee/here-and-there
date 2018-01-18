@@ -59,23 +59,24 @@ export class ViewMapContainer extends React.Component {
   //   //   showingInfoWindow: true,
   //   // });
   // }
-  loadMapDataFromServer() {
-    console.log('in loadMapDatafromServer in ViewMapcontainer, the map url is:')
-    const map_id = this.props.match.params.map_id;
-    const map_url = `${this.props.url}/${map_id}`;
-    axios.get(map_url )
-    .then((res) => {
-      this.setState({ data: res.data });
-      console.log('the data after the map fetch is: ');
-      console.log(this.state.data);
-    });
-  }
   onMapAdded(map) {
     this.setState({
       map: map,
     });
     console.log('in onMapAdded, after we set state, this is:');
     console.log(this);
+  }
+  loadMapDataFromServer() {
+    console.log('in loadMapDatafromServer in ViewMapcontainer, the map url is:')
+    const map_id = this.props.match.params.map_id;
+    const map_url = `${this.props.url}/${map_id}`;
+    console.log(map_url)
+    axios.get(map_url)
+    .then((res) => {
+      this.setState({ data: res.data });
+      console.log('the data after the map fetch is: ');
+      console.log(this.state.data);
+    });
   }
   render() {
     const style = {
@@ -89,17 +90,12 @@ export class ViewMapContainer extends React.Component {
     if (!this.props.loaded) {
       return <div>Loading Map Container...</div>
     }
-    const markerItemNodes = this.state.data.savedMarkers.map(marker => { return (
-        <MapMarker key={marker._id} className="mapMarker" marker={marker} name={marker.place_nsme} onClick={this.onMarkerClick} />
-      );
-    });
     return (
       <section id="view-map-container">
         <ViewMapPane mapData={this.state.data} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
         <div className="holds-map">
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} >
-            // <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-            {markerItemNodes}
+            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
             <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
               <div>
                 <h2> this is the info window </h2>
@@ -143,3 +139,8 @@ export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],
 })(ViewMapContainer);
+
+// const markerItemNodes = this.state.data.savedMarkers.map(marker => { return (
+//     <MapMarker key={marker._id} className="mapMarker" marker={marker} name={marker.place_nsme} onClick={this.onMarkerClick} />
+//   );
+// });

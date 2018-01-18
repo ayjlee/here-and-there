@@ -23,10 +23,11 @@ class NewNoteForm extends Component {
   }
   handleAuthorChange(e) {
     console.log('handling author change in newnoteform');
-    this.setState({ type: e.target.value });
+    this.setState({ author: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
+    console.log('handling submit');
     const map = this.props.map;
     const place = this.props.place;
     const marker = this.props.marker;
@@ -37,13 +38,22 @@ class NewNoteForm extends Component {
     const type = this.state.type;
     const editingMap = this.props.editingMap;
 
-    if (!author || !text || !type) {
-      return;
-    }
+    // if (!author || !text || !type) {
+    //   return;
+    // }
     console.log(`saved the note for this place: ${place} on this marker: ${marker} with this type: ${type}, with this map: ${map} and this text: ${text}`);
     // this.props.onPlaceSubmit( {
     //   author: author, text: text, type: type, saved_to_current_map: true, map_id: map, place_id: place, marker_id: marker,
     // });
+    const newNote = {
+      author: author,
+      type: type,
+      text: text
+    }
+    console.log('new note is:');
+    console.log(newNote);
+    this.props.onAddNote(newNote);
+
     this.setState({
       author: '', text: '', type: [], saved_to_current_map: false, map_id: '',   place_id: '', marker_id: ''
     });
@@ -54,7 +64,7 @@ class NewNoteForm extends Component {
         <select value={this.state.type} onChange={this.handleTypeChange}>
           <option value="misc">Misc.</option>
           <option value="recommendation">Recommendation</option>
-          <option value="tip">`Insider Tip`</option>
+          <option value="tip">Insider Tip</option>
         </select>
         <input type="text" placeholder="Author" value={this.state.author} onChange={this.handleAuthorChange} />
         <textarea placeholder="Your note here" value={this.state.text} onChange={this.handleTextChange} />

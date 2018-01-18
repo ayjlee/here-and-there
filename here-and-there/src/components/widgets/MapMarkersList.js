@@ -50,9 +50,9 @@ class MapMarkersList extends Component {
     });
     return (
       <section id="marker-list-container">
+        <p> In the Marker List component for map: {this.props.mapData.name} </p>
+        <p> markers will go here </p>
         <ul>
-          <li> In the Marker List component for map: {this.props.mapData.name} </li>
-          <li> markers will go here </li>
           {markerItemNodes}
         </ul>
       </section>

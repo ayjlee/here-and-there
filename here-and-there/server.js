@@ -127,15 +127,15 @@ router.route('/maps/:map_id')
      res.json(map);
     });
   })
-  .patch(function(req, res) {
+  .put(function(req, res) {
     Map.findById(req.params.map_id, function(err, map) {
       if (err) {
         res.send(err);
       }
       (req.body.author) ? map.author = req.body.author : null;
-      (req.body.name) ? map.name : null;
-      (req.body.savedMarkers) ? map.savedMarkers : null;
-      (req.body.savedPlaces) ? map.savedPlaces : null;
+      (req.body.name) ? map.name = req.body.name : null;
+      (req.body.savedMarkers) ? map.savedMarkers = req.body.savedMarkers: null;
+      (req.body.savedPlaces) ? map.savedPlaces = req.body.savedPlaces : null;
       map.save(function(err) {
         if (err) {
           res.send(err);

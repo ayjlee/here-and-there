@@ -11,7 +11,7 @@ class MyMapsList extends Component {
   }
   componentDidMount() {
     this.loadMapsFromServer();
-    setInterval(this.loadMapsFromServer, this.props.pollInterval);
+    // setInterval(this.loadMapsFromServer, this.props.pollInterval);
   }
   handleMapDelete(id) {
     axios.delete(`${this.props.url}/${id}`)
