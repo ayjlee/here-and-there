@@ -152,9 +152,6 @@ export class EditMapContainer extends React.Component {
     const map = this.state.map;
     const detailsRoot = document.getElementById('place-note-details-pane');
 
-    // const placeDetails = (this.state.showPlaceDetails) ? (
-    //   <PlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.addMarkerToMap(marker)} root={detailsRoot} />
-    // ) : null;
     const placeDetails = (this.state.showPlaceDetails) ? (
       <EditPlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
@@ -174,55 +171,27 @@ export class EditMapContainer extends React.Component {
       // console.log('in map container rendering conditional, showing this.state.map');
       // console.log(this.state.map);
     }
-    // if (this.state.data) {
-    //   const mapVisualNodes = this.state.data.savedMarkers.map((marker) => {
-    //     return (
-    //       <section className="place-display">
-    //         <MapMarker map={this.state.map} google={this.props.google} position={marker.position} />
-    //           <InfoWindow map={this.state.map}  google={this.props.google}  marker={this.state.activeMarker}  visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}/>
-    //       </section>
-    //     );
-    //   });
-    //   return (
-    //     <section id="map-container-section">
-    //       <section id="edit-map-pane">
-    //         <h2 className="page-name"> Currently Editing Map: {this.state.data.name} </h2>
-    //         <h3> Author: {this.state.data.author} </h3>
-    //         <div id="building-map-info">
-    //           This will hold all of the info for the map we are currently building, including:
-    //           <h3>List of Locations Saved to the Current Map:</h3>
-    //             <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}/>
-    //         </div>
-    //       </section>
-    //       <div className="holds-map">
-    //         <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} showPlaceDetails={(place) => this.updatePlaceDetailsPane(place)} onAddMarker={(marker) => console.log(`marker to be added is : ${marker}`)}/>
-    //         <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
-    //           <MapMarker />
-    //           <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-    //           <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
-    //             <div id="info-window-content">
-    //               <h2> this is the info window </h2>
-    //               <p>Name: {this.state.selectedPlace.name} </p>
-    //               <img src="" width="16" height="16" id="place-icon" />
-    //               <span id="place-name"  className="title"></span>
-    //               <span id="place-address"></span>
-    //               <p> Available Place info: {this.state.selectedPlace.name} </p>
-    //                 <h2> This is the form to add a new note</h2>
-    //                 <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map} />
-    //             </div>
-    //           </InfoWindow>
-    //           {mapVisualNodes}
-    //         </CurrentMap>
-    //       </div>
-    //       <div id="place-note-details-pane">
-    //         <p> This will hold details about a particular place/marker </p>
-    //         {placeDetails}
-    //       </div>
-    //     </section>
-    //   );
-    // }
-    //
-    // const mapData= this.state.data;
+
+    const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
+      return (
+        <MapMarker position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} >
+            <InfoWindow marker={marker} visible={false} onClose={this.onInfoWindowClose}>
+              <div id="info-window-content">
+                <h2> this is the info window </h2>
+                <p>Name: {marker.place_name} </p>
+                <img src="" width="16" height="16" id="place-icon" />
+                <span id="place-name"  className="title"></span>
+                <span id="place-address"></span>
+                <p> Available Place info: {marker.place_id} </p>
+              </div>
+            </InfoWindow>
+        </MapMarker >
+      );
+    })
+    ) : null;
+
+    console.log(mapVisualNodes);
+
     return (
       <section id="map-container-section">
         <section id="edit-map-pane">
@@ -237,24 +206,11 @@ export class EditMapContainer extends React.Component {
         <div className="holds-map">
           <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} showPlaceDetails={(place) => this.updatePlaceDetailsPane(place)} onAddMarker={(marker) => console.log(`marker to be added is : ${marker}`)}/>
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
-            <MapMarker />
-            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
-              <div id="info-window-content">
-                <h2> this is the info window </h2>
-                <p>Name: {this.state.selectedPlace.name} </p>
-                <img src="" width="16" height="16" id="place-icon" />
-                <span id="place-name"  className="title"></span>
-                <span id="place-address"></span>
-                <p> Available Place info: {this.state.selectedPlace.name} </p>
-                  <h2> This is the form to add a new note</h2>
-                  <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map} />
-              </div>
-            </InfoWindow>
+            {mapVisualNodes}
           </CurrentMap>
         </div>
         <div id="place-note-details-pane">
-          <p> This will hold details about a particular place/marker </p>
+          <p> Search for a place to add to your map in the search box above</p>
           {placeDetails}
         </div>
       </section>
@@ -299,3 +255,100 @@ export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],
 })(EditMapContainer);
+
+
+
+// Notes Below:
+
+
+// Original "holds-map" section:
+  // <div className="holds-map">
+  //   <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} showPlaceDetails={(place) => this.updatePlaceDetailsPane(place)} onAddMarker={(marker) => console.log(`marker to be added is : ${marker}`)}/>
+  //   <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
+  //     <MapMarker />
+  //     <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+  //     <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+  //       <div id="info-window-content">
+  //         <h2> this is the info window </h2>
+  //         <p>Name: {this.state.selectedPlace.name} </p>
+  //         <img src="" width="16" height="16" id="place-icon" />
+  //         <span id="place-name"  className="title"></span>
+  //         <span id="place-address"></span>
+  //         <p> Available Place info: {this.state.selectedPlace.name} </p>
+  //           <h2> This is the form to add a new note</h2>
+  //           <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map} />
+  //       </div>
+  //     </InfoWindow>
+  //   </CurrentMap>
+  // </div>
+
+// const mapMarkers = (this.state.data.savedMarkers.length > 0) ? ( this.state.data.savedMarkers.map((marker) => {
+//   return (
+//     <MapMarker>
+//       <InfoWindow>
+//       <div id="info-window-content">
+//         <h2> this is the info window </h2>
+//         <p> Name: {marker.place_name} </p>
+//         // <img src="" width="16" height="16" id="place-icon" />
+//         // <span id="place-name"  className="title"></span>
+//         // <span id="place-address"></span>
+//         // <p> Available Place info: {this.state.selectedPlace.name} </p>
+//         //   <h2> This is the form to add a new note</h2>
+//         //   <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map} />
+//       </div>
+//       </InfoWindow>
+//     </MapMarker>
+//   );
+// })
+// ) : null;
+
+// Notes Below
+// if (this.state.data) {
+//   const mapVisualNodes = this.state.data.savedMarkers.map((marker) => {
+//     return (
+//       <section className="place-display">
+//         <MapMarker map={this.state.map} google={this.props.google} position={marker.position} />
+//           <InfoWindow map={this.state.map}  google={this.props.google}  marker={this.state.activeMarker}  visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}/>
+//       </section>
+//     );
+//   });
+//   return (
+//     <section id="map-container-section">
+//       <section id="edit-map-pane">
+//         <h2 className="page-name"> Currently Editing Map: {this.state.data.name} </h2>
+//         <h3> Author: {this.state.data.author} </h3>
+//         <div id="building-map-info">
+//           This will hold all of the info for the map we are currently building, including:
+//           <h3>List of Locations Saved to the Current Map:</h3>
+//             <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}/>
+//         </div>
+//       </section>
+//       <div className="holds-map">
+//         <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} showPlaceDetails={(place) => this.updatePlaceDetailsPane(place)} onAddMarker={(marker) => console.log(`marker to be added is : ${marker}`)}/>
+//         <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
+//           <MapMarker />
+//           <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+//           <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+//             <div id="info-window-content">
+//               <h2> this is the info window </h2>
+//               <p>Name: {this.state.selectedPlace.name} </p>
+//               <img src="" width="16" height="16" id="place-icon" />
+//               <span id="place-name"  className="title"></span>
+//               <span id="place-address"></span>
+//               <p> Available Place info: {this.state.selectedPlace.name} </p>
+//                 <h2> This is the form to add a new note</h2>
+//                 <NewNoteForm place={this.state.selectedPlace} marker={this.state.activeMarker} map={this.state.map} />
+//             </div>
+//           </InfoWindow>
+//           {mapVisualNodes}
+//         </CurrentMap>
+//       </div>
+//       <div id="place-note-details-pane">
+//         <p> This will hold details about a particular place/marker </p>
+//         {placeDetails}
+//       </div>
+//     </section>
+//   );
+// }
+//
+// const mapData= this.state.data;

@@ -20,7 +20,6 @@ export class CurrentMap extends Component {
         lat: lat,
         lng: lng,
       },
-      nameOfMap: 'Untitled',
     }
   }
   componentDidMount() {
@@ -46,6 +45,9 @@ export class CurrentMap extends Component {
     }
     if (prevState.currentLocation !== this.state.currentLocation) {
       this.recenterMap();
+    }
+    if (prevProps.children !== this.props.children) {
+      this.renderChildren();
     }
   }
   recenterMap() {
@@ -115,8 +117,11 @@ export class CurrentMap extends Component {
     }
   }
   renderChildren() {
+    console.log('in rendering children for current map');
+    console.log('children are:');
     // use React.cloneElement() to add props to a child inside a component; here we use to append the map instance, map center, and google prop; return null if there are no children passed so we can have CurrentMaps without children;
     const {children} = this.props;
+    console.log(children);
 
     if (!children) return;
 
