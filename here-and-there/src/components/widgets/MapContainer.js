@@ -6,6 +6,7 @@ import SearchBox from  './SearchBox';
 import MapMarker from './MapMarker';
 import InfoWindow from './InfoWindow';
 import ViewMapPane from '../panes/ViewMapPane';
+import ViewMarkerDetailsContent from './ViewMarkerDetailsContent';
 
 export class ViewMapContainer extends React.Component {
   // getInitialState() {
@@ -79,6 +80,11 @@ export class ViewMapContainer extends React.Component {
     });
   }
   render() {
+    const map = this.state.map;
+    const detailsRoot = document.getElementById('marker-details-pane');
+    const placeDetails = (this.state.selectedMarker) ? (
+      <ViewMarkerDetailsContent place={this.state.selectedMarker} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
+    ) : null;
     const style = {
       width: '80vw',
       height: '80vh',
@@ -104,8 +110,9 @@ export class ViewMapContainer extends React.Component {
 
             </InfoWindow>
           </CurrentMap>
-          <div id="place-note-details-pane">
+          <div id="marker-details-pane">
             <p> This will hold details about a particular place/marker </p>
+            {placeDetails}
           </div>
         </div>
       </section>

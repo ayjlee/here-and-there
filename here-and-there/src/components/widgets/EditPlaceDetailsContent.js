@@ -8,7 +8,7 @@ import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
 
-class PlaceDetailsContent extends Component {
+class EditPlaceDetailsContent extends Component {
   constructor(props) {
     super(props);
     // Create a div that we'll render the modal into. Because each
@@ -21,6 +21,7 @@ class PlaceDetailsContent extends Component {
       position: place.geometry.location,
       place_name: place.name,
       notes: [],
+      tags: [],
       place_id: place.place_id,
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
@@ -51,12 +52,13 @@ class PlaceDetailsContent extends Component {
   render() {
     const place = this.props.place;
     const map = this.props.map;
-    const newMarker = {
-      position: place.geometry.location,
-      place_name: place.name,
-      notes: [],
-      place_id: place.place_id,
-    };
+    // const newMarker = {
+    //   position: place.geometry.location,
+    //   place_name: place.name,
+    //   notes: [],
+    //   tags: [],
+    //   place_id: place.place_id,
+    // };
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
       <p>Name: {place.name} </p>
@@ -79,4 +81,4 @@ class PlaceDetailsContent extends Component {
   }
 }
 
-export default PlaceDetailsContent;
+export default EditPlaceDetailsContent;

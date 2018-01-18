@@ -44,7 +44,7 @@ class MapMarkersList extends Component {
   render() {
     const markerItemNodes = this.props.savedMarkers.map(marker => {
       return (
-        <MarkerListItem key={marker._id} className="mapMarker" marker={marker}  onMarkerSelect={this.props.onMarkerSelect} />
+        <MarkerListItem key={marker.place_id} className="mapMarker" marker={marker}  onMarkerSelect={marker => this.props.onMarkerSelect(marker)} />
       );
 
     });

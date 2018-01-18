@@ -7,7 +7,7 @@ import NewNoteForm from '../forms/AddNoteForm';
 import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
-import PlaceDetailsContent from './PlaceDetailsContent';
+import EditPlaceDetailsContent from './EditPlaceDetailsContent';
 
 class SearchBox extends Component {
   constructor(props) {
@@ -117,7 +117,7 @@ class SearchBox extends Component {
       console.log('in render autocomplete, this.placeinforoot is:')
       console.log(this.placeInfoRoot);
 
-      const placeDetails = <PlaceDetailsContent root={this.placeInfoRoot} place={place} map={map} google={google} />
+      const placeDetails = <EditPlaceDetailsContent root={this.placeInfoRoot} place={place} map={map} google={google} />
 
       this.props.showPlaceDetails(place);
 

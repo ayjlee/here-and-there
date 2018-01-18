@@ -39,16 +39,38 @@ const MarkerListItem = ({ marker, onMarkerSelect }) => {
   { return `${note.author}: ${note.text} (${note.type})`;}) : null;
 
   return (
-    <li onClick={() => onMarkerSelect(marker)} className="marker-item">
+    <li className="marker-item" key={marker.place_id}>
       <div>
         <h3> Marker Place: {marker.place_name} </h3>
       </div>
       <div className="marker-details">
         <p>Marker Details: </p>
         <p>author: {marker.author}, key: {marker.place_id}, notes: {first_note}</p>
+        <p> position:  lat: {marker.position.lat} lng: {marker.position.lng} </p>
       </div>
     </li>
   );
 };
+
+// class MarkerListItem extends Component {
+//   render() {
+//     const marker = this.props.marker;
+//     console.log('in markerListItem');
+//     const first_note = marker.notes.length > 0 ? marker.notes.map(note =>
+//     { return `${note.author}: ${note.text} (${note.type})`;}) : null;
+//
+//     return (
+//       <li onClick={() => this.props.onMarkerSelect(marker)} className="marker-item" key={marker.place_id}>
+//         <div>
+//           <h3> Marker Place: {marker.place_name} </h3>
+//         </div>
+//         <div className="marker-details">
+//           <p>Marker Details: </p>
+//           <p>author: {marker.author}, key: {marker.place_id}, notes: {first_note}</p>
+//         </div>
+//       </li>
+//     );
+//   }
+// };
 
 export default MarkerListItem;

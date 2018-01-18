@@ -10,7 +10,7 @@ import InfoWindow from './InfoWindow';
 import NewNoteForm from '../forms/AddNoteForm';
 import MapMarkersList from './MapMarkersList';
 import EditMapPane from '../panes/EditMapPane';
-import PlaceDetailsContent from './PlaceDetailsContent';
+import EditPlaceDetailsContent from './EditPlaceDetailsContent';
 import AddMarkerLink from './AddMarkerLink';
 import * as MdIconPack from 'react-icons/lib/md';
 
@@ -156,7 +156,7 @@ export class EditMapContainer extends React.Component {
     //   <PlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.addMarkerToMap(marker)} root={detailsRoot} />
     // ) : null;
     const placeDetails = (this.state.showPlaceDetails) ? (
-      <PlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
+      <EditPlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
     const style = {
       width: '40vw',
