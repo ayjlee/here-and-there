@@ -64,6 +64,7 @@ export class EditMapContainer extends React.Component {
     });
   }
   onMapAdded(map) {
+    console.log('in EditMap Container, onMapAdded')
     this.setState({
       map: map,
     });
@@ -78,7 +79,7 @@ export class EditMapContainer extends React.Component {
     // this.setState({ currentMarkers: updatedMarkers });
   }
   loadMapDataFromServer() {
-    // console.log('in loadMapDatafromServer, the map url is:')
+    console.log('in Edit Map container, loadMapDatafromServer');
     const map_id = this.props.match.params.map_id;
     const map_url = `${this.props.url}/${map_id}`;
     axios.get(map_url )
@@ -149,6 +150,8 @@ export class EditMapContainer extends React.Component {
     });
   }
   render() {
+    console.log('in rendering map, this map is:');
+    console.log(this.state.map);
     const map = this.state.map;
     const detailsRoot = document.getElementById('place-note-details-pane');
 
@@ -174,8 +177,8 @@ export class EditMapContainer extends React.Component {
 
     const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
       return (
-        <MapMarker position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} >
-            <InfoWindow marker={marker} visible={false} onClose={this.onInfoWindowClose}>
+        <MapMarker key={marker.place_id} position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} >
+            <InfoWindow key={marker.place_id} marker={marker} visible={false} onClose={this.onInfoWindowClose}>
               <div id="info-window-content">
                 <h2> this is the info window </h2>
                 <p>Name: {marker.place_name} </p>
@@ -190,22 +193,19 @@ export class EditMapContainer extends React.Component {
     })
     ) : null;
 
-    console.log(mapVisualNodes);
-
     return (
       <section id="map-container-section">
         <section id="edit-map-pane">
           <h2 className="page-name"> Currently Editing Map: {this.state.data.name} </h2>
           <h3> Author: {this.state.data.author} </h3>
+          <h3>List of Locations Saved to the Current Map:</h3>
           <div id="building-map-info">
-            This will hold all of the info for the map we are currently building, including:
-            <h3>List of Locations Saved to the Current Map:</h3>
-              <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}/>
+            <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}/>
           </div>
         </section>
         <div className="holds-map">
           <SearchBox google={this.props.google} map={this.state.map} mapData={this.state.data} showPlaceDetails={(place) => this.updatePlaceDetailsPane(place)} onAddMarker={(marker) => console.log(`marker to be added is : ${marker}`)}/>
-          <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
+          <CurrentMap currentMap={this.state.data} google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} style={style}>
             {mapVisualNodes}
           </CurrentMap>
         </div>

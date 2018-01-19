@@ -17,21 +17,21 @@ export class ViewMapPane extends React.Component {
   render() {
     return (
       <section id="view-map-pane" className="sidepane-placeholder">
-        <Link to={{
-          pathname: '/library',
-          state: { selectedMap: null }
-        }}>
-          Back to Library
-        </Link>
-        <Link to={{
-          pathname: `/edit-map/${this.props.mapData._id}`,
-          state: { selectedMap: null }
-        }}>
-          Edit Map
-        </Link>
+        <div className="link-div">
+          <Link to={{
+            pathname: '/library',
+            state: { selectedMap: null }
+          }}>Back to Library</Link>
+          <Link to={{
+            pathname: `/edit-map/${this.props.mapData._id}`,
+            state: { selectedMap: null }
+          }}> Edit Map </Link>
+        </div>
+
         <div>
-          <h2>viewing map pane for map: {this.props.mapData.name} </h2>
-          <h3> Author: {this.props.mapData.author} </h3>
+          <p> map:  </p>
+          <h2> {this.props.mapData.name} </h2>
+          <strong><p> Author: {this.props.mapData.author} </p></strong>
         </div>
         <h3> Places on this map: </h3>
         <MapMarkersList mapData={this.props.mapData} savedMarkers={this.props.mapData.savedMarkers} onMarkerSelect={selectedMarker => this.setState({ selectedMarker })}/>

@@ -118,21 +118,26 @@ export class CurrentMap extends Component {
   }
   renderChildren() {
     console.log('in rendering children for current map');
-    console.log('children are:');
     // use React.cloneElement() to add props to a child inside a component; here we use to append the map instance, map center, and google prop; return null if there are no children passed so we can have CurrentMaps without children;
     const {children} = this.props;
-    console.log(children);
 
     if (!children) return;
 
     // React.Children.map() is a React method that lets us iterate over each of the children passed by a component and run a function on it
-    return React.Children.map(children, (c) => {
-      return React.cloneElement(c, {
-        map: this.map,
-        google: this.props.google,
-        mapCenter: this.state.currentLocation,
-      });
-    })
+      // return React.Children.map(children, (c) => {
+      //   return React.cloneElement(c, {
+      //     map: this.map,
+      //     google: this.props.google,
+      //     mapCenter: this.state.currentLocation,
+      //   });
+      // })
+      return React.Children.map(children, (c) => {
+        return React.cloneElement(c, {
+          map: this.map,
+          google: this.props.google,
+          mapCenter: this.state.currentLocation,
+        });
+      })
   }
   render() {
     const style = {

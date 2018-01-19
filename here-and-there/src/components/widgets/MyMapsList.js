@@ -33,14 +33,6 @@ class MyMapsList extends Component {
     });
   }
   render() {
-    const mapNodes = this.state.data.map((map) => {
-      return (
-        <li key={map._id} map={map} className="myMap" onClick={this.onMyMapClick.bind(map)}>
-          <h3> Map name: {map.name} </h3>
-          <p>author: {map.author}, key: {map._id}, markers: {map.markers}</p>
-        </li>
-      );
-    });
     const mapItemNodes = this.state.data.map((map) => {
       return <MapListItem key={map._id} map={map} onMapSelect={this.props.onMapSelect} />;
     });
@@ -66,3 +58,12 @@ export default MyMapsList;
 //     </ul>
 //   </section>
 // );
+
+// const mapNodes = this.state.data.map((map) => {
+//   return (
+//     <li key={map._id} map={map} className="myMap" onClick={this.onMyMapClick.bind(map)}>
+//       <h3> Map name: {map.name} </h3>
+//       <p>author: {map.author}, key: {map._id}, markers: {map.markers}</p>
+//     </li>
+//   );
+// });

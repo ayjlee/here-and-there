@@ -82,6 +82,23 @@ export class ViewMapContainer extends React.Component {
   render() {
     const map = this.state.map;
     const detailsRoot = document.getElementById('marker-details-pane');
+    const mapVisualNodes = (this.state.data.savedMarkers && this.state.data.savedMarkers.length > 0) ? (this.state.data.savedMarkers.map((marker) => {
+      return (
+        <MapMarker key={marker.place_id} position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} >
+            <InfoWindow key={marker.place_id} marker={marker} visible={false} onClose={this.onInfoWindowClose}>
+              <div id="info-window-content">
+                <h2> this is the info window </h2>
+                <p>Name: {marker.place_name} </p>
+                <img src="" width="16" height="16" id="place-icon" />
+                <span id="place-name"  className="title"></span>
+                <span id="place-address"></span>
+                <p> Available Place info: {marker.place_id} </p>
+              </div>
+            </InfoWindow>
+        </MapMarker >
+      );
+    })
+    ) : null;
     const placeDetails = (this.state.selectedMarker) ? (
       <ViewMarkerDetailsContent place={this.state.selectedMarker} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
@@ -101,14 +118,7 @@ export class ViewMapContainer extends React.Component {
         <ViewMapPane mapData={this.state.data} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
         <div className="holds-map">
           <CurrentMap google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} >
-            <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
-              <div>
-                <h2> this is the info window </h2>
-                <p>Name: {this.state.selectedPlace.name} </p>
-              </div>
-
-            </InfoWindow>
+            {mapVisualNodes}
           </CurrentMap>
           <div id="marker-details-pane">
             <p> This will hold details about a particular place/marker </p>
@@ -151,3 +161,13 @@ export default GoogleApiWrapper({
 //     <MapMarker key={marker._id} className="mapMarker" marker={marker} name={marker.place_nsme} onClick={this.onMarkerClick} />
 //   );
 // });
+
+
+// <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
+// <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
+//   <div>
+//     <h2> this is the info window </h2>
+//     <p>Name: {this.state.selectedPlace.name} </p>
+//   </div>
+//
+// </InfoWindow>

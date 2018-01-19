@@ -48,7 +48,7 @@ ul.header li a {
 }
 
 .sidepane-placeholder, #building-map-info, #edit-map-pane {
-  max-width: 25vw;
+  max-width: 35vw;
   border: green solid 3px;
   display: inline-block;
   vertical-align: top;
@@ -103,4 +103,8 @@ ul.header li a {
 
 .flt-right {
   float: right;
+}
+
+#marker-list-container {
+  overflow: scroll;
 }

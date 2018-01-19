@@ -1,5 +1,3 @@
-// //server.js
-// 'use strict';
 
 //first we import our dependencies…
 const express = require('express');

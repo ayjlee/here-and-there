@@ -20,8 +20,15 @@ class EditPlaceDetailsContent extends Component {
     this.newMarker = {
       position: place.geometry.location,
       place_name: place.name,
+      address: place.formatted_address,
+      phone_num: place.formatted_phone_number,
+      icon: place.icon,
       notes: [],
-      tags: [],
+      opening_hours: place.opening_hours.weekday_text,
+      website: place.website,
+      rating: place.rating,
+      price_level: place.price_level,
+      tags: place.types,
       place_id: place.place_id,
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
@@ -59,6 +66,7 @@ class EditPlaceDetailsContent extends Component {
     //   tags: [],
     //   place_id: place.place_id,
     // };
+    console.log(place);
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
       <p>Name: {place.name} </p>
