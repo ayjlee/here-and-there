@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
 //       </div>
 //     </li>);
 // };
-const MarkerListItem = ({ marker, onMarkerSelect }) => {
+const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker }) => {
   console.log('in markerListItem');
   const notesList = marker.notes.length > 0 ? marker.notes.map(note =>
   { return (<li key={note.text} >{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
@@ -46,10 +46,14 @@ const MarkerListItem = ({ marker, onMarkerSelect }) => {
       <div className="marker-details">
         <h5>Marker Details: </h5>
         <p> position:  lat: {marker.position.lat} lng: {marker.position.lng} </p>
+        <p>Place ID: {marker.place_id}</p>
         <h5>Notes: </h5>
         <ul>
           {notesList}
         </ul>
+      </div>
+      <div>
+        <button key={marker.place_id} onClick={(marker) => deleteMarker(marker)}> delete this Marker</button>
       </div>
     </li>
   );

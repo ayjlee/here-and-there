@@ -22,7 +22,7 @@ class ViewMapPane extends React.Component {
           <Link to={{
             pathname: `/edit-map/${this.props.mapData._id}`,
             state: { selectedMap: null }
-          }} className="map-link"> Edit Map </Link>
+          }} className="map-link" > Edit Map </Link>
         </div>
 
         <div>

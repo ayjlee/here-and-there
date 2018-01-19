@@ -12,7 +12,6 @@ import MapMarkersList from './MapMarkersList';
 import EditMapPane from '../panes/EditMapPane';
 import EditPlaceDetailsContent from './EditPlaceDetailsContent';
 import AddMarkerLink from './AddMarkerLink';
-import * as MdIconPack from 'react-icons/lib/md';
 
 export class EditMapContainer extends React.Component {
   constructor(props) {
@@ -36,6 +35,7 @@ export class EditMapContainer extends React.Component {
     this.loadMapDataFromServer = this.loadMapDataFromServer.bind(this);
     this.saveMarkerToMap = this.saveMarkerToMap.bind(this);
     this.updatePlaceDetailsPane = this.updatePlaceDetailsPane.bind(this);
+    this.deleteMarker = this.deleteMarker.bind(this);
   }
   componentDidMount() {
     this.loadMapDataFromServer();
@@ -102,26 +102,30 @@ export class EditMapContainer extends React.Component {
     const updatedMarkers = [...this.state.currentMarkers, marker];
     console.log('markers to add are:');
     console.log(updatedMarkers);
-    const author = this.state.data.author;
-    const name = this.state.data.name
-    const map_id = this.props.match.params.map_id;
-    // axios post or patch method for adding a marker to a place
-    const map_url = `${this.props.url}/${map_id}`;
-    // const updatedMarkers = this.state.currentMarkers.push(marker);
-    const updatedPlaces = [...this.state.data.savedPlaces, marker.place_id]
-    // const updatedPlaces = this.state.data.savedPlaces.push(marker.place_id)
-
-    const newMap = {
-      savedMarkers: updatedMarkers,
-      savedPlaces: updatedPlaces,
-    };
-    console.log('new map object is');
-    console.log(newMap);
-    axios.put(map_url, newMap)
-      .then((res) => {
-      // this.setState({ data: res.data, currentMarkers: res.data.savedMarkers});
-      this.loadMapDataFromServer();
-    });
+    // const author = this.state.data.author;
+    // const name = this.state.data.name
+    // const map_id = this.props.match.params.map_id;
+    // // axios post or patch method for adding a marker to a place
+    // const map_url = `${this.props.url}/${map_id}`;
+    // // const updatedMarkers = this.state.currentMarkers.push(marker);
+    // const updatedPlaces = [...this.state.data.savedPlaces, marker.place_id]
+    // // const updatedPlaces = this.state.data.savedPlaces.push(marker.place_id)
+    //
+    // const newMap = {
+    //   savedMarkers: updatedMarkers,
+    //   savedPlaces: updatedPlaces,
+    // };
+    // console.log('new map object is');
+    // console.log(newMap);
+    // axios.put(map_url, newMap)
+    //   .then((res) => {
+    //   // this.setState({ data: res.data, currentMarkers: res.data.savedMarkers});
+    //   this.loadMapDataFromServer();
+    // });
+  }
+  deleteMarker(marker) {
+    console.log(' in Edit Map Container, deleting this marker');
+    console.log(marker);
   }
   render() {
     console.log('in rendering EditMapContainer, this map is:');
@@ -173,7 +177,8 @@ export class EditMapContainer extends React.Component {
     // ) : null;
     const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
       return (
-        <MapMarker key={marker.place_id} position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} />
+        <MapMarker key={marker.place_id}
+        markerData={marker}  position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} />
       );
     })
     ) : null;
@@ -185,7 +190,8 @@ export class EditMapContainer extends React.Component {
           <h3> Author: {this.state.data.author} </h3>
           <h3>List of Locations Saved to the Current Map:</h3>
           <div id="building-map-info">
-            <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}/>
+            <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}
+            onMarkerDelete={marker => this.deleteMarker(marker)} />
           </div>
         </section>
         <div className="holds-map">

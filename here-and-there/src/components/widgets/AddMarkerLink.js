@@ -10,11 +10,6 @@ class AddMarkerLink extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
-    console.log('adding marker to this map');
-    console.log('the current userMap we are editing is: ');
-    console.log(this.props.editingMap);
-    console.log('the current marker we are adding is:');
-    console.log(this.props.marker);
     this.props.onAddMarker(this.props.marker);
   }
   render() {

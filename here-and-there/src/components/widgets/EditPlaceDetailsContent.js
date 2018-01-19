@@ -46,7 +46,8 @@ class EditPlaceDetailsContent extends Component {
     this.props.root.removeChild(this.el);
   }
   addMarkerToMap(marker) {
-    console.log('adding marker to map in place details content');
+    // console.log('adding marker to map in place details content, the marker is ');
+    // console.log(marker);
     this.props.addMarkerToMap(marker);
   }
   addNoteToMarker(note) {
@@ -75,11 +76,11 @@ class EditPlaceDetailsContent extends Component {
       <img src="" width="16" height="16" id="place-icon" />
       <span id="place-name"  className="title"></span>
       <span id="place-address"></span>
-        <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
       <p> Available Place info: {place.place_id} </p>
       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       <h2> This is the form to add a new note</h2>
         <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
+      <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
     </div>)
 
     return ReactDOM.createPortal(

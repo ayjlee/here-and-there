@@ -37,12 +37,9 @@ export class MapMarker extends Component {
     console.log('in renderMarker, rendering marker for place:');
     console.log(this.props.name);
     let { map, google, position, mapCenter } = this.props;
-    console.log('position in renderMarker before resetting is is:');
-    console.log(position);
 
-    // let pos = position || mapCenter;
-    // position = new google.maps.LatLng(pos.lat, pos.lng);
-
+    let pos = position || mapCenter;
+    position = new google.maps.LatLng(pos.lat, pos.lng);
     const pref = {
       map: map,
       position: position,
@@ -71,6 +68,7 @@ MapMarker.defaultProps = {
   savedToMap: false,
   onClick() {
     console.log('clicking MapMarker');
+    console.log(this);
   },
   onMouseover() {
     console.log('mousing over a mapmarker');
