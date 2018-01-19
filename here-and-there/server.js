@@ -110,7 +110,7 @@ router.route('/maps')
    if (err) {
      res.send(err);
    }
-   res.json({ message: `Map successfully added! the request body is ${req.body}` });
+   res.json(map._id);
   });
 });
 
