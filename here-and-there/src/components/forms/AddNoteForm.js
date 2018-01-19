@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as MdIconPack from 'react-icons/lib/md';
 
 class NewNoteForm extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class NewNoteForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h2> This is the form to add a new note</h2>
         <select value={this.state.type} onChange={this.handleTypeChange}>
           <option value=""></option>
           <option value="misc">Misc.</option>
@@ -73,6 +75,7 @@ class NewNoteForm extends Component {
           type="submit"
           value="Add Note"
         />
+        <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       </form>
     );
   }

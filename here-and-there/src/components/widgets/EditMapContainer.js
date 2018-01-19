@@ -102,26 +102,26 @@ export class EditMapContainer extends React.Component {
     const updatedMarkers = [...this.state.currentMarkers, marker];
     console.log('markers to add are:');
     console.log(updatedMarkers);
-    // const author = this.state.data.author;
-    // const name = this.state.data.name
-    // const map_id = this.props.match.params.map_id;
-    // // axios post or patch method for adding a marker to a place
-    // const map_url = `${this.props.url}/${map_id}`;
-    // // const updatedMarkers = this.state.currentMarkers.push(marker);
-    // const updatedPlaces = [...this.state.data.savedPlaces, marker.place_id]
-    // // const updatedPlaces = this.state.data.savedPlaces.push(marker.place_id)
-    //
-    // const newMap = {
-    //   savedMarkers: updatedMarkers,
-    //   savedPlaces: updatedPlaces,
-    // };
-    // console.log('new map object is');
-    // console.log(newMap);
-    // axios.put(map_url, newMap)
-    //   .then((res) => {
-    //   // this.setState({ data: res.data, currentMarkers: res.data.savedMarkers});
-    //   this.loadMapDataFromServer();
-    // });
+    const author = this.state.data.author;
+    const name = this.state.data.name
+    const map_id = this.props.match.params.map_id;
+    // axios post or patch method for adding a marker to a place
+    const map_url = `${this.props.url}/${map_id}`;
+    // const updatedMarkers = this.state.currentMarkers.push(marker);
+    const updatedPlaces = [...this.state.data.savedPlaces, marker.place_id]
+    // const updatedPlaces = this.state.data.savedPlaces.push(marker.place_id)
+
+    const newMap = {
+      savedMarkers: updatedMarkers,
+      savedPlaces: updatedPlaces,
+    };
+    console.log('new map object is');
+    console.log(newMap);
+    axios.put(map_url, newMap)
+      .then((res) => {
+        this.setState({ data: res.data, currentMarkers: res.data.savedMarkers});
+        this.loadMapDataFromServer();
+    });
   }
   deleteMarker(marker) {
     console.log(' in Edit Map Container, deleting this marker');

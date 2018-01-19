@@ -34,8 +34,6 @@ export class MapMarker extends Component {
     }
   }
   renderMarker() {
-    console.log('in renderMarker, rendering marker for place:');
-    console.log(this.props.name);
     let { map, google, position, mapCenter } = this.props;
 
     let pos = position || mapCenter;

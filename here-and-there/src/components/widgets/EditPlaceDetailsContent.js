@@ -17,6 +17,9 @@ class EditPlaceDetailsContent extends Component {
     this.el = document.createElement('div');
     const place = this.props.place;
     const map = this.props.map;
+    this.state = {
+      currentNotes: [],
+    };
     this.newMarker = {
       position: place.geometry.location,
       place_name: place.name,
@@ -56,6 +59,7 @@ class EditPlaceDetailsContent extends Component {
     // const stringNote = `${note.author}: ${note.text} (${note.type})`
     const updatedNotes = currentNotes.push(note);
     this.newMarker.notes = currentNotes;
+    // this.setState({currentNotes: upd})
     console.log('the notes for this marker are:');
     console.log(this.newMarker.notes);
   }
@@ -69,6 +73,11 @@ class EditPlaceDetailsContent extends Component {
     //   tags: [],
     //   place_id: place.place_id,
     // };
+    const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map(note => {
+      return (
+        <li>{note.author}: ${note.text} (${note.type}) </li>
+      )
+    }) : null;
     console.log(place);
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
@@ -77,8 +86,8 @@ class EditPlaceDetailsContent extends Component {
       <span id="place-name"  className="title"></span>
       <span id="place-address"></span>
       <p> Available Place info: {place.place_id} </p>
-      <a>Add Note<MdIconPack.MdNoteAdd /> </a>
-      <h2> This is the form to add a new note</h2>
+      <p> Notes </p>
+      {currentNotes}
         <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
       <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
     </div>)
