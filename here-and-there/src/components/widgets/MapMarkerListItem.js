@@ -54,6 +54,7 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker }) => {
       </div>
       <div>
         <button key={marker.place_id} onClick={(marker) => deleteMarker(marker)}> delete this Marker</button>
+        <button key={marker.place_id} onClick={(marker) => console.log(`clicked edit notes button for ${marker}`)}> Edit Notes </button>
       </div>
     </li>
   );
