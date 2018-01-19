@@ -25,7 +25,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div id="main">
-          <h1 id="title">here and there</h1>
           <ul className="header">
             <li id="home-link"><NavLink exact to="/"> here and there</NavLink></li>
             <li><NavLink to="/newmap">Build a New Map</NavLink></li>

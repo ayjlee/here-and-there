@@ -57,7 +57,8 @@ ul {
 }
 #home-link a {
   margin-right: 30px;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  color: black;
 }
 .content {
   background-color: #FFF;
