@@ -23,6 +23,7 @@ export class CurrentMap extends Component {
     }
   }
   componentDidMount() {
+    console.log('in CurrentMap componentDidMount');
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
@@ -40,6 +41,7 @@ export class CurrentMap extends Component {
     this.loadMap();
   }
   componentDidUpdate(prevProps, prevState) {
+    console.log('in component did update');
     if (prevProps.google !== this.props.google) {
       this.loadMap();
     }
@@ -77,6 +79,7 @@ export class CurrentMap extends Component {
     }
   }
   loadMap() {
+    console.log('in loadMap for CurrentMap');
     if (this.props && this.props.google) {
       // google is available
       const {google} = this.props;
@@ -117,10 +120,10 @@ export class CurrentMap extends Component {
     }
   }
   renderChildren() {
-    console.log('in rendering children for current map');
+    console.log('in rendering children for CurrentMap');
     // use React.cloneElement() to add props to a child inside a component; here we use to append the map instance, map center, and google prop; return null if there are no children passed so we can have CurrentMaps without children;
-    const {children} = this.props;
-
+    const { children } = this.props;
+    console.log(children);
     if (!children) return;
 
     // React.Children.map() is a React method that lets us iterate over each of the children passed by a component and run a function on it
@@ -131,13 +134,15 @@ export class CurrentMap extends Component {
       //     mapCenter: this.state.currentLocation,
       //   });
       // })
-      return React.Children.map(children, (c) => {
+    return React.Children.map(children, (c) => {
+      if (c !== null) {
         return React.cloneElement(c, {
           map: this.map,
           google: this.props.google,
           mapCenter: this.state.currentLocation,
         });
-      })
+      }
+    });
   }
   render() {
     const style = {

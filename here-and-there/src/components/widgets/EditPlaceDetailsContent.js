@@ -21,15 +21,17 @@ class EditPlaceDetailsContent extends Component {
       position: place.geometry.location,
       place_name: place.name,
       address: place.formatted_address,
-      phone_num: place.formatted_phone_number,
-      icon: place.icon,
       notes: [],
-      opening_hours: place.opening_hours.weekday_text,
-      website: place.website,
-      rating: place.rating,
-      price_level: place.price_level,
       tags: place.types,
       place_id: place.place_id,
+      additional_details: {
+        opening_hours: place.opening_hours,
+        website: place.website,
+        rating: place.rating,
+        price_level: place.price_level,
+        phone_num: place.formatted_phone_number,
+        icon: place.icon,
+      },
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
   }

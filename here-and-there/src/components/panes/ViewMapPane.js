@@ -1,12 +1,9 @@
-import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
-import axios from 'axios';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import MapMarkersList from '../widgets/MapMarkersList';
 
-export class ViewMapPane extends React.Component {
+class ViewMapPane extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,15 +18,15 @@ export class ViewMapPane extends React.Component {
           <Link to={{
             pathname: '/library',
             state: { selectedMap: null }
-          }}>Back to Library</Link>
+          }} className="map-link">Back to Library</Link>
           <Link to={{
             pathname: `/edit-map/${this.props.mapData._id}`,
             state: { selectedMap: null }
-          }}> Edit Map </Link>
+          }} className="map-link"> Edit Map </Link>
         </div>
 
         <div>
-          <p> map:  </p>
+          <p>map:  </p>
           <h2> {this.props.mapData.name} </h2>
           <strong><p> Author: {this.props.mapData.author} </p></strong>
         </div>

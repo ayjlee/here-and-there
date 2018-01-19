@@ -71,7 +71,6 @@ MapMarker.defaultProps = {
   savedToMap: false,
   onClick() {
     console.log('clicking MapMarker');
-    console.log(this);
   },
   onMouseover() {
     console.log('mousing over a mapmarker');

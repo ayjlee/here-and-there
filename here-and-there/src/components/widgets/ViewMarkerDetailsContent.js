@@ -18,8 +18,8 @@ class ViewMarkerDetailsContent extends Component {
     const place = this.props.place;
     const map = this.props.map;
     this.newMarker = {
-      position: place.geometry.location,
-      place_name: place.name,
+      position: place.position,
+      place_name: place.place_name,
       notes: [],
       tags: [],
       place_id: place.place_id,
@@ -52,15 +52,8 @@ class ViewMarkerDetailsContent extends Component {
   render() {
     const place = this.props.place;
     const map = this.props.map;
-    // const newMarker = {
-    //   position: place.geometry.location,
-    //   place_name: place.name,
-    //   notes: [],
-    //   tags: [],
-    //   place_id: place.place_id,
-    // };
-    console.log('the available place info is:');
-    console.log(place);
+    console.log('map in viewmarkerdetails content is:');
+    console.log(map);
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
       <p>Name: {place.name} </p>

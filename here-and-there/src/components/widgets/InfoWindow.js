@@ -1,10 +1,8 @@
-import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
-import MapMarker from './MapMarker';
 // use ReactDomServer to translate the children of the <InfoWindow /> component in our <MapContainer /> into an HTML string
 import ReactDOMServer from 'react-dom/server';
 
-export class InfoWindow extends React.Component {
+class InfoWindow extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // console.log('in InfoWindow componentDidUpdate()');
     if (this.props.map !== prevProps.map) {

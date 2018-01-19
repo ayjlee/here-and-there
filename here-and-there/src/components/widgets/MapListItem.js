@@ -41,12 +41,9 @@ const MapListItem = ({ map, onMapSelect }) => {
   }
   return (
     <li onClick={() => onMapSelect(map)} className="map-item myMap">
-      <div>
-        <h3>Map Name: {map.name} </h3>
-      </div>
       <div className="map-details">
-        <p>Map Author: {map.author} </p>
-        <p>Map Id: {map._id} </p>
+        <h3>Name: {map.name} </h3>
+        <p>Author: {map.author} </p>
       </div>
       <div>
         <Link to={mapPath} className="map-link">

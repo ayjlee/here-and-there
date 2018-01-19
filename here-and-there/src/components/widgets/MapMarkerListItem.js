@@ -36,7 +36,7 @@ import { Link } from 'react-router-dom';
 const MarkerListItem = ({ marker, onMarkerSelect }) => {
   console.log('in markerListItem');
   const notesList = marker.notes.length > 0 ? marker.notes.map(note =>
-  { return (<li>{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
+  { return (<li key={note.text} >{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
 
   return (
     <li className="marker-item" key={marker.place_id}>
