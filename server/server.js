@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
-const Map = require('../here-and-there/model/maps');
+const Map = require('../here-and-there/build/model/maps');
 
 //and create our instances
 const app = express();
