@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 // get reference to the client build directory
 
-var Map = require('../here-and-there/model/maps');
+// var Map = require('../here-and-there/model/maps');
 
 //and create our instances
 var app = express();
@@ -49,60 +49,60 @@ router.route('/maps')
 //retrieve all maps from the database
 .get(function (req, res) {
   //looks at our Map Schema
-  Map.find(function (err, maps) {
-    if (err) {
-      res.send(err);
-    }
-    //responds with a json object of our database maps.
-    res.json(maps);
-  });
+  // Map.find(function (err, maps) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   //responds with a json object of our database maps.
+  //   res.json(maps);
+  // });
 })
 //post new map to the database
 .post(function (req, res) {
-  var map = new Map();
-  //body parser lets us use the req.body
-  map.author = req.body.author;
-  map.name = req.body.name;
-  map.save(function (err) {
-    if (err) {
-      res.send(err);
-    }
-    res.json(map._id);
-  });
+  // var map = new Map();
+  // //body parser lets us use the req.body
+  // map.author = req.body.author;
+  // map.name = req.body.name;
+  // map.save(function (err) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   res.json(map._id);
+  // });
 });
 
 router.route('/maps/:map_id').get(function (req, res) {
   //looks at our Map Schema
-  Map.findById(req.params.map_id, function (err, map) {
-    if (err) {
-      res.send(err);
-    }
-    //responds with a json object of our database maps.
-    res.json(map);
-  });
+  // Map.findById(req.params.map_id, function (err, map) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   //responds with a json object of our database maps.
+  //   res.json(map);
+  // });
 }).put(function (req, res) {
-  Map.findById(req.params.map_id, function (err, map) {
-    if (err) {
-      res.send(err);
-    }
-    req.body.author ? map.author = req.body.author : null;
-    req.body.name ? map.name = req.body.name : null;
-    req.body.savedMarkers ? map.savedMarkers = req.body.savedMarkers : null;
-    req.body.savedPlaces ? map.savedPlaces = req.body.savedPlaces : null;
-    map.save(function (err) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ message: 'Map has been updated with author ' + map.author + ', name ' + map.name + ',  saved Markers ' + map.savedMarkers + ', and savedPlaces ' + map.savedPlaces + ' ' });
-    });
-  });
+  // Map.findById(req.params.map_id, function (err, map) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   req.body.author ? map.author = req.body.author : null;
+  //   req.body.name ? map.name = req.body.name : null;
+  //   req.body.savedMarkers ? map.savedMarkers = req.body.savedMarkers : null;
+  //   req.body.savedPlaces ? map.savedPlaces = req.body.savedPlaces : null;
+  //   map.save(function (err) {
+  //     if (err) {
+  //       res.send(err);
+  //     }
+  //     res.json({ message: 'Map has been updated with author ' + map.author + ', name ' + map.name + ',  saved Markers ' + map.savedMarkers + ', and savedPlaces ' + map.savedPlaces + ' ' });
+  //   });
+  // });
 }).delete(function (req, res) {
-  Map.remove({ _id: req.params.map_id }, function (err, map) {
-    if (err) {
-      res.send(err);
-    }
-    res.json({ message: 'map has been deleted' });
-  });
+  // Map.remove({ _id: req.params.map_id }, function (err, map) {
+  //   if (err) {
+  //     res.send(err);
+  //   }
+  //   res.json({ message: 'map has been deleted' });
+  // });
 });
 
 //Use our router configuration when we call /api
