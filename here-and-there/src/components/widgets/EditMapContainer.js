@@ -132,6 +132,9 @@ export class EditMapContainer extends React.Component {
 
     this.setState({ currentMarkers: updatingMarkers });
   }
+  saveChangesToMap() {
+    // will do a put request to save all changes made to this map on our mongo database;
+  }
   render() {
     console.log('in rendering EditMapContainer, this map is:');
     console.log(this.state.map);
