@@ -5,7 +5,7 @@ class NewMapPage extends Component {
   render() {
     return (
       <div className="full-page">
-        <NewMapForm url="http://localhost:3001/api/maps" pollInterval={2000}/>
+        <NewMapForm url="here-and-there.herokuapp.com/api/maps" pollInterval={2000}/>
       </div>
     );
   }
