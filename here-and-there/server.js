@@ -19,6 +19,10 @@ const port = process.env.API_PORT || 3001;
 //db config- connect to my MongoDB database
 mongoose.connect('mongodb://HereandThereAda:Maps4U@ds237967.mlab.com:37967/here-and-there-data');
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./build'));
+}
+
 //now we should configure the API to use bodyParser and look for
 //JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
