@@ -1,5 +1,5 @@
 'use strict';
-import path from 'path';
+var path = require('path');
 //first we import our dependencies…
 var express = require('express');
 var mongoose = require('mongoose');
