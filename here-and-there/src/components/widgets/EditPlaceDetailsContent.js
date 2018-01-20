@@ -78,14 +78,22 @@ class EditPlaceDetailsContent extends Component {
         <li>{note.author}: ${note.text} (${note.type}) </li>
       )
     }) : null;
+    const name = place.name ? place.name : 'unavailable';
+    const photo = place.photo ? place.photo : 'photo unavailable';
+    const rating = place.rating? place.rating: 'unavailable';
+    const address = place.formatted_address ? place.formatted_address : 'unavailable';
+    const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
+    const opening_hours = place.opening_hours ? place.opening_hours.weekday_text : 'unavailable';
+
     console.log(place);
     const details = (<div id="place-details">
-      <h2> this is the info window </h2>
-      <p>Name: {place.name} </p>
-      <img src="" width="16" height="16" id="place-icon" />
-      <span id="place-name"  className="title"></span>
-      <span id="place-address"></span>
-      <p> Available Place info: {place.place_id} </p>
+      <h3> Place Details:</h3>
+      <p>Name: {name} </p>
+      <img src={photo} />
+      <p>Rating: {rating} stars</p>
+      <p>Address: {address} </p>
+      <p>Phone Number: {phone_num} </p>
+      <p>Opening Hours: {opening_hours} </p>
       <p> Notes </p>
       {currentNotes}
         <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>

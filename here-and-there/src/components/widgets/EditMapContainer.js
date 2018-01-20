@@ -186,8 +186,9 @@ export class EditMapContainer extends React.Component {
     return (
       <section id="map-container-section">
         <section id="edit-map-pane">
-          <h2 className="page-name"> Currently Editing Map: {this.state.data.name} </h2>
-          <h3> Author: {this.state.data.author} </h3>
+          <p> Currently Editing Map:</p>
+          <h2 className="page-name"> {this.state.data.name} </h2>
+          <p> Author: <strong>{this.state.data.author} </strong></p>
           <h3>List of Locations Saved to the Current Map:</h3>
           <div id="building-map-info">
             <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={console.log('marker selected')}

@@ -53,9 +53,6 @@ class SearchBox extends Component {
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
     let infoWindow = new google.maps.InfoWindow()
-    // console.log('the map in search box props is a google map object, not the map list');
-    // console.log('the map data in search box props is');
-    // console.log(this.props.mapData);
 
     const autocomplete = new google.maps.places.Autocomplete(node);
 
@@ -69,7 +66,10 @@ class SearchBox extends Component {
         return;
       }
       if (place.geometry.viewport) {
-        map.fitBounds(place.geometry.viewport);
+        // map.fitBounds(place.geometry.viewport);
+        // map.setCenter(place.geometry.location);
+        // map.panTo(place.geometry.viewport);
+        map.panTo(place.geometry.location);
       } else {
         map.setCenter(place.geometry.location);
         map.setZoom(17);
@@ -90,26 +90,36 @@ class SearchBox extends Component {
         content: '',
       });
 
+      console.log('place photo format is:');
+      console.log(place.photos);
       const iwBox = (
         <div id="info-window-content">
-          <h2> this is the info window </h2>
           <p>Name: {place.name} </p>
-          <img src="" width="16" height="16" id="place-icon" />
-          <span id="place-name"  className="title"></span>
-          <span id="place-address"></span>
-            <AddMarkerLink onClick={()=> console.log('clicking addmarker button')} onClickonAddMarker={this.addMarkerToMap} place={place}/>
-          <p> Available Place info: {place.place_id} </p>
-          <a>Add Note<MdIconPack.MdNoteAdd /> </a>
-          <h2> This is the form to add a new note</h2>
-            <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
-      </div>
-    );
+          <img src={place.photos} />
+          <p>Rating: {place.rating} stars</p>
+          <p>Address: {place.formatted_address} </p>
+          <p>Phone Number: {place.formatted_phone_number} </p>
+          <p>Opening Hours: {place.opening_hours.weekday_text} </p>
+        </div>
+      );
 
-    // const iwLink = (
-    //   <Link>
-    // )
+    //   const iwBox = (
+    //     <div id="info-window-content">
+    //       <h2> this is the info window </h2>
+    //       <p>Name: {place.name} </p>
+    //       <img src="" width="16" height="16" id="place-icon" />
+    //       <span id="place-name"  className="title"></span>
+    //       <span id="place-address"></span>
+    //         <AddMarkerLink onClick={()=> console.log('clicking addmarker button')} onClickonAddMarker={this.addMarkerToMap} place={place}/>
+    //       <p> Available Place info: {place.place_id} </p>
+    //       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
+    //       <h2> This is the form to add a new note</h2>
+    //         <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
+    //   </div>
+    // );
+
       const iwContent = ReactDOMServer.renderToString(iwBox);
-
+      //
       google.maps.event.addListener(newPlaceMarker, 'click', function() {
         iw.setContent(iwContent);
         iw.open(map, newPlaceMarker);
