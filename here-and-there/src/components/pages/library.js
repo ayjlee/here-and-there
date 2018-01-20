@@ -26,7 +26,7 @@ class Library extends Component {
           <h2>my maps</h2>
           <h4>shh, this is library!</h4>
           <ul className="mapList">
-            <MyMapsList url="http://here-and-there.herokuapp.com/api/maps" pollInterval={2000} onMapSelect={selectedMap => this.setState({ selectedMap })}/>
+            <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} onMapSelect={selectedMap => this.setState({ selectedMap })}/>
           </ul>
         </div>
         <div>
