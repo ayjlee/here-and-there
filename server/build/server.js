@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 // get reference to the client build directory
 
-var Map = require('../here-and-there/build/model/maps');
+var Map = require('../here-and-there/model/maps');
 
 //and create our instances
 var app = express();
