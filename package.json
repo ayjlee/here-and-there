@@ -1,0 +1,31 @@
+{
+  "name": "here-and-there",
+  "version": "1.0.0",
+  "description": "Capstone Project for Ada Developers Academy C8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "(cd here-and-there && npm) && (cd server && npm)",
+    "start": "concurrently \"cd here-and-there && PORT=3000 npm start\" \"cd server && PORT=3001 npm start\"",
+    "build": "concurrently \"cd here-and-there && npm build\" \"cd server && npm build\"",
+    "start:prod": "cd server && npm start-prod",
+    "heroku-postbuild": "npm build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayjlee/here-and-there.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ayjlee/here-and-there/issues"
+  },
+  "homepage": "https://github.com/ayjlee/here-and-there#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
