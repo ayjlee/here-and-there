@@ -123,9 +123,14 @@ export class EditMapContainer extends React.Component {
         this.loadMapDataFromServer();
     });
   }
-  deleteMarker(marker) {
+  deleteMarker(marker_idx) {
     console.log(' in Edit Map Container, deleting this marker');
-    console.log(marker);
+    const updatingMarkers = this.state.currentMarkers;
+    const deleting_marker = updatingMarkers[marker_idx];
+    // deletes the selected marker, but we returns the spliced marker
+    updatingMarkers.splice(marker_idx, 1);
+
+    this.setState({ currentMarkers: updatingMarkers });
   }
   render() {
     console.log('in rendering EditMapContainer, this map is:');

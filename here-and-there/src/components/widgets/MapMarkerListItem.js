@@ -49,8 +49,8 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
       </div>
       <div className="marker-details">
         <h5>Marker Details: </h5>
-        <p> position:  lat: {marker.position.lat} lng: {marker.position.lng} </p>
-        <p>Place ID: {marker.place_id}</p>
+        <p> Address: {marker.address} </p>
+        <p>Tags: {marker.tags}</p>
         <h5>Notes: </h5>
         <ul>
           {notesList}
