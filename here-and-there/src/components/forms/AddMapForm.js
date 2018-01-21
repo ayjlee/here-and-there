@@ -10,9 +10,11 @@ import Library from '../pages/Library';
 class NewMapForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { author: '', name: '', savedToUser: false, savedMarkers: [], map_id: '' };
+    this.state = { author: '', name: '', savedToUser: false, savedMarkers: [], map_id: '', destination: '', description: ''};
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDestinationChange = this.handleDestinationChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleAuthorChange(e) {
@@ -20,6 +22,12 @@ class NewMapForm extends Component {
   }
   handleNameChange(e) {
     this.setState({ name: e.target.value });
+  }
+  handleDestinationChange(e) {
+    this.setState({ destination: e.target.value });
+  }
+  handleDescriptionChange(e) {
+    this.setState({ description: e.target.value });
   }
   postNewMap(newMap) {
     console.log(' in postNew Map, the url is:');
@@ -40,14 +48,16 @@ class NewMapForm extends Component {
       // const author = this.state.author.trim();
     const name = this.state.name;
     const savedMarkers = this.state.savedMarkers;
+    const destination = this.state.destination;
+    const description = this.state.description;
 
     if (!author || !name ) {
       return;
     }
     this.postNewMap( {
-      author: author, name: name, savedMarkers: savedMarkers
+      author: author, name: name, savedMarkers: savedMarkers, destination: destination, description: description
     });
-    this.setState({ author: '', name: '', savedMarkers: [] });
+    this.setState({ author: '', name: '', savedMarkers: [], destination: '', description: '' });
   }
   render() {
     if (this.state.savedToUser) {
@@ -73,8 +83,14 @@ class NewMapForm extends Component {
         <input
           type='text'
           placeholder='Destination (optional)'
+          value={this.state.destination}
+          onChange={this.handleDestinationChange} />
+        <label> Description</label>
+        <input
+          type='text'
+          placeholder='(optional)'
           value={this.state.city}
-          onChange={this.handleCityChange} />
+          onChange={this.handleDescriptionChange} />
         <input
           type='submit'
           value='Build New Map'/>

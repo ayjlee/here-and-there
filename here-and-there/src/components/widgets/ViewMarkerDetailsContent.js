@@ -11,18 +11,15 @@ import AddMarkerLink from './AddMarkerLink';
 class ViewMarkerDetailsContent extends Component {
   constructor(props) {
     super(props);
-    // Create a div that we'll render the modal into. Because each
-    // Modal component has its own element, we can render multiple
-    // modal components into the modal container.
     this.el = document.createElement('div');
-    const place = this.props.place;
+    const marker = this.props.marker;
     const map = this.props.map;
     this.newMarker = {
-      position: place.position,
-      place_name: place.place_name,
+      position: marker.position,
+      place_name: marker.place_name,
       notes: [],
       tags: [],
-      place_id: place.place_id,
+      place_id: marker.place_id,
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
   }
@@ -50,17 +47,27 @@ class ViewMarkerDetailsContent extends Component {
     console.log(this.newMarker.notes);
   }
   render() {
-    const place = this.props.place;
+    const marker = this.props.marker;
+    console.log('marker in viewmarkerdetails is');
+    console.log(marker);
+    const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
+      return (
+        <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
+      )
+    }) : null;
+
+
     const map = this.props.map;
-    console.log('map in viewmarkerdetails content is:');
-    console.log(map);
     const details = (<div id="place-details">
       <h2> this is the info window </h2>
-      <p>Name: {place.name} </p>
+      <p>Name: {marker.place_name} </p>
       <img src="" width="16" height="16" id="place-icon" />
       <span id="place-name"  className="title"></span>
       <span id="place-address"></span>
-      <p> Available Place info: {place.place_id} </p>
+      <p> Available Place info: {marker.place_id} </p>
+      <p> notes: </p>
+      {currentNotes}
+
     </div>)
 
     return ReactDOM.createPortal(
