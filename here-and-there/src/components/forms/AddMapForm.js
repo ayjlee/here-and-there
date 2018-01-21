@@ -14,19 +14,12 @@ class NewMapForm extends Component {
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.redirectLibrary = this.redirectLibrary.bind(this);
   }
   handleAuthorChange(e) {
     this.setState({ author: e.target.value });
   }
   handleNameChange(e) {
     this.setState({ name: e.target.value });
-  }
-  redirectLibrary() {
-    console.log('in redirectlibrary method');
-    <BrowserRouter>
-      <Redirect to="/library" />;
-    </BrowserRouter>
   }
   postNewMap(newMap) {
     console.log(' in postNew Map, the url is:');
@@ -63,17 +56,25 @@ class NewMapForm extends Component {
       return <Redirect to={newPath} />;
     }
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} id="new-map-form">
+        <label> Name:</label>
         <input
           type="text"
           placeholder='Name of your new map'
           value={this.state.name}
           onChange={this.handleNameChange} />
+        <label> Author: </label>
         <input
           type='text'
           placeholder='Your name...'
           value={this.state.author}
           onChange={this.handleAuthorChange} />
+        <label> Where To? </label>
+        <input
+          type='text'
+          placeholder='Destination (optional)'
+          value={this.state.city}
+          onChange={this.handleCityChange} />
         <input
           type='submit'
           value='Build New Map'/>

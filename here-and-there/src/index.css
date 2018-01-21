@@ -115,9 +115,9 @@ ul {
   text-align: center;
 }
 
-.full-page {
+/*.full-page {
   text-align: center;
-}
+}*/
 
 #building-map-info, .holds-map {
   display: inline-block;
@@ -131,6 +131,10 @@ ul {
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
+.myMap {
+  display: inline-block;
+}
+
 .link-div {
   padding: 20px 0;
 }
@@ -141,6 +145,10 @@ ul {
   padding: 10px;
   text-decoration: none;
   border: black solid 1px;
+}
+.btn-container {
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 #googleSearch {
@@ -177,11 +185,10 @@ ul.mapList {
 
 ul.mapList li{
   list-style-type: none;
-  background-image: url('https://mdn.mozillademos.org/files/11981/starsolid.gif');
+  /*background-image: url('https://mdn.mozillademos.org/files/11981/starsolid.gif');*/
   background-repeat: no-repeat;
-  line-height: 30px;
   padding-left: 30px;
-
+  padding-bottom: 10px;
 }
 
 .map-item {
@@ -212,6 +219,11 @@ ul.mapList li{
   height: 100vh;
 }*/
 
+/*yellow background*/
+/*#main, .content, body {
+  background-color: #f7d54f;
+}*/
+
 #place-note-details-pane {
   overflow: scroll;
   height: 40%;
@@ -230,4 +242,47 @@ ul.mapList li{
 #place-details {
   overflow:scroll;
   position: relative;
+}
+
+#new-map-form input {
+  display: block;
+}
+
+#welcome-intro-name {
+  font-size: 4em;
+  margin-bottom: 5px;
+}
+
+#welcome-msg-box {
+  width: 50%;
+  margin-top: 12%;
+  margin-left: 10%;
+  background-color: white;
+  padding: 10px;
+}
+
+#welcome-msg-box h2 {
+  font-size: 2em;
+}
+
+.full-page div {
+  display: inline-block;
+  background-color: white;
+}
+
+#home-start-link {
+  display: block;
+  margin: 30px 5px;
+  text-align: center;
+  padding: 10px;
+  width: 30%;
+  border: green solid 2px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: green;
+}
+
+#home-subtitle {
+  margin-left: 5px;
 }

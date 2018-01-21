@@ -44,16 +44,15 @@ const MapListItem = ({ map, onMapSelect }) => {
       <div className="map-details">
         <h3>Name: {map.name} </h3>
         <p>Author: {map.author} </p>
-        <p> ID: {map._id} </p>
-      </div>
-      <div>
-        <Link to={mapPath} className="map-link">
-          View Map
-        </Link>
-        <span />
-        <Link to={editPath} className="map-link">
-          Edit Map
-        </Link>
+        <div className="btn-container">
+          <Link to={mapPath} className="map-link">
+            View Map
+          </Link>
+          <span />
+          <Link to={editPath} className="map-link">
+            Edit Map
+          </Link>
+        </div>
       </div>
     </li>);
 };
