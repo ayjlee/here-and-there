@@ -201,7 +201,7 @@ ul.mapList li{
 
 #search-box form {
   text-align: center;
-  background-color: black;
+  background-color: green;
 }
 
 #googleSearch::placeholder {
@@ -299,4 +299,8 @@ ul.mapList li{
 
 #home-subtitle {
   margin-left: 5px;
+}
+
+#map-marker-title {
+  margin-top: 30px;
 }
