@@ -145,7 +145,6 @@ class SearchBox extends Component {
   render() {
     return (
       <div id="search-box">
-        <p>Add to Map: </p>
         <form onSubmit={this.onSubmit}>
             <input
               id='googleSearch'

@@ -43,13 +43,8 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
         <h3>{marker.place_name} </h3>
       </div>
       <div className="marker-details">
-        <h5>Marker Details: </h5>
-        <p> Address: {marker.address} </p>
-        <p>Tags: {marker.tags}</p>
-        <h5>Notes: </h5>
-        <ul>
-          {notesList}
-        </ul>
+        <p>Address: {marker.address}</p>
+        <p>Categories:{marker.tags}</p>
       </div>
       <div>
         <button key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> Remove from Map</button>
@@ -59,25 +54,18 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
   );
 };
 
-// class MarkerListItem extends Component {
-//   render() {
-//     const marker = this.props.marker;
-//     console.log('in markerListItem');
-//     const first_note = marker.notes.length > 0 ? marker.notes.map(note =>
-//     { return `${note.author}: ${note.text} (${note.type})`;}) : null;
-//
-//     return (
-//       <li onClick={() => this.props.onMarkerSelect(marker)} className="marker-item" key={marker.place_id}>
-//         <div>
-//           <h3> Marker Place: {marker.place_name} </h3>
-//         </div>
-//         <div className="marker-details">
-//           <p>Marker Details: </p>
-//           <p>author: {marker.author}, key: {marker.place_id}, notes: {first_note}</p>
-//         </div>
-//       </li>
-//     );
-//   }
-// };
-
 export default MarkerListItem;
+
+// more verbose old content:
+// <div>
+//   <h3>{marker.place_name} </h3>
+// </div>
+// <div className="marker-details">
+//   <h5>Marker Details: </h5>
+//   <p> Address: {marker.address} </p>
+//   <p>Tags: {marker.tags}</p>
+//   <h5>Notes: </h5>
+//   <ul>
+//     {notesList}
+//   </ul>
+// </div>
