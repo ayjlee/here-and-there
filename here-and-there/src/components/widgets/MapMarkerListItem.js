@@ -34,16 +34,11 @@ import { Link } from 'react-router-dom';
 //     </li>);
 // };
 const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
-  console.log('in markerListItem');
   const notesList = marker.notes.length > 0 ? marker.notes.map(note =>
-  { return (<li key={note.text} >{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
-  console.log('inmarker list item, marker is:')
-  console.log(marker);
-  console.log('and the marker index in the list is');
-  console.log(idx);
+  { return (<li key={note.text} className="marker-note">{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
 
   return (
-    <li className="marker-item" key={marker.place_id}>
+    <li className="marker-item" key={marker.place_id} onClick={console.log('clicking marker item')}>
       <div>
         <h3>{marker.place_name} </h3>
       </div>
@@ -57,7 +52,7 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
         </ul>
       </div>
       <div>
-        <button key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> delete this Marker</button>
+        <button key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> Remove from Map</button>
         <button key={marker.place_id} onClick={(marker) => console.log(`clicked edit notes button for ${marker}`)}> Edit Notes </button>
       </div>
     </li>

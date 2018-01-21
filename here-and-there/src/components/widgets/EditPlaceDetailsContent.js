@@ -82,7 +82,7 @@ class EditPlaceDetailsContent extends Component {
     const address = place.formatted_address ? place.formatted_address : 'unavailable';
     const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
     const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
-    const open_now = place.opening_hours.open_now ? 'Open Now!' : 'Closed Now';
+    const open_now = (place.opening_hours && place.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
     const categories = place.types ? place.types.join(', ') : 'unavailable';
 
     console.log(place.opening_hours);

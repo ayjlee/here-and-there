@@ -97,6 +97,10 @@ export class EditMapContainer extends React.Component {
     // return ReactDOM.createPortal(placeDetails, placeRoot);
     this.setState({ showPlaceDetails: true, showingPlace: place });
   }
+  showUpdateExistingMarkerPane(marker) {
+    console.log('in showUpdateExistingMarkerPane');
+    this.setState({ showPlaceDetails: true, showingPlace: marker });
+  }
   saveMarkerToMap(marker) {
     console.log('in edit map container, saving marker to map');
     const updatedMarkers = [...this.state.currentMarkers, marker];
@@ -219,7 +223,6 @@ export class EditMapContainer extends React.Component {
             </InfoWindow>
           </CurrentMap>
           <div id="place-note-details-pane">
-            <p> Search for a place to add to your map in the search box above</p>
             {placeDetails}
           </div>
         </div>

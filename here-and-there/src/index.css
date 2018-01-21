@@ -5,6 +5,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/*div.content > div:first-child, #map-container-section, #map-container-section> section:first-child {
+  height: 100%;
+}*/
+
 
 /*default styling from https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.html tutorial*/
 ul.header li {
@@ -63,6 +67,7 @@ ul {
 .content {
   background-color: #FFF;
   padding: 20px;
+  height: 100%;
 }
 .content h2 {
   padding: 0;
@@ -80,18 +85,29 @@ ul {
   background-color: #0099FF;
 }
 
-.sidepane-placeholder, #building-map-info, #edit-map-pane {
+.sidepane-placeholder, #building-map-info{
   max-width: 35vw;
-  border: green solid 3px;
   display: inline-block;
   vertical-align: top;
 }
 
-#map-container, .holds-map {
-  width: 60vw;
-  border: black solid 2px;
+#edit-map-pane {
+  border-right: black solid 2px;
+  height: 80vh;
+  max-width: 35vw;
   display: inline-block;
   vertical-align: top;
+}
+
+.holds-map {
+  min-width: 60vw;
+  max-width: 65vw;
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  height: 80vh;
+  border: green solid 2px;
+  padding-right: 10px;
 }
 
 #title {
@@ -115,9 +131,6 @@ ul {
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
-#edit-map-pane {
-  height: 65vh;
-}
 .link-div {
   padding: 20px 0;
 }
@@ -137,7 +150,7 @@ ul {
 }
 
 #building-map-info {
-  height: 30vh;
+  height: 80%;
   overflow: scroll;
 }
 
@@ -175,5 +188,45 @@ ul.mapList li{
 }
 
 .marker-note {
-  padding-left: 10px;
+  padding-left: 3px;
+}
+
+#search-box form {
+  text-align: center;
+  background-color: black;
+}
+
+#googleSearch::placeholder {
+  font-size: 16px;
+}
+
+/*.map-item:before {
+  font-family: 'Material Icons';
+  content: "\E5CD";
+  margin:0 5px 0 -15px;
+  color: blue;
+}*/
+
+/*body, #root, #main {
+  height: 100vh;
+}*/
+
+#place-note-details-pane {
+  overflow: scroll;
+  height: 40%;
+  border: black solid 2px;
+  position: relative;
+}
+
+#place-note-details-pane > div:first-child {
+  overflow:scroll;
+}
+
+#building-map-info, .holds-map {
+  display: inline-block;
+}
+
+#place-details {
+  overflow:scroll;
+  position: relative;
 }

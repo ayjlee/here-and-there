@@ -80,11 +80,19 @@ class SearchBox extends Component {
       };
       const newPlaceMarker = new google.maps.Marker(pref);
 
-      const address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
-              ].join(' ');
+      const name = place.name ? place.name : 'unavailable';
+      const photo = place.photo ? place.photo : 'photo unavailable';
+      const rating = place.rating? place.rating: 'unavailable';
+      const address = place.formatted_address ? place.formatted_address : 'unavailable';
+      const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
+      const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
+      const categories = place.types ? place.types.join(', ') : 'unavailable';
+
+      // const address = [
+      //           (place.address_components[0] && place.address_components[0].short_name || ''),
+      //           (place.address_components[1] && place.address_components[1].short_name || ''),
+      //           (place.address_components[2] && place.address_components[2].short_name || '')
+      //         ].join(' ');
 
       const iw = new google.maps.InfoWindow({
         content: '',
@@ -94,12 +102,12 @@ class SearchBox extends Component {
       console.log(place.photos);
       const iwBox = (
         <div id="info-window-content">
-          <p>Name: {place.name} </p>
-          <img src={place.photos} />
-          <p>Rating: {place.rating} stars</p>
-          <p>Address: {place.formatted_address} </p>
-          <p>Phone Number: {place.formatted_phone_number} </p>
-          <p>Opening Hours: {place.opening_hours.weekday_text} </p>
+          <p>Name: {name} </p>
+          <img src={photo} />
+          <p>Rating: {rating} stars</p>
+          <p>Address: {address} </p>
+          <p>Phone Number: {phone_num} </p>
+          <p>Opening Hours: {opening_hours} </p>
         </div>
       );
 
@@ -136,13 +144,14 @@ class SearchBox extends Component {
 
   render() {
     return (
-      <div id= "search-box">
+      <div id="search-box">
+        <p>Add to Map: </p>
         <form onSubmit={this.onSubmit}>
             <input
               id='googleSearch'
               ref='autocomplete'
               type="text"
-              placeholder="Enter a location" />
+              placeholder="Search for a place to add to your map" />
             <input
               className='submit-search'
               type='submit'
