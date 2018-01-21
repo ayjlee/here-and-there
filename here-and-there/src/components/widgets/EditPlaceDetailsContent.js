@@ -55,13 +55,11 @@ class EditPlaceDetailsContent extends Component {
   }
   addNoteToMarker(note) {
     console.log('adding note to marker in place details content')
-    const currentNotes = this.newMarker.notes
+    const updatingNotes = this.newMarker.notes
     // const stringNote = `${note.author}: ${note.text} (${note.type})`
-    const updatedNotes = currentNotes.push(note);
-    this.newMarker.notes = currentNotes;
-    // this.setState({currentNotes: upd})
-    console.log('the notes for this marker are:');
-    console.log(this.newMarker.notes);
+    updatingNotes.push(note);
+    this.setState({currentNotes: updatingNotes});
+    console.log('the updated notes for this marker are:');
   }
   render() {
     const place = this.props.place;
@@ -73,9 +71,9 @@ class EditPlaceDetailsContent extends Component {
     //   tags: [],
     //   place_id: place.place_id,
     // };
-    const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map(note => {
+    const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map((note, index) => {
       return (
-        <li>{note.author}: ${note.text} (${note.type}) </li>
+        <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
       )
     }) : null;
     const name = place.name ? place.name : 'unavailable';
@@ -83,20 +81,25 @@ class EditPlaceDetailsContent extends Component {
     const rating = place.rating? place.rating: 'unavailable';
     const address = place.formatted_address ? place.formatted_address : 'unavailable';
     const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
-    const opening_hours = place.opening_hours ? place.opening_hours.weekday_text : 'unavailable';
+    const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
+    const open_now = place.opening_hours.open_now ? 'Open Now!' : 'Closed Now';
+    const categories = place.types ? place.types.join(', ') : 'unavailable';
 
-    console.log(place);
+    console.log(place.opening_hours);
     const details = (<div id="place-details">
-      <h3> Place Details:</h3>
-      <p>Name: {name} </p>
+      <h4> Place Details:</h4>
+      <h3>Name: {name} </h3>
       <img src={photo} />
       <p>Rating: {rating} stars</p>
       <p>Address: {address} </p>
       <p>Phone Number: {phone_num} </p>
-      <p>Opening Hours: {opening_hours} </p>
-      <p> Notes </p>
+      <p>Opening Hours: {open_now}</p>
+      {opening_hours}
+      <p>Categories: {categories} </p>
+      <h3> Notes </h3>
       {currentNotes}
-        <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
+      <button onClick={console.log("clicking to show the add add note form")}> Add Note<MdIconPack.MdNoteAdd /> </button>
+      <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
       <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
     </div>)
 

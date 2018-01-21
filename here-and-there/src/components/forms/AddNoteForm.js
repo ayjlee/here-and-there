@@ -62,20 +62,22 @@ class NewNoteForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h2> This is the form to add a new note</h2>
+        <h5>Add a Note:</h5>
+        <label> Type of Note: </label>
         <select value={this.state.type} onChange={this.handleTypeChange}>
           <option value=""></option>
           <option value="misc">Misc.</option>
           <option value="recommendation">Recommendation</option>
           <option value="tip">Insider Tip</option>
         </select>
+        <label>Author:</label>
         <input type="text" placeholder="Author" value={this.state.author} onChange={this.handleAuthorChange} />
+        <label>Your Note: </label>
         <textarea placeholder="Your note here" value={this.state.text} onChange={this.handleTextChange} />
         <input
           type="submit"
           value="Add Note"
         />
-        <a>Add Note<MdIconPack.MdNoteAdd /> </a>
       </form>
     );
   }
