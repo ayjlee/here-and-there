@@ -159,7 +159,8 @@ ul {
 }
 
 #marker-list-container {
-  overflow: scroll;
+  overflow-y: scroll;
+  word-wrap: break-word;
 }
 
 p, h3, h5, h4, h2, h1 {
