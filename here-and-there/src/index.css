@@ -247,12 +247,14 @@ ul.mapList li{
 #new-map-form {
   margin: 0 auto;
   width: 80%;
+  text-align: center;
 }
 
 #new-map-form input {
   display: block;
   height: 30px;
   width: 60%;
+  margin: auto;
 }
 
 #new-map-form input[type=submit] {
