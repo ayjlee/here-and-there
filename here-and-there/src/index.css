@@ -244,8 +244,20 @@ ul.mapList li{
   position: relative;
 }
 
+#new-map-form {
+  margin: 0 auto;
+  width: 80%;
+}
+
 #new-map-form input {
   display: block;
+  height: 30px;
+  width: 60%;
+}
+
+#new-map-form input[type=submit] {
+  padding: 10px;
+  margin-top: 20px;
 }
 
 #welcome-intro-name {
