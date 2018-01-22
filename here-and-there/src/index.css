@@ -239,6 +239,7 @@ ul.mapList li{
 
 #new-map-page {
   background-color: yellow;
+  height: 100%
 }
 
 #new-map-form {
