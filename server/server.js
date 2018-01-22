@@ -6,8 +6,8 @@ const session = require('express-session');
 
 //and create our instances
 const app = express();
-const port = process.env.PORT || 5000;
 const router = express.Router();
+const port = process.env.PORT || 5000;
 
 
 mongoose.connect('mongodb://HereandThereAda:Maps4U@ds237967.mlab.com:37967/here-and-there-data');
