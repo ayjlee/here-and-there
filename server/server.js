@@ -6,7 +6,7 @@ const session = require('express-session');
 
 //and create our instances
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 const router = express.Router();
 
 
