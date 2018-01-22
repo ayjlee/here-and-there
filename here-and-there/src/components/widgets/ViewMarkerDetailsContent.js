@@ -7,6 +7,7 @@ import NewNoteForm from '../forms/AddNoteForm';
 import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
+import NoteListItem from './NoteListItem';
 
 class ViewMarkerDetailsContent extends Component {
   constructor(props) {
@@ -58,10 +59,16 @@ class ViewMarkerDetailsContent extends Component {
     const marker = this.props.marker;
     console.log('marker in viewmarkerdetails is');
     console.log(marker);
+    // const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
+    //   return (
+    //     <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
+    //   );
+    // }) : null;
+
     const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
       return (
-        <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
-      )
+        <NoteListItem key={index} note={note} />
+      );
     }) : null;
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';

@@ -107,7 +107,6 @@ ul {
   vertical-align: top;
   position: absolute;
   height: 80vh;
-  border: green solid 2px;
   padding-right: 10px;
   margin-left: 10px;
 }
@@ -310,4 +309,8 @@ body, #root, #main {
 .subtitle {
   color: gray;
   font-size: 14px;
+}
+
+#add-note-form input {
+  display: block;
 }

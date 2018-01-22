@@ -7,6 +7,7 @@ import NewNoteForm from '../forms/AddNoteForm';
 import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
+import NoteListItem from './NoteListItem';
 
 class EditPlaceDetailsContent extends Component {
   constructor(props) {
@@ -82,10 +83,16 @@ class EditPlaceDetailsContent extends Component {
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
 
+    // const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map((note, index) => {
+    //   return (
+    //     <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
+    //   )
+    // }) : null;
+
     const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map((note, index) => {
       return (
-        <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
-      )
+        <NoteListItem key={index} note={note} />
+      );
     }) : null;
 
 
