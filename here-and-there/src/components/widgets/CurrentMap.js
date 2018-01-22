@@ -162,7 +162,7 @@ export class CurrentMap extends Component {
   render() {
     const style = {
       width: '100%',
-      height: '60vh',
+      height: '50vh',
     };
     return (
       <div ref="map" style= {style}>

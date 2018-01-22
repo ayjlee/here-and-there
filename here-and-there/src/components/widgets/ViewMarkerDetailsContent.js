@@ -11,9 +11,11 @@ import AddMarkerLink from './AddMarkerLink';
 class ViewMarkerDetailsContent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showNoteForm: false,
+    }
     this.el = document.createElement('div');
     const marker = this.props.marker;
-    const map = this.props.map;
     this.newMarker = {
       position: marker.position,
       place_name: marker.place_name,
@@ -22,6 +24,7 @@ class ViewMarkerDetailsContent extends Component {
       place_id: marker.place_id,
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
+    this.showNoteForm = this.showNoteForm.bind(this);
   }
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
@@ -36,6 +39,10 @@ class ViewMarkerDetailsContent extends Component {
   addMarkerToMap(marker) {
     console.log('adding marker to map in place details content');
     this.props.addMarkerToMap(marker);
+  }
+  showNoteForm() {
+    console.log('inShowNoteForm')
+    this.setState({showNoteForm: true});
   }
   addNoteToMarker(note) {
     console.log('adding note to marker in place details content')
@@ -56,6 +63,7 @@ class ViewMarkerDetailsContent extends Component {
       )
     }) : null;
 
+    const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={marker.placeName} editingMap={this.props.editingMap} onAddNote={note => this.addNoteToMarker(note)} /> : null;
 
     const map = this.props.map;
     const details = (<div id="place-details">
@@ -67,6 +75,8 @@ class ViewMarkerDetailsContent extends Component {
       <p> Available Place info: {marker.place_id} </p>
       <p> notes: </p>
       {currentNotes}
+      <button onClick={() => this.showNoteForm()}> Add Note </button>
+      {noteForm}
 
     </div>)
 

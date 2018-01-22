@@ -306,3 +306,8 @@ ul.mapList li{
 body, #root, #main {
   height: 100%;
 }
+
+.subtitle {
+  color: gray;
+  font-size: 14px;
+}

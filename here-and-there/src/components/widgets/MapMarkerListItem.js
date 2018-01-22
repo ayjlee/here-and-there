@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
+  // capitalize type:
+  const mainType = (marker.tags && marker.tags.length > 0) ? marker.tags[0].charAt(0).toUpperCase() + marker.tags[0].slice(1): ''
   const notesList = marker.notes.length > 0 ? marker.notes.map(note =>
   { return (<li key={note.text} className="marker-note">{note.author}: {note.text} ({note.type})</li>);}) : <p> No Notes </p>;
 
@@ -12,8 +14,8 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
         <h3>{marker.place_name} </h3>
       </div>
       <div className="marker-details">
+        <p className="subtitle">{mainType}</p>
         <p>Address: {marker.address}</p>
-        <p>Categories:{marker.tags}</p>
       </div>
       <div>
         <button key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> Remove from Map</button>

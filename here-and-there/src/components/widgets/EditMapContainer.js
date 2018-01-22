@@ -190,7 +190,7 @@ export class EditMapContainer extends React.Component {
     ) : null;
 
     const markerDetails = (this.state.showMarkerDetails) ? (
-      <ViewMarkerDetailsContent marker={this.state.activeMarker} idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
+      <ViewMarkerDetailsContent map={map} marker={this.state.activeMarker} idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
     ) : null;
     const style = {
       width: '40vw',
