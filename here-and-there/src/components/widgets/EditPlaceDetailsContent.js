@@ -19,6 +19,7 @@ class EditPlaceDetailsContent extends Component {
     const map = this.props.map;
     this.state = {
       currentNotes: [],
+      showNoteForm: false,
     };
     this.newMarker = {
       position: place.geometry.location,
@@ -37,6 +38,7 @@ class EditPlaceDetailsContent extends Component {
       },
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
+    this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
@@ -61,6 +63,11 @@ class EditPlaceDetailsContent extends Component {
     this.setState({currentNotes: updatingNotes});
     console.log('the updated notes for this marker are:');
   }
+  toggleNoteForm() {
+    console.log('inShowNoteForm')
+    const display = this.state.showNoteForm;
+    this.setState({showNoteForm: (!display)});
+  }
   render() {
     const place = this.props.place;
     const map = this.props.map;
@@ -71,11 +78,17 @@ class EditPlaceDetailsContent extends Component {
     //   tags: [],
     //   place_id: place.place_id,
     // };
+    const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
+
+    const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
+
     const currentNotes = (this.state.currentNotes.length > 0) ? this.state.currentNotes.map((note, index) => {
       return (
         <li key={index} className="marker-note"> {note.author}: {note.text} ({note.type}) </li>
       )
     }) : null;
+
+
     const name = place.name ? place.name : 'unavailable';
     const photo = place.photo ? place.photo : 'photo unavailable';
     const rating = place.rating? place.rating: 'unavailable';
@@ -96,10 +109,10 @@ class EditPlaceDetailsContent extends Component {
       <p>Opening Hours: {open_now}</p>
       {opening_hours}
       <p>Categories: {categories} </p>
-      <h3> Notes </h3>
+      <h3> Notes: </h3>
       {currentNotes}
-      <button onClick={console.log("clicking to show the add add note form")}> Add Note<MdIconPack.MdNoteAdd /> </button>
-      <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/>
+      <button onClick={() => this.toggleNoteForm()}> {toggleNote} <MdIconPack.MdNoteAdd /> </button>
+      {noteForm}
       <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
     </div>)
 
