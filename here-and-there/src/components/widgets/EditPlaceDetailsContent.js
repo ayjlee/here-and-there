@@ -36,6 +36,7 @@ class EditPlaceDetailsContent extends Component {
         price_level: place.price_level,
         phone_num: place.formatted_phone_number,
         icon: place.icon,
+        photos: place.photos,
       },
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
@@ -97,13 +98,14 @@ class EditPlaceDetailsContent extends Component {
 
 
     const name = place.name ? place.name : 'unavailable';
-    const photo = place.photo ? place.photo : 'photo unavailable';
+    const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 75, 'maxHeight': 75}) : 'photo unavailable';
     const rating = place.rating? place.rating: 'unavailable';
     const address = place.formatted_address ? place.formatted_address : 'unavailable';
     const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
     const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
     const open_now = (place.opening_hours && place.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
     const categories = place.types ? place.types.join(', ') : 'unavailable';
+    const website = place.website ? place.website : 'unavailable'
 
     console.log(place.opening_hours);
     const details = (<div id="place-details">
@@ -111,10 +113,10 @@ class EditPlaceDetailsContent extends Component {
       <h3>Name: {name} </h3>
       <img src={photo} />
       <p>Rating: {rating} stars</p>
+      <p>Website: {website} </p>
       <p>Address: {address} </p>
       <p>Phone Number: {phone_num} </p>
       <p>Opening Hours: {open_now}</p>
-      {opening_hours}
       <p>Categories: {categories} </p>
       <h3> Notes: </h3>
       {currentNotes}

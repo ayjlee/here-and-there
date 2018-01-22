@@ -81,12 +81,13 @@ class SearchBox extends Component {
       const newPlaceMarker = new google.maps.Marker(pref);
 
       const name = place.name ? place.name : 'unavailable';
-      const photo = place.photo ? place.photo : 'photo unavailable';
-      const rating = place.rating? place.rating: 'unavailable';
+      const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 75, 'maxHeight': 75}) : 'photo unavailable';
+      const rating = place.rating? (place.rating + ' stars'): 'unavailable';
       const address = place.formatted_address ? place.formatted_address : 'unavailable';
       const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
       const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
       const categories = place.types ? place.types.join(', ') : 'unavailable';
+      const website = place.website ? place.website : 'unavailable';
 
       // const address = [
       //           (place.address_components[0] && place.address_components[0].short_name || ''),
@@ -99,15 +100,15 @@ class SearchBox extends Component {
       });
 
       console.log('place photo format is:');
-      console.log(place.photos);
+      console.log(photo);
       const iwBox = (
         <div id="info-window-content">
           <p>Name: {name} </p>
           <img src={photo} />
-          <p>Rating: {rating} stars</p>
+          <p>Website: {website} </p>
+          <p>Rating: {rating}</p>
           <p>Address: {address} </p>
           <p>Phone Number: {phone_num} </p>
-          <p>Opening Hours: {opening_hours} </p>
         </div>
       );
 

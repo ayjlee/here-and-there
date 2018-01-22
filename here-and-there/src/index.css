@@ -5,6 +5,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+
 /*div.content > div:first-child, #map-container-section, #map-container-section> section:first-child {
   height: 100%;
 }*/
@@ -18,13 +19,12 @@ ul.header li {
 }
 ul.header {
   background-color: grey;
-  padding: 0;
 }
 ul.header li a {
   color: #FFF;
   font-weight: bold;
   text-decoration: none;
-  padding: 10px 10px 10px 5px;
+  padding: 20px 20px 20px 5px;
   display: inline-block;
   position: relative
 }
@@ -66,8 +66,7 @@ ul {
 }
 .content {
   background-color: #FFF;
-  padding: 20px;
-  height: 100%;
+  height: 100vh;
 }
 .content h2 {
   padding: 0;
@@ -91,13 +90,12 @@ ul {
   vertical-align: top;
 }
 
-#edit-map-pane {
+#edit-map-pane, #view-map-pane {
   border-right: black solid 2px;
-  height: 80vh;
+  height: 100vh;
   max-width: 35vw;
   display: inline-block;
   vertical-align: top;
-  overflow: scroll;
 }
 
 .holds-map {
@@ -168,7 +166,6 @@ ul {
 }
 
 #marker-list-container, #edit-map-pane {
-  overflow-y: scroll;
   word-wrap: break-word;
 }
 
@@ -188,8 +185,7 @@ ul.mapList li{
   list-style-type: none;
   /*background-image: url('https://mdn.mozillademos.org/files/11981/starsolid.gif');*/
   background-repeat: no-repeat;
-  padding-left: 30px;
-  padding-bottom: 10px;
+  padding: 30px;
 }
 
 .map-item {
@@ -241,22 +237,38 @@ ul.mapList li{
   position: relative;
 }
 
+#new-map-page {
+  background-color: yellow;
+}
+
 #new-map-form {
   margin: 0 auto;
-  width: 80%;
+  width: 60%;
+  height: 70%;
   text-align: center;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: snow;
 }
 
 #new-map-form input {
   display: block;
   height: 30px;
-  width: 60%;
+  width: 80%;
   margin: auto;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.1em;
 }
 
 #new-map-form input[type=submit] {
   padding: 10px;
-  margin-top: 20px;
+}
+
+#new-map-page h2 {
+  text-align: center;
+  padding-top: 14vh;
+  padding-bottom: 14px;
 }
 
 #welcome-intro-name {
@@ -302,7 +314,7 @@ ul.mapList li{
   margin-top: 30px;
 }
 
-body, #root, #main {
+html, body, #root, #main {
   height: 100%;
 }
 

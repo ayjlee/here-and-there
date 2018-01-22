@@ -135,7 +135,7 @@ export class EditMapContainer extends React.Component {
     console.log(newMap);
     axios.put(map_url, newMap)
       .then((res) => {
-        this.setState({ data: res.data, currentMarkers: res.data.savedMarkers });
+        this.setState({ data: res.data, currentMarkers: res.data.savedMarkers, showPlaceDetails: false, showingPlace: null });
         this.loadMapDataFromServer();
     });
   }
