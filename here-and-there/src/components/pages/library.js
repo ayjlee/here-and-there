@@ -4,12 +4,7 @@ import MyPlacesList from '../widgets/MyPlacesList';
 import MapContainer from '../widgets/MapContainer';
 import ViewMapPane from '../panes/ViewMapPane';
 
-const DATA = [
-  { author: 'some dudette', name: 'map alpha', key: 'bogus map id', markers: [] },
-  { author: 'some dude', name: 'map beta', key: 'bogus map id 2', markers: [] }
-];
 
-// TODO: replace hardcoded userId with dynamic variable
 class Library extends Component {
   constructor(props) {
     super(props);

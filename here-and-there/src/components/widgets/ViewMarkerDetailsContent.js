@@ -24,7 +24,7 @@ class ViewMarkerDetailsContent extends Component {
       place_id: marker.place_id,
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
-    this.showNoteForm = this.showNoteForm.bind(this);
+    this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
@@ -40,9 +40,10 @@ class ViewMarkerDetailsContent extends Component {
     console.log('adding marker to map in place details content');
     this.props.addMarkerToMap(marker);
   }
-  showNoteForm() {
+  toggleNoteForm() {
     console.log('inShowNoteForm')
-    this.setState({showNoteForm: true});
+    const display = this.state.showNoteForm;
+    this.setState({showNoteForm: (!display)});
   }
   addNoteToMarker(note) {
     console.log('adding note to marker in place details content')
@@ -63,6 +64,8 @@ class ViewMarkerDetailsContent extends Component {
       )
     }) : null;
 
+    const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
+
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={marker.placeName} editingMap={this.props.editingMap} onAddNote={note => this.addNoteToMarker(note)} /> : null;
 
     const map = this.props.map;
@@ -75,7 +78,7 @@ class ViewMarkerDetailsContent extends Component {
       <p> Available Place info: {marker.place_id} </p>
       <p> notes: </p>
       {currentNotes}
-      <button onClick={() => this.showNoteForm()}> Add Note </button>
+      <button onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
       {noteForm}
 
     </div>)

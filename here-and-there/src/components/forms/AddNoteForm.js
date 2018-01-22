@@ -76,7 +76,7 @@ class NewNoteForm extends Component {
         <textarea placeholder="Your note here" value={this.state.text} onChange={this.handleTextChange} />
         <input
           type="submit"
-          value="Add Note"
+          value="Save Note"
         />
       </form>
     );
