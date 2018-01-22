@@ -68,6 +68,10 @@ ul {
   background-color: #fff5ef;
   height: 100vh;
 }
+
+.mapList {
+  background-color: #fff5ef;
+}
 .content h2 {
   padding: 0;
   margin: 0;
@@ -238,7 +242,6 @@ ul.mapList li{
 }
 
 #new-map-page {
-  background-color: yellow;
   height: 100%
 }
 
@@ -249,20 +252,22 @@ ul.mapList li{
   padding: 30px;
   border-radius: 10px;
   background-color: snow;
+  box-shadow: 0 19px 28px rgba(0,0,0,0.30), 8px 5px 14px rgba(0,0,0,0.22);
 }
 
 #new-map-form input {
   display: block;
-  height: 30px;
+  height: 42px;
   width: 80%;
   margin: auto;
-  padding: 10px;
   border-radius: 5px;
   font-size: 1.1em;
 }
 
 #new-map-form input[type=submit] {
-  padding: 10px;
+  padding: 0;
+  width: 42%;
+  margin-top: 25px;
 }
 
 #new-map-page h2 {
@@ -282,6 +287,7 @@ ul.mapList li{
   margin-left: 10%;
   background-color: white;
   padding: 10px;
+  box-shadow: 0 19px 28px rgba(0,0,0,0.30), 8px 5px 14px rgba(0,0,0,0.22);
 }
 
 #welcome-msg-box h2 {

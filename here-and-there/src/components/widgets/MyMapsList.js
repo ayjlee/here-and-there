@@ -27,7 +27,6 @@ class MyMapsList extends Component {
     console.log(this);
   }
   loadMapsFromServer() {
-    console.log('in load maps from server')
     axios.get(this.props.url)
     .then((res) => {
       this.setState({ data: res.data });

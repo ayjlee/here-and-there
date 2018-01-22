@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Home extends Component {
   render() {
     return (
-      <div className="full-page">
+      <div className="full-page" id="welcome-page">
         <div id="welcome-msg-box">
           <h1 id="welcome-intro-name">here and there</h1>
           <div id="home-subtitle">
