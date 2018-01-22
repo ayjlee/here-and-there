@@ -206,7 +206,7 @@ ul.mapList li{
 #search-box form {
   text-align: center;
   background-color: green;
-  
+
 }
 
 #googleSearch::placeholder {
@@ -348,4 +348,46 @@ html, body, #root, #main {
   list-style-type: none;
   padding: 10px;
   border-bottom: lightgray dotted .5px;
+}
+
+.place-notes {
+  padding-top: 10px;
+}
+
+#notes-list li {
+  list-style-type: none;
+  width: 60%;
+  border-bottom: lightgray dotted 1px;
+}
+
+.note-text-section {
+  background-color: white;
+  overflow: scroll;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.note-type {
+  text-align: right;
+}
+
+.note-recommendation .note-type {
+  background-color: red;
+}
+
+.note-tip .note-type {
+  background-color: lightblue;
+}
+
+.note-type p {
+  margin: 0;
+}
+
+.place-img, .helpful-place-info {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.place-img {
+  padding-left: 4px;
 }

@@ -10,14 +10,14 @@ class NoteListItem extends Component {
 
     return (
       <li key={note.text} className={typeClassName}>
-        <div>
+        <div className="note-type">
+          <p>{note.type}</p>
+        </div>
+        <div className="note-author">
           <p>{note.author}: </p>
         </div>
-        <div id="note-text-section">
+        <div className="note-text-section">
           <p> {note.text} </p>
-        </div>
-        <div className= "flt-right">
-          <p>{note.type}</p>
         </div>
       </li>
     )

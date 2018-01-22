@@ -22,7 +22,7 @@ class NoteList extends Component {
     });
     return (
       <section id="my-map-list-container">
-        <ul>
+        <ul id="notes-list">
           { noteNodes }
         </ul>
       </section>

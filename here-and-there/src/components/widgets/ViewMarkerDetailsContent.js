@@ -58,9 +58,6 @@ class ViewMarkerDetailsContent extends Component {
   }
   render() {
     const marker = this.props.marker;
-    console.log('marker in viewmarkerdetails is');
-    console.log(marker);
-
     const name = marker.place_name ? marker.place_name : 'unavailable';
     const photoUrl = (marker.additional_details.photo_url && marker.additional_details.photo_url.length > 0 ) ? marker.additional_details.photo_url : 'photo unavailable';
     const rating = marker.additional_details.rating? marker.additional_details.rating: 'unavailable';
@@ -69,12 +66,6 @@ class ViewMarkerDetailsContent extends Component {
     const opening_hours = marker.additional_details.opening_hours ? marker.additional_details.opening_hours.weekday_text.join(" ") : 'unavailable';
     const open_now = (marker.opening_hours && marker.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
     const website = marker.additional_details.website ? marker.additional_details.website : 'unavailable'
-
-    // const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
-    //   return (
-    //     <NoteListItem key={index} note={note} />
-    //   );
-    // }) : null;
 
     const currentNotes = (marker.notes.length > 0) ?
       <NoteList notes={marker.notes} /> : null;
@@ -85,22 +76,22 @@ class ViewMarkerDetailsContent extends Component {
 
     const map = this.props.map;
     const details = (<div id="place-details">
-      <h2> this is the info window </h2>
-      <p>Name: {marker.place_name} </p>
-      <img src="" width="16" height="16" id="place-icon" />
-      <span id="place-name"  className="title"></span>
-      <span id="place-address"></span>
-      <p> Available Place info: {marker.place_id} </p>
       <h3>Name: {name} </h3>
-      <img src={photoUrl} />
-      <p>Rating: {rating} stars</p>
-      <p>Website: {website} </p>
-      <p>Address: {address} </p>
-      <p>Phone Number: {phone_num} </p>
-      <p> notes: </p>
-      {currentNotes}
-      <button onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
-      {noteForm}
+      <div className="place-img">
+        <img src={photoUrl} />
+      </div>
+      <div className="helpful-place-info">
+        <p>Rating: {rating} stars</p>
+        <p>Website: {website} </p>
+        <p>Address: {address} </p>
+        <p>Phone Number: {phone_num} </p>
+      </div>
+      <div className="place-notes" >
+        <h3>Notes: </h3>
+        {currentNotes}
+        <button onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
+        {noteForm}
+      </div>
 
     </div>)
 
