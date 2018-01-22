@@ -206,6 +206,7 @@ ul.mapList li{
 #search-box form {
   text-align: center;
   background-color: green;
+  
 }
 
 #googleSearch::placeholder {

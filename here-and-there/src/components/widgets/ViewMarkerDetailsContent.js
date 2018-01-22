@@ -8,6 +8,7 @@ import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
 import NoteListItem from './NoteListItem';
+import NoteList from './NoteList';
 
 class ViewMarkerDetailsContent extends Component {
   constructor(props) {
@@ -69,11 +70,14 @@ class ViewMarkerDetailsContent extends Component {
     const open_now = (marker.opening_hours && marker.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
     const website = marker.additional_details.website ? marker.additional_details.website : 'unavailable'
 
-    const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
-      return (
-        <NoteListItem key={index} note={note} />
-      );
-    }) : null;
+    // const currentNotes = (marker.notes.length > 0) ? marker.notes.map((note, index) => {
+    //   return (
+    //     <NoteListItem key={index} note={note} />
+    //   );
+    // }) : null;
+
+    const currentNotes = (marker.notes.length > 0) ?
+      <NoteList notes={marker.notes} /> : null;
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
