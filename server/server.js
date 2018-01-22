@@ -19,7 +19,7 @@ app.use(express.static(path.resolve(__dirname, '../here-and-there/build')));
 //   app.use(express.static('./build'));
 // }
 // how to use relative pathway
-const Map = require('./model/maps');
+const Map = require('../here-and-there/model/maps');
 
 // Answer API requests.
 //now we should configure the API to use bodyParser and look for
