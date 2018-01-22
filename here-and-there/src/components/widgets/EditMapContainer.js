@@ -215,11 +215,13 @@ export class EditMapContainer extends React.Component {
     return (
       <section id="map-container-section">
         <section id="edit-map-pane">
-          <p> Now Editing:</p>
-          <h2 className="page-name"> {this.state.data.name} </h2>
-          <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
-          <p className="page-name"> Author: <strong>{this.state.data.author} </strong></p>
-          <h3 id="map-marker-title">Current Locations on Map:</h3>
+          <div id="edit-map-pane-header">
+            <p> Now Editing:</p>
+            <h2 className="page-name"> {this.state.data.name} </h2>
+            <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
+            <p className="page-name"> Author: <strong>{this.state.data.author} </strong></p>
+            <h3 id="map-marker-title">Current Locations on Map:</h3>
+          </div>
           <div id="building-map-info">
             <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={marker_id => this.editMarker(marker_id)}
             onMarkerDelete={marker => this.deleteMarker(marker)} />

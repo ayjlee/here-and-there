@@ -100,6 +100,7 @@ ul {
   max-width: 35vw;
   display: inline-block;
   vertical-align: top;
+  background-color: snow;
 }
 
 .holds-map {
@@ -110,6 +111,7 @@ ul {
   position: absolute;
   height: 80vh;
   padding-right: 10px;
+  padding-top: 14px;
   margin-left: 10px;
 }
 
@@ -163,6 +165,7 @@ ul {
 #building-map-info {
   height: 80%;
   overflow: scroll;
+  background-color: white;
 }
 
 .flt-right {
@@ -283,11 +286,12 @@ ul.mapList li{
 
 #welcome-msg-box {
   width: 50%;
-  margin-top: 12%;
+  margin-top: 11%;
   margin-left: 10%;
   background-color: white;
-  padding: 10px;
+  padding: 23px;
   box-shadow: 0 19px 28px rgba(0,0,0,0.30), 8px 5px 14px rgba(0,0,0,0.22);
+  border-radius: 10px;
 }
 
 #welcome-msg-box h2 {
@@ -320,6 +324,12 @@ ul.mapList li{
   margin-top: 30px;
 }
 
+#edit-map-pane-header {
+  /*box-shadow: 0 0 11px rgba(33,33,33,.2);*/
+  background-color: snow;
+  border-bottom: lightgray solid 1px;
+}
+
 html, body, #root, #main {
   height: 100%;
 }
@@ -331,4 +341,10 @@ html, body, #root, #main {
 
 #add-note-form input {
   display: block;
+}
+
+.marker-item {
+  list-style-type: none;
+  padding: 10px;
+  border-bottom: lightgray dotted .5px;
 }

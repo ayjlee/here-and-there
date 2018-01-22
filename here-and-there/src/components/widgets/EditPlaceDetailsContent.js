@@ -22,6 +22,9 @@ class EditPlaceDetailsContent extends Component {
       currentNotes: [],
       showNoteForm: false,
     };
+
+    const photoUrl = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200}) : ''
+
     this.newMarker = {
       position: place.geometry.location,
       place_name: place.name,
@@ -36,7 +39,7 @@ class EditPlaceDetailsContent extends Component {
         price_level: place.price_level,
         phone_num: place.formatted_phone_number,
         icon: place.icon,
-        photos: place.photos,
+        photo_url: photoUrl,
       },
     };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
@@ -107,7 +110,6 @@ class EditPlaceDetailsContent extends Component {
     const categories = place.types ? place.types.join(', ') : 'unavailable';
     const website = place.website ? place.website : 'unavailable'
 
-    console.log(place.opening_hours);
     const details = (<div id="place-details">
       <h4> Place Details:</h4>
       <h3>Name: {name} </h3>
