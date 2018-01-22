@@ -65,7 +65,7 @@ ul {
   color: black;
 }
 .content {
-  background-color: #FFF;
+  background-color: #fff5ef;
   height: 100vh;
 }
 .content h2 {
@@ -245,10 +245,9 @@ ul.mapList li{
 #new-map-form {
   margin: 0 auto;
   width: 60%;
-  height: 70%;
   text-align: center;
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: snow;
 }
 
@@ -269,7 +268,7 @@ ul.mapList li{
 #new-map-page h2 {
   text-align: center;
   padding-top: 14vh;
-  padding-bottom: 14px;
+  padding-bottom: 10px;
 }
 
 #welcome-intro-name {
