@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import * as MdIconPack from 'react-icons/lib/md';
 import NoteListItem from './NoteListItem';
 
 const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
@@ -24,13 +25,12 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
         <p>Address: {marker.address}</p>
       </div>
       <div>
-        <button key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> Remove from Map</button>
-        <button key={marker.place_id} onClick={(marker_id) => onMarkerSelect(idx)}> Edit Notes </button>
+        <button id="remove-marker-btn" key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> <MdIconPack.MdDelete size={14}/> Delete</button>
+        <button id="edit-notes-btn" key={marker.place_id} onClick={(marker_id) => onMarkerSelect(idx)}> <MdIconPack.MdEdit size={14}/>Edit </button>
       </div>
     </li>
   );
 };
-
 export default MarkerListItem;
 
 // more verbose old content:

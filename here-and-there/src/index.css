@@ -5,6 +5,35 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1em;
+}
+
+#show-note-btn {
+  color: blue;
+}
+
+#edit-notes-btn, #remove-marker-btn {
+  font-size: 14px;
+}
+
+#remove-marker-btn {
+
+}
+
+#save-changes-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #ff6d6d;
+  /*background-color: transparent;*/
+}
+
 
 /*div.content > div:first-child, #map-container-section, #map-container-section> section:first-child {
   height: 100%;
@@ -415,11 +444,4 @@ html, body, #root, #main {
 
 .place-img {
   padding-left: 4px;
-}
-
-#save-changes-btn {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  /*background-color: transparent;*/
 }

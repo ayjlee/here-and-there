@@ -141,7 +141,7 @@ class EditPlaceDetailsContent extends Component {
         <div className="place-notes" >
           <h3>Notes: </h3>
           {currentNotes}
-          <button onClick={() => this.toggleNoteForm()}> {toggleNote} <MdIconPack.MdNoteAdd /> </button>
+          <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} <MdIconPack.MdNoteAdd size={30}/> </button>
           {noteForm}
           <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
         </div>

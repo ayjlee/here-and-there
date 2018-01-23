@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import * as MdIconPack from 'react-icons/lib/md';
+
 
 const MapListItem = ({ map, onMapSelect }) => {
   console.log('map list item map is');
@@ -19,11 +21,11 @@ const MapListItem = ({ map, onMapSelect }) => {
         {description}
         <div className="btn-container">
           <Link to={mapPath} className="map-link">
-            View Map
+            <MdIconPack.MdMap size={30}/> View Map
           </Link>
           <span />
           <Link to={editPath} className="map-link">
-            Edit Map
+            <MdIconPack.MdEditLocation size={30}/> Edit Map
           </Link>
         </div>
       </div>
