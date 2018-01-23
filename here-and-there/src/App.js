@@ -25,12 +25,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div id="main">
-          <ul className="header">
-            <li id="home-link"><NavLink exact to="/"> here and there</NavLink></li>
-            <li><NavLink to="/newmap">Build a New Map</NavLink></li>
-            <li><NavLink to="/library">Library</NavLink></li>
-            <li className="flt-right"><NavLink to="/sign-in">Sign In</NavLink></li>
-          </ul>
+          <section id="header-container">
+            <ul className="header">
+              <li id="home-link"><NavLink exact to="/"> here and there</NavLink></li>
+              <li><NavLink to="/newmap">Build a New Map</NavLink></li>
+              <li><NavLink to="/library">Library</NavLink></li>
+              <li className="flt-right"><NavLink to="/sign-in">Sign In</NavLink></li>
+            </ul>
+          </section>
           <div className="content">
             <Switch>
               <Route exact path="/" component={Home}/>
