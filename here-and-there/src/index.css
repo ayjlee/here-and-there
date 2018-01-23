@@ -3,6 +3,7 @@ body {
   padding: 0;
   /*font-family: sans-serif;*/
   font-family: 'Open Sans', sans-serif;
+  overflow-y: visible;
 }
 
 button {
@@ -54,6 +55,7 @@ button:hover {
 
 #edit-notes-btn, #remove-marker-btn {
   font-size: 14px;
+  background-color: transparent;
 }
 
 #remove-marker-btn {
@@ -69,6 +71,7 @@ button:hover {
   font-size: 1.2em;
   /*background-color: #ff6d6d;*/
   background-color: #fc3232;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
   /*background-color: transparent;*/
 }
 
@@ -139,7 +142,8 @@ ul {
 }
 .content {
   background-color: #fff5ef;
-  height: 100vh;
+  height: 100%;
+  overflow: scroll;
 }
 
 .mapList {
@@ -415,9 +419,57 @@ html, body, #root, #main {
   font-size: 14px;
 }
 
-#add-note-form input {
-  display: block;
+#add-note-form {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #fcea4b;
+  border-radius: 5px;
 }
+
+#add-note-form input, #add-note-form textarea {
+  display: block;
+  width: 80%;
+  padding: 4px 0;
+  background-color: transparent;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+#add-note-form textarea {
+  background-color: white;
+  height: 18vh;
+  margin: 0 auto;
+  width: 98%;
+  border-radius: 5px;
+}
+
+#add-note-form select {
+  background-color: transparent;
+  width: 80%;
+  padding: 4px 0;
+  margin-left: 5px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+#add-note-form select:focus {
+  outline: none;
+}
+
+#add-note-form input[type=submit] {
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid lightgray;
+  width: 20%;
+}
+
+#notes-header h3, #notes-header button {
+  display: inline-block;
+}
+
 
 .marker-item {
   margin: 0;
@@ -498,4 +550,9 @@ html, body, #root, #main {
 
 .place-img {
   padding-left: 4px;
+}
+
+.loading-msg {
+  margin: 0 auto;
+  top: 50%;
 }

@@ -84,7 +84,7 @@ class EditPlaceDetailsContent extends Component {
   addNoteToMarker(note) {
     const updatingNotes = this.state.newMarker.notes
     updatingNotes.push(note);
-    this.setState({ currentNotes: updatingNotes });
+    this.setState({ currentNotes: updatingNotes, showNoteForm: !this.state.showNoteForm });
   }
   updateNotes(updatedNotes) {
     // this is dirty, refactor
@@ -100,7 +100,7 @@ class EditPlaceDetailsContent extends Component {
     const map = this.props.map;
 
     // const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form ' : 'Add Note';
-    const toggleNote = (this.state.showNoteForm) ? <span>Hide Note Form<MdIconPack.MdKeyboardArrowUp size={24}/> </span> : <span>Add Note<MdIconPack.MdNoteAdd size={18}/> </span>;
+    const toggleNote = (this.state.showNoteForm) ? <span><MdIconPack.MdKeyboardArrowUp size={24}/>Hide Note Form </span> : <span><MdIconPack.MdNoteAdd size={18}/> Add Note</span>;
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
 
@@ -130,9 +130,11 @@ class EditPlaceDetailsContent extends Component {
           <p>Categories: {categories} </p>
         </div>
         <div className="place-notes" >
-          <h3>Notes: </h3>
+          <div id="notes-header">
+            <h3>Notes: </h3>
+            <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
+          </div>
           {currentNotes}
-          <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
           {noteForm}
           <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.state.newMarker} />
         </div>

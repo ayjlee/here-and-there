@@ -64,7 +64,7 @@ class NewNoteForm extends Component {
       <form id="add-note-form" onSubmit={this.handleSubmit}>
         <h5>Add a Note:</h5>
         <select value={this.state.type} onChange={this.handleTypeChange}>
-          <option disabled selected value="">Select Note Type</option>
+          <option disabled value="">Select Note Type</option>
           <option value="misc">Misc.</option>
           <option value="recommendation">Recommendation</option>
           <option value="tip">Insider Tip</option>

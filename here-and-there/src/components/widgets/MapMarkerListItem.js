@@ -22,7 +22,6 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
       </div>
       <div className="marker-details">
         <p className="subtitle">{mainType}</p>
-        <p>Address: {marker.address}</p>
       </div>
       <div>
         <button id="remove-marker-btn" key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> <MdIconPack.MdDelete size={18}/>Delete</button>

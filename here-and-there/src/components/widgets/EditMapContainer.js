@@ -202,7 +202,7 @@ export class EditMapContainer extends React.Component {
     };
     const mapUrl = `${this.props.url}/${this.props.map_id}`;
     if (!this.props.loaded) {
-      return <div>Loading Map Container...</div>
+      return <div className="loading-msg">Loading Map...</div>
     }
     const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
       return (
