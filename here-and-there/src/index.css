@@ -16,6 +16,19 @@ button:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
+#delete-note-btn {
+  padding: 0;
+  display: inline-block;
+  float: right;
+  background-color: transparent;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#delete-note-btn:hover {
+  color: #d61b1b;
+}
+
 #show-note-btn {
   color: blue;
 }
@@ -421,8 +434,11 @@ html, body, #root, #main {
 }
 
 .note-type {
-  text-align: right;
   padding: 3px;
+}
+
+.note-type p {
+  display: inline-block;
 }
 
 .note-recommendation .note-type {

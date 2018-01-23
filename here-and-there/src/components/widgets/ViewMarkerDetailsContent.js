@@ -56,6 +56,10 @@ class ViewMarkerDetailsContent extends Component {
     console.log('the notes for this marker are:');
     console.log(this.newMarker.notes);
   }
+  updateNotes(updatedNotes) {
+    console.log(`updating this marker's notes to` );
+    console.log(updatedNotes);
+  }
   render() {
     const marker = this.props.marker;
     const name = marker.place_name ? marker.place_name : 'unavailable';
@@ -68,7 +72,7 @@ class ViewMarkerDetailsContent extends Component {
     const website = marker.additional_details.website ? marker.additional_details.website : 'unavailable'
 
     const currentNotes = (marker.notes.length > 0) ?
-      <NoteList notes={marker.notes} /> : null;
+      <NoteList notes={marker.notes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)}/> : null;
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
