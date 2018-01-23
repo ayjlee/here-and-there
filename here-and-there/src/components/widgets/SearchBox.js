@@ -112,34 +112,16 @@ class SearchBox extends Component {
         </div>
       );
 
-    //   const iwBox = (
-    //     <div id="info-window-content">
-    //       <h2> this is the info window </h2>
-    //       <p>Name: {place.name} </p>
-    //       <img src="" width="16" height="16" id="place-icon" />
-    //       <span id="place-name"  className="title"></span>
-    //       <span id="place-address"></span>
-    //         <AddMarkerLink onClick={()=> console.log('clicking addmarker button')} onClickonAddMarker={this.addMarkerToMap} place={place}/>
-    //       <p> Available Place info: {place.place_id} </p>
-    //       <a>Add Note<MdIconPack.MdNoteAdd /> </a>
-    //       <h2> This is the form to add a new note</h2>
-    //         <NewNoteForm place={place} marker={newPlaceMarker} map={map} />
-    //   </div>
-    // );
-
       const iwContent = ReactDOMServer.renderToString(iwBox);
       //
       google.maps.event.addListener(newPlaceMarker, 'click', function() {
         iw.setContent(iwContent);
         iw.open(map, newPlaceMarker);
       });
-      console.log('in render autocomplete, this.placeinforoot is:')
-      console.log(this.placeInfoRoot);
 
       const placeDetails = <EditPlaceDetailsContent root={this.placeInfoRoot} place={place} map={map} google={google} />
 
       this.props.showPlaceDetails(place);
-
     });
   }
 
