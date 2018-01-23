@@ -18,7 +18,7 @@ class Library extends Component {
     return (
       <section id="library-page-content">
         <div>
-          <h2>my maps</h2>
+          <h1>Explore Maps</h1>
           <h4>shh, this is library!</h4>
           <ul className="mapList">
             <MyMapsList url="http://localhost:3001/api/maps" pollInterval={2000} onMapSelect={selectedMap => this.setState({ selectedMap })}/>

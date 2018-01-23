@@ -25,8 +25,8 @@ const MarkerListItem = ({ marker, onMarkerSelect, deleteMarker, idx }) => {
         <p>Address: {marker.address}</p>
       </div>
       <div>
-        <button id="remove-marker-btn" key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> <MdIconPack.MdDelete size={14}/> Delete</button>
-        <button id="edit-notes-btn" key={marker.place_id} onClick={(marker_id) => onMarkerSelect(idx)}> <MdIconPack.MdEdit size={14}/>Edit </button>
+        <button id="remove-marker-btn" key={marker.place_id} onClick={(marker_id) => deleteMarker(idx)}> <MdIconPack.MdDelete size={18}/>Delete</button>
+        <button id="edit-notes-btn" key={marker.place_id} onClick={(marker_id) => onMarkerSelect(idx)}> <MdIconPack.MdEdit size={18}/>View/Edit </button>
       </div>
     </li>
   );

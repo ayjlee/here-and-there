@@ -12,6 +12,10 @@ button {
   font-size: 1em;
 }
 
+button:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
 #show-note-btn {
   color: blue;
 }
@@ -89,9 +93,11 @@ ul.header li a:hover:before {
 ul.header {
   margin: 0;
 }
+
 ul {
-  padding-left: 20px;
+  padding: 3px;
 }
+
 #home-link a {
   margin-right: 30px;
   font-size: 1.5em;
@@ -117,7 +123,7 @@ ul {
 
 
 /*React Router automatically assigns a class value of 'active' when you click on a link*/
-.active, .active #home-link a {
+.active #home-link a {
   background-color: #0099FF;
 }
 
@@ -154,9 +160,9 @@ ul {
   text-align: center;
 }
 
-/*.full-page {
+#library-page-content {
   text-align: center;
-}*/
+}
 
 #building-map-info, .holds-map {
   display: inline-block;
@@ -181,10 +187,11 @@ ul {
   margin-left: 5px;
   background: snow;
   border-radius: 5px;
-  padding: 10px;
   text-decoration: none;
-  border: black solid 1px;
+  color: black;
+  /*border: black solid 1px;*/
 }
+
 .btn-container {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -213,20 +220,12 @@ ul {
 p, h3, h5, h4, h2, h1 {
   margin: 3px;
 }
-/*
-ul.mapList {
-  list-style-image: url('https://mdn.mozillademos.org/files/11981/starsolid.gif');
-}*/
-
-/*ul.mapList {
-  list-style-type: none;
-}*/
 
 ul.mapList li{
   list-style-type: none;
   /*background-image: url('https://mdn.mozillademos.org/files/11981/starsolid.gif');*/
   background-repeat: no-repeat;
-  padding: 30px;
+  padding: 14px;
 }
 
 .map-item {
@@ -380,8 +379,9 @@ html, body, #root, #main {
 }
 
 .marker-item {
+  margin: 0;
   list-style-type: none;
-  padding: 10px;
+  /*padding: 10px;*/
   border-bottom: lightgray dotted .5px;
 }
 
@@ -409,6 +409,15 @@ html, body, #root, #main {
   display: inline-block;
   background-color: white;
   vertical-align: top;
+  word-wrap: break-word;
+}
+
+.note-author {
+  max-width: 20%;
+}
+
+.note-text-section {
+  min-width: 75%;
 }
 
 .note-type {
