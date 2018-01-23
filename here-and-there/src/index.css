@@ -95,7 +95,8 @@ ul {
 }
 
 #edit-map-pane, #view-map-pane {
-  border-right: black solid 2px;
+  /*border-right: black solid 2px;*/
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   height: 100vh;
   max-width: 35vw;
   display: inline-block;
@@ -382,7 +383,11 @@ html, body, #root, #main {
 }
 
 .note-recommendation .note-type {
-  background-color: red;
+  background-color: #ffb159;
+}
+
+.note-misc .note-type {
+  background-color: #7af499;
 }
 
 .note-tip .note-type {

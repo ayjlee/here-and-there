@@ -233,8 +233,7 @@ export class EditMapContainer extends React.Component {
             {mapVisualNodes}
             <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
                <div id="info-window-content">
-                 <h2> this is the info window </h2>
-                 <p>Name: {this.state.selectedPlace.name} </p>
+                 <h2> {this.state.selectedPlace.name}</h2>
                  <img src="" width="16" height="16" id="place-icon" />
                  <span id="place-name"  className="title"></span>
                  <span id="place-address"></span>

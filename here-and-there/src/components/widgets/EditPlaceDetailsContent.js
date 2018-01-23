@@ -42,23 +42,23 @@ class EditPlaceDetailsContent extends Component {
       },
     };
 
-    // this.newMarker = {
-    //   position: place.geometry.location,
-    //   place_name: place.name,
-    //   address: place.formatted_address,
-    //   notes: [],
-    //   tags: place.types,
-    //   place_id: place.place_id,
-    //   additional_details: {
-    //     opening_hours: place.opening_hours,
-    //     website: place.website,
-    //     rating: place.rating,
-    //     price_level: place.price_level,
-    //     phone_num: place.formatted_phone_number,
-    //     icon: place.icon,
-    //     photo_url: photoUrl,
-    //   },
-    // };
+    this.newMarker = {
+      position: place.geometry.location,
+      place_name: place.name,
+      address: place.formatted_address,
+      notes: [],
+      tags: place.types,
+      place_id: place.place_id,
+      additional_details: {
+        opening_hours: place.opening_hours,
+        website: place.website,
+        rating: place.rating,
+        price_level: place.price_level,
+        phone_num: place.formatted_phone_number,
+        icon: place.icon,
+        photo_url: photoUrl,
+      },
+    };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
     this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
