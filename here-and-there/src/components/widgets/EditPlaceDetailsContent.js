@@ -38,24 +38,6 @@ class EditPlaceDetailsContent extends Component {
         },
       },
     };
-
-    // this.newMarker = {
-    //   position: place.geometry.location,
-    //   place_name: place.name,
-    //   address: place.formatted_address,
-    //   notes: [],
-    //   tags: place.types,
-    //   place_id: place.place_id,
-    //   additional_details: {
-    //     opening_hours: place.opening_hours,
-    //     website: place.website,
-    //     rating: place.rating,
-    //     price_level: place.price_level,
-    //     phone_num: place.formatted_phone_number,
-    //     icon: place.icon,
-    //     photo_url: photoUrl,
-    //   },
-    // };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
     this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
@@ -98,33 +80,20 @@ class EditPlaceDetailsContent extends Component {
   }
   addMarkerToMap(marker) {
     this.props.addMarkerToMap(marker);
-    // this.setState({ currentNotes: [] });
-    // this.newMarker = {};
   }
   addNoteToMarker(note) {
-    console.log('adding note to marker in place details content')
-    // const updatingNotes = this.newMarker.notes
     const updatingNotes = this.state.newMarker.notes
-    // const stringNote = `${note.author}: ${note.text} (${note.type})`
     updatingNotes.push(note);
     this.setState({ currentNotes: updatingNotes });
-    console.log('the updated notes for this marker are:');
   }
   toggleNoteForm() {
-    console.log('inShowNoteForm')
     const display = this.state.showNoteForm;
-    this.setState({showNoteForm: (!display)});
+    this.setState({ showNoteForm: (!display) });
   }
   render() {
     const place = this.props.place;
     const map = this.props.map;
-    // const newMarker = {
-    //   position: place.geometry.location,
-    //   place_name: place.name,
-    //   notes: [],
-    //   tags: [],
-    //   place_id: place.place_id,
-    // };
+
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
@@ -173,9 +142,3 @@ class EditPlaceDetailsContent extends Component {
 }
 
 export default EditPlaceDetailsContent;
-
-
-
-// const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
-
-// <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.state.newMarker} />
