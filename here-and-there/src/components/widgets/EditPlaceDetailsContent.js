@@ -13,9 +13,6 @@ import NoteList from './NoteList';
 class EditPlaceDetailsContent extends Component {
   constructor(props) {
     super(props);
-    // Create a div that we'll render the modal into. Because each
-    // Modal component has its own element, we can render multiple
-    // modal components into the modal container.
     this.el = document.createElement('div');
     const place = this.props.place;
     const map = this.props.map;
@@ -42,23 +39,23 @@ class EditPlaceDetailsContent extends Component {
       },
     };
 
-    this.newMarker = {
-      position: place.geometry.location,
-      place_name: place.name,
-      address: place.formatted_address,
-      notes: [],
-      tags: place.types,
-      place_id: place.place_id,
-      additional_details: {
-        opening_hours: place.opening_hours,
-        website: place.website,
-        rating: place.rating,
-        price_level: place.price_level,
-        phone_num: place.formatted_phone_number,
-        icon: place.icon,
-        photo_url: photoUrl,
-      },
-    };
+    // this.newMarker = {
+    //   position: place.geometry.location,
+    //   place_name: place.name,
+    //   address: place.formatted_address,
+    //   notes: [],
+    //   tags: place.types,
+    //   place_id: place.place_id,
+    //   additional_details: {
+    //     opening_hours: place.opening_hours,
+    //     website: place.website,
+    //     rating: place.rating,
+    //     price_level: place.price_level,
+    //     phone_num: place.formatted_phone_number,
+    //     icon: place.icon,
+    //     photo_url: photoUrl,
+    //   },
+    // };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
     this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
@@ -68,25 +65,46 @@ class EditPlaceDetailsContent extends Component {
     console.log('placedetails content mounted');
     this.props.root.appendChild(this.el);
   }
-  componentDidUpdate(prevProps) {
-    if (this.props.place !== prevProps.place) {
-      // change the relevant props
-      this.setState({ currentNotes: [] });
-    }
-  }
   componentWillUnmount() {
     // Remove the element from the DOM when we unmount
     this.props.root.removeChild(this.el);
   }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.place !== nextProps.place) {
+      const photoUrl = (nextProps.place.photos && nextProps.place.photos.length > 0 ) ? nextProps.place.photos[0].getUrl({ 'maxWidth': 200, 'maxHeight': 200 }) : '';
+
+      this.setState({
+        currentNotes: [],
+        showNoteForm: false,
+        newMarker: {
+          position: nextProps.place.geometry.location,
+          place_name: nextProps.place.name,
+          address: nextProps.place.formatted_address,
+          notes: [],
+          tags: nextProps.place.types,
+          place_id: nextProps.place.place_id,
+          additional_details: {
+            opening_hours: nextProps.place.opening_hours,
+            website: nextProps.place.website,
+            rating: nextProps.place.rating,
+            price_level: nextProps.place.price_level,
+            phone_num: nextProps.place.formatted_phone_number,
+            icon: nextProps.place.icon,
+            photo_url: photoUrl,
+          },
+        },
+      })
+    }
+  }
   addMarkerToMap(marker) {
-    // console.log('adding marker to map in place details content, the marker is ');
-    // console.log(marker);
     this.props.addMarkerToMap(marker);
+    // this.setState({ currentNotes: [] });
+    // this.newMarker = {};
   }
   addNoteToMarker(note) {
     console.log('adding note to marker in place details content')
-    const updatingNotes = this.newMarker.notes
-    // const updatingNotes = this.state.newMarker.notes
+    // const updatingNotes = this.newMarker.notes
+    const updatingNotes = this.state.newMarker.notes
     // const stringNote = `${note.author}: ${note.text} (${note.type})`
     updatingNotes.push(note);
     this.setState({ currentNotes: updatingNotes });
@@ -109,11 +127,9 @@ class EditPlaceDetailsContent extends Component {
     // };
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
-    const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
+    const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
 
     const currentNotes = (this.state.currentNotes.length > 0) ? <NoteList notes={this.state.currentNotes} /> : null;
-
-    console.log(this.state.currentNotes);
 
     const name = place.name ? place.name : 'unavailable';
     const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200}) : 'photo unavailable';
@@ -143,7 +159,7 @@ class EditPlaceDetailsContent extends Component {
           {currentNotes}
           <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} <MdIconPack.MdNoteAdd size={30}/> </button>
           {noteForm}
-          <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.newMarker} />
+          <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.state.newMarker} />
         </div>
       </div>);
 
