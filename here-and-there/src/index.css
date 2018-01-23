@@ -357,7 +357,10 @@ html, body, #root, #main {
 #notes-list li {
   list-style-type: none;
   width: 60%;
-  border-bottom: lightgray dotted 1px;
+  padding-bottom: 5px;
+  border: lightgray dotted 1px;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .note-text-section {
@@ -367,8 +370,15 @@ html, body, #root, #main {
   width: 90%;
 }
 
+.note-author, .note-text-section {
+  display: inline-block;
+  background-color: white;
+  vertical-align: top;
+}
+
 .note-type {
   text-align: right;
+  padding: 3px;
 }
 
 .note-recommendation .note-type {
@@ -386,8 +396,20 @@ html, body, #root, #main {
 .place-img, .helpful-place-info {
   display: inline-block;
   vertical-align: middle;
+  word-wrap: break-word;
+}
+
+.helpful-place-info {
+  max-width: 75%;
 }
 
 .place-img {
   padding-left: 4px;
+}
+
+#save-changes-btn {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  /*background-color: transparent;*/
 }

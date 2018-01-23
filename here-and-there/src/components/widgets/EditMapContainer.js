@@ -218,8 +218,8 @@ export class EditMapContainer extends React.Component {
           <div id="edit-map-pane-header">
             <p> Now Editing:</p>
             <h2 className="page-name"> {this.state.data.name} </h2>
-            <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
             <p className="page-name"> Author: <strong>{this.state.data.author} </strong></p>
+            <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
             <h3 id="map-marker-title">Current Locations on Map:</h3>
           </div>
           <div id="building-map-info">
