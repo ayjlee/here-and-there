@@ -99,7 +99,8 @@ class EditPlaceDetailsContent extends Component {
     const place = this.props.place;
     const map = this.props.map;
 
-    const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
+    // const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form ' : 'Add Note';
+    const toggleNote = (this.state.showNoteForm) ? <span>Hide Note Form<MdIconPack.MdKeyboardArrowUp size={24}/> </span> : <span>Add Note<MdIconPack.MdNoteAdd size={18}/> </span>;
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
 
@@ -131,7 +132,7 @@ class EditPlaceDetailsContent extends Component {
         <div className="place-notes" >
           <h3>Notes: </h3>
           {currentNotes}
-          <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} <MdIconPack.MdNoteAdd size={30}/> </button>
+          <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
           {noteForm}
           <AddMarkerLink onAddMarker={(marker) => this.addMarkerToMap(marker) } map={map} place={place} editingMap= {this.props.editingMap} marker={this.state.newMarker} />
         </div>

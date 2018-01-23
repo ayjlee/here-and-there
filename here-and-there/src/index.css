@@ -27,11 +27,30 @@ button:hover {
 
 #delete-note-btn:hover {
   color: #d61b1b;
+  box-shadow: none;
 }
 
 #show-note-btn {
-  color: blue;
+  padding: 5px;
+  background-color: transparent;
+  font-size: 14px;
+  color: #2057d8;
+  border: lightgray solid 2px;
 }
+
+#show-note-btn:hover {
+  border: #2057d8 solid 1px;
+}
+
+#add-marker-btn {
+  display: block;
+  margin-top: 5px;
+  padding: 10px;
+  padding-right: 14px;
+  /*border: #15c435 solid 3px;*/
+  background-color: #15c435;
+}
+
 
 #edit-notes-btn, #remove-marker-btn {
   font-size: 14px;
@@ -43,11 +62,13 @@ button:hover {
 
 #save-changes-btn {
   display: block;
-  margin: 0 auto;
+  margin: 8px auto 0 auto;
   text-align: center;
   font-weight: bold;
-  padding: 10px;
-  background-color: #ff6d6d;
+  padding: 14px;
+  font-size: 1.2em;
+  /*background-color: #ff6d6d;*/
+  background-color: #fc3232;
   /*background-color: transparent;*/
 }
 
@@ -369,7 +390,7 @@ ul.mapList li{
 }
 
 #map-marker-title {
-  margin-top: 30px;
+  margin-top: 21px;
 }
 
 #edit-map-pane-header {
@@ -400,6 +421,7 @@ html, body, #root, #main {
 
 .place-notes {
   padding-top: 10px;
+  padding-left: 5px;
 }
 
 #notes-list li {

@@ -17,7 +17,7 @@ class AddMarkerLink extends Component {
       return <div> Loading map... </div>
     }
     return (
-      <button onClick={this.handleClick} alt="add-place-to-map"><MdIconPack.MdAddLocation /> Save {this.props.place.name} to map</button>
+      <button onClick={this.handleClick} id="add-marker-btn" alt="add-place-to-map"><MdIconPack.MdAddLocation size={24}/> Save {this.props.place.name} to Map</button>
     );
   }
 }
