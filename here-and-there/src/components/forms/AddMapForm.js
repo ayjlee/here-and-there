@@ -5,7 +5,6 @@ import {
   Route,
   BrowserRouter,
 } from 'react-router-dom';
-import Library from '../pages/Library';
 
 class NewMapForm extends Component {
   constructor(props) {
@@ -72,22 +71,19 @@ class NewMapForm extends Component {
           placeholder='Name of your new map'
           value={this.state.name}
           onChange={this.handleNameChange} />
-        <label> Author: </label>
         <input
           type='text'
-          placeholder='Your name...'
+          placeholder='Author (your name..)'
           value={this.state.author}
           onChange={this.handleAuthorChange} />
-        <label> Where To? </label>
         <input
           type='text'
           placeholder='Destination (optional)'
           value={this.state.destination}
           onChange={this.handleDestinationChange} />
-        <label> Description</label>
         <input
           type='text'
-          placeholder='(optional)'
+          placeholder='Description (optional)'
           value={this.state.city}
           onChange={this.handleDescriptionChange} />
         <input

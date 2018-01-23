@@ -12,6 +12,10 @@ body {
 
 
 /*default styling from https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.html tutorial*/
+
+#header-container {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
 ul.header li {
   display: inline;
   list-style-type: none;
@@ -264,8 +268,9 @@ ul.mapList li{
   display: block;
   height: 42px;
   width: 80%;
-  margin: auto;
-  border-radius: 5px;
+  padding: 10px;
+  margin: 5px auto;
+  border-radius: 10px;
   font-size: 1.1em;
 }
 
