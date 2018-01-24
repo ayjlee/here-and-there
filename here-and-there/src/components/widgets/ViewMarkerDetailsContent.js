@@ -48,12 +48,9 @@ class ViewMarkerDetailsContent extends Component {
   }
   addNoteToMarker(note) {
     console.log('adding note to marker in view markerdetails')
-    // const currentNotes = this.newMarker.notes
-    // const stringNote = `${note.author}: ${note.text} (${note.type})`
-    // const updatedNotes = currentNotes.push(note);
-    // this.newMarker.notes = currentNotes;
-    // console.log('the notes for this marker are:');
-    // console.log(this.newMarker.notes);
+    const updatingNotes = this.state.currentNotes;
+    updatingNotes.push(note);
+    this.setState({ currentNotes: updatingNotes, showNoteForm: !this.state.showNoteForm });
   }
   updateNotes(updatedNotes) {
     console.log(`updating this marker's notes to` );
@@ -65,6 +62,7 @@ class ViewMarkerDetailsContent extends Component {
   render() {
     const marker = this.props.marker;
     const name = marker.place_name ? marker.place_name : 'unavailable';
+    console.log(marker);
     const photoUrl = (marker.additional_details.photo_url && marker.additional_details.photo_url.length > 0 ) ? marker.additional_details.photo_url : 'photo unavailable';
     const rating = marker.additional_details.rating? marker.additional_details.rating: 'unavailable';
     const address = marker.address ? marker.address : 'unavailable';
@@ -86,7 +84,7 @@ class ViewMarkerDetailsContent extends Component {
 
     const map = this.props.map;
     const details = (<div id="place-details">
-      <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> Back to Places </button>
+      <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> <MdIconPack.MdArrowBack  size={21} />Back to Places </button>
       <h3>Name: {name} </h3>
       <div className="place-img">
         <img src={photoUrl} />

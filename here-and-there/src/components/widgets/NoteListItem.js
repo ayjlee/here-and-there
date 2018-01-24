@@ -8,7 +8,7 @@ class NoteListItem extends Component {
 
   render() {
     const note= this.props.note;
-    const typeClassName = "note-" + note.type;
+    const typeClassName = "note note-" + note.type;
     const idx = this.props.idx;
     const deleteNoteBtn = this.props.isEditing ? <button id="delete-note-btn" key={idx} onClick={() => this.props.onNoteDelete(idx)}> <MdIconPack.MdRemoveCircleOutline size={18}/>Delete </button> : null;
 

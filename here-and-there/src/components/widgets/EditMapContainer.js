@@ -59,11 +59,14 @@ export class EditMapContainer extends React.Component {
     }
   }
   onMarkerClick(props, marker, e) {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true,
-    });
+    const viewingMarker = this.state.currentMarkers[props.idx];
+    console.log(viewingMarker);
+    // this.setState({
+    //   selectedPlace: props,
+    //   activeMarker: viewingMarker,
+    //   showingInfoWindow: true,
+    // });
+    // this.viewMarker(props.idx);
   }
   onMapAdded(map) {
     this.loadMapDataFromServer();
@@ -149,6 +152,7 @@ export class EditMapContainer extends React.Component {
       showPlaceDetails: false,
       showingPlace: {},
       showMarkerDetails: false,
+      showingInfoWindow: false,
       activeMarker: {},
       activeMarkerIdx: null,
     })
@@ -202,9 +206,9 @@ export class EditMapContainer extends React.Component {
     if (!this.props.loaded) {
       return <div className="loading-msg">Loading Map...</div>
     }
-    const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
+    const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker, idx) => {
       return (
-        <MapMarker key={marker.place_id}
+        <MapMarker key={marker.place_id} idx={idx}
         markerData={marker}  position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} iconLink={'/pal4/icon47.png'} />
       );
     })
@@ -217,7 +221,9 @@ export class EditMapContainer extends React.Component {
             <p>Now Editing: </p>
             <h2 className="page-name">{this.state.data.name} </h2>
             <p className="page-name"> Author: <strong>{this.state.data.author} </strong></p>
-            <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
+            <div id="savebtn-section">
+              <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
+            </div>
           </div>
           <div id="place-note-details-pane">
             {placeDetails}
