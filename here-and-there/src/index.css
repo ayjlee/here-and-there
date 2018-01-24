@@ -106,8 +106,9 @@ button:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 ul.header li {
-  display: inline;
+  display: inline-block;
   list-style-type: none;
+  margin: 10px 14px;
   /*margin-left: 5px;*/
 }
 ul.header {
@@ -117,7 +118,7 @@ ul.header li a {
   color: #FFF;
   font-weight: bold;
   text-decoration: none;
-  padding: 20px 20px 20px 5px;
+  /*padding: 14px 20px 14px 20px;*/
   display: inline-block;
   position: relative
 }
@@ -148,14 +149,21 @@ ul.header li a:hover:before {
 
 ul.header {
   margin: 0;
-}
-
-ul {
   padding: 3px;
 }
 
+.header .flt-right {
+  float: right;
+  padding-top: 10px;
+}
+
+ul {
+  padding: 5px;
+}
+
 #home-link a {
-  margin-right: 30px;
+  margin-left: 0;
+  /*margin-right: 30px;*/
   font-size: 1.5em;
   color: black;
 }
@@ -275,10 +283,6 @@ ul {
   height: 80%;
   overflow: scroll;
   background-color: white;
-}
-
-.flt-right {
-  float: right;
 }
 
 #marker-list-container, #edit-map-pane {
