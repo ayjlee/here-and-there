@@ -39,7 +39,8 @@ button:hover {
   background-color: transparent;
   font-size: 14px;
   color: #2057d8;
-  border: lightgray solid 2px;
+  border-bottom: lightgray solid 2px;
+  /*border: lightgray solid 2px;*/
 }
 
 #show-note-btn:hover {
@@ -68,12 +69,10 @@ button:hover {
 }
 
 #save-changes-btn {
-  display: block;
   margin: 8px auto 0 auto;
-  text-align: center;
   font-weight: bold;
-  padding: 14px;
   font-size: 1.2em;
+  text-align: center;
   /*background-color: #ff6d6d;*/
   background-color: #fc3232;
   box-shadow: 0 0 11px rgba(33,33,33,.2);
@@ -176,6 +175,12 @@ ul {
 .mapList {
   background-color: #fff5ef;
 }
+
+#my-map-list-container {
+  margin: 20px;
+  background-color: white;
+}
+
 .content h2 {
   padding: 0;
   margin: 0;
@@ -193,16 +198,20 @@ ul {
 }
 
 #building-map-info{
-  max-width: 35vw;
+  width: 100%;
   display: inline-block;
   vertical-align: top;
+}
+
+#view-map-pane-header {
+  text-align: center;
 }
 
 #edit-map-pane, #view-map-pane {
   /*border-right: black solid 2px;*/
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   /*height: 100vh;*/
-  max-width: 35vw;
+  width: 35vw;
   display: inline-block;
   vertical-align: top;
   background-color: snow;
@@ -215,8 +224,8 @@ ul {
   position: absolute;
   height: 80vh;
   padding-right: 10px;
-  padding-top: 14px;
-  margin-left: 10px;
+  /*padding-top: 14px;
+  margin-left: 10px;*/
   /*text-align: center;*/
 }
 
