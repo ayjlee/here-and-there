@@ -90,6 +90,9 @@ class EditPlaceDetailsContent extends Component {
     const display = this.state.showNoteForm;
     this.setState({ showNoteForm: (!display) });
   }
+  toggleDetailsView() {
+    this.props.toggleDetailsView();
+  }
   render() {
     const place = this.props.place;
     const map = this.props.map;
@@ -110,6 +113,7 @@ class EditPlaceDetailsContent extends Component {
     const website = place.website ? place.website : 'unavailable'
     const details = (
       <div id="place-details">
+        <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> Back to Places </button>
         <h3>Name: {name} </h3>
         <div className="place-img">
           <img src={photo} />

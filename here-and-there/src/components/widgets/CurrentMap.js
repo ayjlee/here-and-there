@@ -134,10 +134,11 @@ export class CurrentMap extends Component {
       }
     });
   }
+  // const height = this.props.height;
   render() {
     const style = {
       width: '100%',
-      height: '50vh',
+      height: '90vh',
     };
     return (
       <div ref="map" style= {style}>

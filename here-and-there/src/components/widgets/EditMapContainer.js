@@ -39,6 +39,7 @@ export class EditMapContainer extends React.Component {
     this.saveChangesToMap = this.saveChangesToMap.bind(this);
     this.editMarker = this.editMarker.bind(this);
     this.viewMarker = this.viewMarker.bind(this);
+    this.toggleDetailsView = this.toggleDetailsView.bind(this);
   }
   componentDidMount() {
     this.loadMapDataFromServer();
@@ -142,6 +143,16 @@ export class EditMapContainer extends React.Component {
       showingPlace: {},
     });
   }
+  toggleDetailsView() {
+    console.log('toggling details view');
+    this.setState({
+      showPlaceDetails: false,
+      showingPlace: {},
+      showMarkerDetails: false,
+      activeMarker: {},
+      activeMarkerIdx: null,
+    })
+  }
   saveChangesToMap() {
     // will do a put request to save all changes made to this map on our mongo database;
     const updatedMarkers = this.state.currentMarkers;
@@ -173,11 +184,11 @@ export class EditMapContainer extends React.Component {
     const map = this.state.map;
     const detailsRoot = document.getElementById('place-note-details-pane');
     const placeDetails = (this.state.showPlaceDetails) ? (
-      <EditPlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
+      <EditPlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} toggleDetailsView={() => this.toggleDetailsView()} root={detailsRoot} />
     ) : null;
 
     const markerDetails = (this.state.showMarkerDetails) ? (
-      <ViewMarkerDetailsContent map={map} isEditing={true} marker={this.state.activeMarker} idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
+      <ViewMarkerDetailsContent map={map} isEditing={true} marker={this.state.activeMarker} toggleDetailsView={() => this.toggleDetailsView()}  idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
     ) : null;
     const style = {
       width: '40vw',
@@ -208,6 +219,10 @@ export class EditMapContainer extends React.Component {
             <p className="page-name"> Author: <strong>{this.state.data.author} </strong></p>
             <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
           </div>
+          <div id="place-note-details-pane">
+            {placeDetails}
+            {markerDetails}
+          </div>
           <h3 id="map-marker-title">Current Locations on Map:</h3>
           <div id="building-map-info">
             <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers}
@@ -229,10 +244,6 @@ export class EditMapContainer extends React.Component {
                </div>
             </InfoWindow>
           </CurrentMap>
-          <div id="place-note-details-pane">
-            {placeDetails}
-            {markerDetails}
-          </div>
         </div>
       </section>
     );

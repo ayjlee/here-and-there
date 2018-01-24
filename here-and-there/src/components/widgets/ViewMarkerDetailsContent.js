@@ -42,6 +42,9 @@ class ViewMarkerDetailsContent extends Component {
     const display = this.state.showNoteForm;
     this.setState({showNoteForm: (!display)});
   }
+  toggleDetailsView() {
+    this.props.toggleDetailsView();
+  }
   addNoteToMarker(note) {
     console.log('adding note to marker in view markerdetails')
     // const currentNotes = this.newMarker.notes
@@ -77,6 +80,7 @@ class ViewMarkerDetailsContent extends Component {
 
     const map = this.props.map;
     const details = (<div id="place-details">
+      <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> Back to Places </button>
       <h3>Name: {name} </h3>
       <div className="place-img">
         <img src={photoUrl} />
