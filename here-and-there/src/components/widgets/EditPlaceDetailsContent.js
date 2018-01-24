@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import MapMarker from './MapMarker';
-import { Link } from 'react-router-dom';
-import ReactDOMServer from 'react-dom/server';
 import NewNoteForm from '../forms/AddNoteForm';
 import * as FontAwesome from 'react-icons/lib/fa';
 import * as MdIconPack from 'react-icons/lib/md';
 import AddMarkerLink from './AddMarkerLink';
-import NoteListItem from './NoteListItem';
 import NoteList from './NoteList';
 
 class EditPlaceDetailsContent extends Component {
@@ -44,7 +40,6 @@ class EditPlaceDetailsContent extends Component {
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
     // into the modal container element (see the HTML tab).
-    console.log('placedetails content mounted');
     this.props.root.appendChild(this.el);
   }
   componentWillUnmount() {
@@ -98,8 +93,6 @@ class EditPlaceDetailsContent extends Component {
   render() {
     const place = this.props.place;
     const map = this.props.map;
-
-    // const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form ' : 'Add Note';
     const toggleNote = (this.state.showNoteForm) ? <span><MdIconPack.MdKeyboardArrowUp size={24}/>Hide Note Form </span> : <span><MdIconPack.MdNoteAdd size={18}/> Add Note</span>;
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;

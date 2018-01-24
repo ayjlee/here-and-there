@@ -38,8 +38,6 @@ class NewNoteForm extends Component {
       type: type,
       text: text
     }
-    console.log('new note is:');
-    console.log(newNote);
     this.props.onAddNote(newNote);
 
     this.setState({

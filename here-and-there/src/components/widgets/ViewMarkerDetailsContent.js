@@ -24,7 +24,6 @@ class ViewMarkerDetailsContent extends Component {
   componentDidMount() {
     // Append the element into the DOM on mount. We'll render
     // into the modal container element (see the HTML tab).
-    console.log('placedetails content mounted');
     this.props.root.appendChild(this.el);
   }
   componentWillUnmount() {
@@ -37,11 +36,9 @@ class ViewMarkerDetailsContent extends Component {
     }
   }
   addMarkerToMap(marker) {
-    console.log('adding marker to map in place details content');
     this.props.addMarkerToMap(marker);
   }
   toggleNoteForm() {
-    console.log('inToggleNoteForm')
     const display = this.state.showNoteForm;
     this.setState({showNoteForm: (!display)});
   }

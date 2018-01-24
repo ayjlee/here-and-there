@@ -12,15 +12,8 @@ class NoteList extends Component {
     // this.loadMapsFromServer();
   }
   handleNoteDelete(idx) {
-    // console.log('deleting note with index:');
-    console.log(idx);
-
     const updatingNotes = this.props.notes;
     updatingNotes.splice(idx, 1);
-
-    console.log('after note deletion, current notes are:');
-    console.log(updatingNotes);
-
     this.props.updateCurrentNotes(updatingNotes);
 
   }

@@ -23,8 +23,6 @@ class MyMapsList extends Component {
     })
   }
   onMyMapClick() {
-    console.log('you clicked this:');
-    console.log(this);
   }
   loadMapsFromServer() {
     axios.get(this.props.url)
@@ -47,23 +45,3 @@ class MyMapsList extends Component {
 }
 
 export default MyMapsList;
-
-
-// return (
-//   <section id="my-map-list-container">
-//     <ul>
-//       <li> in my MapList component </li>
-//       <li> list of my maps </li>
-//       <li> add view options to view by location </li>
-//     </ul>
-//   </section>
-// );
-
-// const mapNodes = this.state.data.map((map) => {
-//   return (
-//     <li key={map._id} map={map} className="myMap" onClick={this.onMyMapClick.bind(map)}>
-//       <h3> Map name: {map.name} </h3>
-//       <p>author: {map.author}, key: {map._id}, markers: {map.markers}</p>
-//     </li>
-//   );
-// });

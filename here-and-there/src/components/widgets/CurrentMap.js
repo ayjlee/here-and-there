@@ -108,7 +108,7 @@ export class CurrentMap extends Component {
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-      
+
       evtNames.forEach((e) => {
         this.map.addListener(e, this.handleEvent(e));
       });
@@ -165,13 +165,10 @@ CurrentMap.defaultProps = {
   centerAroundCurrentLocation: false,
   savedToAccount: false,
   onDragend() {
-    console.log('moving');
   },
   onClick() {
-    console.log('clicking');
   },
   onReady() {
-    console.log('ready');
   }
 };
 evtNames.forEach((e) => {

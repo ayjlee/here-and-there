@@ -10,10 +10,6 @@ const camelize = function(str) {
 };
 
 export class MapMarker extends Component {
-  // componentDidMount() {
-  //   console.log(' in MapMarker ComponentDidMount');
-  //   this.renderMarker();
-  // }
   componentDidUpdate(prevProps) {
     if ((this.props.map !== prevProps.map) || (this.props.position !== prevProps.position)) {
       // change the relevant props
@@ -66,14 +62,10 @@ MapMarker.propTypes = {
 MapMarker.defaultProps = {
   savedToMap: false,
   onClick() {
-    console.log('clicking MapMarker');
-    console.log(this);
   },
   onMouseover() {
-    console.log('mousing over a mapmarker');
   },
   onClickadd() {
-    console.log(`adding this mapmarker to the map: ${this.props.userMapId}`);
   }
 }
 evtNames.forEach((e) => {

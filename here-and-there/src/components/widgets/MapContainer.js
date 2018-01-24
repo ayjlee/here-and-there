@@ -31,7 +31,6 @@ export class ViewMapContainer extends React.Component {
     this.viewMarker = this.viewMarker.bind(this);
   }
   componentDidMount() {
-    console.log('in componentDidMount');
     this.loadMapDataFromServer();
   }
   onInfoWindowClose() {
@@ -41,7 +40,6 @@ export class ViewMapContainer extends React.Component {
     });
   }
   onMapClick() {
-    console.log( 'in ViewMapContainer onMapClick()');
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -50,8 +48,6 @@ export class ViewMapContainer extends React.Component {
     }
   }
   onMarkerClick(props, marker, e) {
-    console.log('in MapContainer onMarkerClick, props is:')
-    console.log(props);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -65,18 +61,14 @@ export class ViewMapContainer extends React.Component {
     });
   }
   loadMapDataFromServer() {
-    console.log('in loadMapDatafromServer in ViewMapcontainer, the map url is:')
     const map_id = this.props.match.params.map_id;
     const map_url = `${this.props.url}/${map_id}`;
-    console.log(map_url)
     axios.get(map_url)
     .then((res) => {
       this.setState({ data: res.data, currentMarkers: res.data.savedMarkers });
     });
   }
   viewMarker(idx) {
-    console.log('inViewMap container, viewing marker with idx');
-    console.log(idx);
     const viewingMarker = this.state.currentMarkers[idx];
     this.setState({
       showPlaceDetails: true,
@@ -84,8 +76,6 @@ export class ViewMapContainer extends React.Component {
     });
   }
   render() {
-    console.log('in MapContainer.render(), this.state is');
-    console.log(this.state);
     const map = this.state.map;
     const detailsRoot = document.getElementById('marker-details-pane');
     const mapVisualNodes = (this.state.currentMarkers && this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
@@ -142,13 +132,10 @@ ViewMapContainer.defaultProps = {
   url: 'http://localhost:3001/api/maps',
   pollInterval: 10000,
   onDragend() {
-    console.log('moving');
   },
   onClick() {
-    console.log('clicking');
   },
   onReady() {
-    console.log('ready');
   }
 };
 
@@ -156,18 +143,3 @@ export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GMAPI_KEY,
   libraries: ['places', 'visualization'],
 })(ViewMapContainer);
-
-// const markerItemNodes = this.state.data.savedMarkers.map(marker => { return (
-//     <MapMarker key={marker._id} className="mapMarker" marker={marker} name={marker.place_nsme} onClick={this.onMarkerClick} />
-//   );
-// });
-
-
-// <MapMarker position={pos} name={'Made up name'} onClick={this.onMarkerClick} />
-// <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
-//   <div>
-//     <h2> this is the info window </h2>
-//     <p>Name: {this.state.selectedPlace.name} </p>
-//   </div>
-//
-// </InfoWindow>

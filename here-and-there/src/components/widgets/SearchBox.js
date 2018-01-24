@@ -29,23 +29,11 @@ class SearchBox extends Component {
       this.renderAutoComplete();
     }
   }
-  onAddPlaceClick(e) {
-    console.log('in add place click');
-    console.log(e);
-    console.log(this);
-  }
   createMapMarker(place) {
-    console.log('in createMapMarker');
     const { google, map, mapData } = this.props;
-    console.log(`position is ${place.geometry.location}`);
     return <MapMarker map={map} google={google} position={place.geometry.location} placeId={place.place_id} />
   }
-  addPlaceToMap(marker) {
-    console.log('adding place to map');
-  }
   addMarkerToMap(marker) {
-    console.log('adding the following marker to map');
-    console.log(marker);
     this.props.onAddMarker(marker);
   }
   renderAutoComplete() {
@@ -58,7 +46,6 @@ class SearchBox extends Component {
     const autocomplete = new google.maps.places.Autocomplete(node);
 
     // autocomplete.bindTo('bounds', map);
-    //
 
     autocomplete.addListener('place_changed', () => {
       infoWindow.close();
@@ -76,10 +63,6 @@ class SearchBox extends Component {
         map.setCenter(place.geometry.location);
       } else if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
-        // map.setCenter(place.geometry.location);
-        // // map.panTo(place.geometry.viewport);
-        // map.panTo(place.geometry.location);
-        // map.setCenter(place.geometry.location);
       } else {
         map.setCenter(place.geometry.location);
         map.setZoom(17);
@@ -90,10 +73,6 @@ class SearchBox extends Component {
       };
       const newPlaceMarker = new google.maps.Marker(pref);
       this.resultMarker = newPlaceMarker;
-      console.log('this result marker position is');
-      console.log(this.resultMarker.position);
-      // map.panTo(newPlaceMarker.position);
-      // map.setCenter(newPlaceMarker.position);
 
       const name = place.name ? place.name : 'unavailable';
       const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 75, 'maxHeight': 75}) : 'photo unavailable';
@@ -104,18 +83,10 @@ class SearchBox extends Component {
       const categories = place.types ? place.types.join(', ') : 'unavailable';
       const website = place.website ? place.website : 'unavailable';
 
-      // const address = [
-      //           (place.address_components[0] && place.address_components[0].short_name || ''),
-      //           (place.address_components[1] && place.address_components[1].short_name || ''),
-      //           (place.address_components[2] && place.address_components[2].short_name || '')
-      //         ].join(' ');
-
       const iw = new google.maps.InfoWindow({
         content: '',
       });
 
-      console.log('place photo format is:');
-      console.log(photo);
       const iwBox = (
         <div id="info-window-content">
           <p>Name: {name} </p>
@@ -128,7 +99,6 @@ class SearchBox extends Component {
       );
 
       const iwContent = ReactDOMServer.renderToString(iwBox);
-      //
       google.maps.event.addListener(newPlaceMarker, 'click', function() {
         iw.setContent(iwContent);
         iw.open(map, newPlaceMarker);
@@ -160,10 +130,3 @@ class SearchBox extends Component {
 }
 
 export default SearchBox;
-
-// return ReactDOM.createPortal(
-// // Any valid React child: JSX, strings, arrays, etc.
-// placeDetails,
-// // A DOM element
-// this.placeInfoRoot,
-// );

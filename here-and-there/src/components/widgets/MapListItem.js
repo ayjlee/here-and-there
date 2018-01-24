@@ -5,8 +5,6 @@ import * as MdIconPack from 'react-icons/lib/md';
 
 
 const MapListItem = ({ map, onMapSelect }) => {
-  console.log('map list item map is');
-  console.log(map);
   const editPath = `edit-map/${map._id}`;
   const mapPath = `maps/${map._id}`;
   if (!map) {
