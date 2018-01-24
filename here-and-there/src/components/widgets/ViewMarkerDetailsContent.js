@@ -15,6 +15,7 @@ class ViewMarkerDetailsContent extends Component {
     super(props);
     this.state = {
       showNoteForm: false,
+      currentNotes: this.props.marker.notes,
     }
     this.el = document.createElement('div');
     const marker = this.props.marker;
@@ -57,6 +58,9 @@ class ViewMarkerDetailsContent extends Component {
   updateNotes(updatedNotes) {
     console.log(`updating this marker's notes to` );
     console.log(updatedNotes);
+    this.setState({
+      currentNotes: updatedNotes
+    })
   }
   render() {
     const marker = this.props.marker;
@@ -69,8 +73,10 @@ class ViewMarkerDetailsContent extends Component {
     const open_now = (marker.opening_hours && marker.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
     const website = marker.additional_details.website ? marker.additional_details.website : 'unavailable'
 
-    const currentNotes = (marker.notes.length > 0) ?
-      <NoteList notes={marker.notes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} isEditing={this.props.isEditing}/> : null;
+    // const currentNotes = (marker.notes.length > 0) ?
+    //   <NoteList notes={marker.notes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} isEditing={this.props.isEditing}/> : null;
+    const currentNotes = (this.state.currentNotes.length > 0) ?
+      <NoteList notes={this.state.currentNotes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} isEditing={this.props.isEditing}/> : null;
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
