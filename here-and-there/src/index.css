@@ -331,7 +331,7 @@ ul.mapList li{
   padding: 10px;
   text-align: center;
   background-color: green;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 #search-box input[type="submit"] {
@@ -349,6 +349,7 @@ ul.mapList li{
 #googleSearch {
   border-radius: 10px;
   margin-right: 0;
+  padding: 10px;
 }
 
 /*.map-item:before {
@@ -365,7 +366,6 @@ ul.mapList li{
 
 #place-note-details-pane {
   overflow: scroll;
-  height: 60%;
   /*border: black solid 2px;*/
   position: relative;
 }
@@ -493,6 +493,7 @@ ul.mapList li{
   background-color: snow;
   border-bottom: lightgray solid 1px;
   height: 30%;
+  padding-bottom: 10px;
 }
 
 .subtitle {
@@ -643,4 +644,10 @@ ul.mapList li{
   padding: 5px;
   margin-top: 10px;
   color: #7772ff;
+}
+
+#edit-map-pane {
+  height: 90vh;
+  /*position: absolute;*/
+  overflow: scroll;
 }
