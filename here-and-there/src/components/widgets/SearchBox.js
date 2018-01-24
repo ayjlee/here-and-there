@@ -12,6 +12,7 @@ import EditPlaceDetailsContent from './EditPlaceDetailsContent';
 class SearchBox extends Component {
   constructor(props) {
     super(props);
+    this.resultMarker = null;
     this.el = document.createElement('div');
   }
   onSubmit(e) {
@@ -52,24 +53,33 @@ class SearchBox extends Component {
     if (!google || !map) return;
     const aref = this.refs.autocomplete;
     const node = ReactDOM.findDOMNode(aref);
-    let infoWindow = new google.maps.InfoWindow()
+    let infoWindow = new google.maps.InfoWindow();
 
     const autocomplete = new google.maps.places.Autocomplete(node);
 
     // autocomplete.bindTo('bounds', map);
     //
+
     autocomplete.addListener('place_changed', () => {
       infoWindow.close();
+      if (this.resultMarker) {
+        this.resultMarker.setMap(null);
+        this.resultMarker = null;
+      }
       const place = autocomplete.getPlace();
 
       if (!place.geometry) {
         return;
       }
-      if (place.geometry.viewport) {
-        // map.fitBounds(place.geometry.viewport);
-        // map.setCenter(place.geometry.location);
-        // map.panTo(place.geometry.viewport);
+      if (place.geometry.location) {
         map.panTo(place.geometry.location);
+        map.setCenter(place.geometry.location);
+      } else if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+        // map.setCenter(place.geometry.location);
+        // // map.panTo(place.geometry.viewport);
+        // map.panTo(place.geometry.location);
+        // map.setCenter(place.geometry.location);
       } else {
         map.setCenter(place.geometry.location);
         map.setZoom(17);
@@ -79,6 +89,11 @@ class SearchBox extends Component {
         position: place.geometry.location,
       };
       const newPlaceMarker = new google.maps.Marker(pref);
+      this.resultMarker = newPlaceMarker;
+      console.log('this result marker position is');
+      console.log(this.resultMarker.position);
+      // map.panTo(newPlaceMarker.position);
+      // map.setCenter(newPlaceMarker.position);
 
       const name = place.name ? place.name : 'unavailable';
       const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 75, 'maxHeight': 75}) : 'photo unavailable';

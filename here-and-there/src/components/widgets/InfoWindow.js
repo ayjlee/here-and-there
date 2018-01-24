@@ -18,7 +18,7 @@ class InfoWindow extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.visible !== nextProps.visible) {
+    if ((this.props.marker !== nextProps.marker) && (this.props.visible !== nextProps.visible)) {
       this.props.visible ? this.openWindow() : this.closeWindow();
     }
   }

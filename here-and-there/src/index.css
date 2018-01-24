@@ -386,24 +386,42 @@ ul.mapList li{
   padding-bottom: 10px;
 }
 
+#welcome-page {
+  text-align: center;
+}
+
 #welcome-intro-name {
   font-size: 4em;
   margin-bottom: 5px;
+  text-align: left;
 }
 
 #welcome-msg-box {
-  width: 50%;
-  margin-top: 11%;
-  margin-left: 10%;
+  width: 60%;
+  margin: 11% auto;
   background-color: white;
   padding: 23px;
   box-shadow: 0 19px 28px rgba(0,0,0,0.30), 8px 5px 14px rgba(0,0,0,0.22);
   border-radius: 10px;
+  /*background-image: url(components/misc/map.png);
+  background-repeat: no-repeat;
+  background-position: right;*/
 }
 
 #welcome-msg-box h2 {
   font-size: 2em;
 }
+
+#welcome-msg {
+  width: 90%;
+  background: transparent;
+}
+
+/*#home-img img {
+  height: 230px;
+  width: 230px;
+}*/
+
 
 .full-page div {
   display: inline-block;
@@ -425,6 +443,10 @@ ul.mapList li{
 
 #home-subtitle {
   margin-left: 5px;
+  width: 85%;
+  background: transparent;
+  text-align: left;
+  display: block;
 }
 
 #map-marker-title {
@@ -465,7 +487,7 @@ ul.mapList li{
   background-color: white;
   height: 18vh;
   margin: 0 auto;
-  width: 98%;
+  width: 96%;
   border-radius: 5px;
 }
 

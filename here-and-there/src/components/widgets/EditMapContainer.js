@@ -250,7 +250,7 @@ export class EditMapContainer extends React.Component {
     const mapVisualNodes = (this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
       return (
         <MapMarker key={marker.place_id}
-        markerData={marker}  position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} />
+        markerData={marker}  position={marker.position} name={marker.place_name} onClick={this.onMarkerClick} iconLink={'/pal4/icon47.png'} />
       );
     })
     ) : null;

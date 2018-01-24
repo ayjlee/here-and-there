@@ -34,13 +34,14 @@ export class MapMarker extends Component {
     }
   }
   renderMarker() {
-    let { map, google, position, mapCenter } = this.props;
-
+    let { map, google, position, mapCenter, iconLink } = this.props;
+    const iconBase = 'http://maps.google.com/mapfiles/kml';
     let pos = position || mapCenter;
     position = new google.maps.LatLng(pos.lat, pos.lng);
     const pref = {
       map: map,
       position: position,
+      icon: iconBase + iconLink,
     };
     this.marker = new google.maps.Marker(pref);
 

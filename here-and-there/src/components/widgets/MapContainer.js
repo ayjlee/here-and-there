@@ -90,7 +90,7 @@ export class ViewMapContainer extends React.Component {
     const detailsRoot = document.getElementById('marker-details-pane');
     const mapVisualNodes = (this.state.currentMarkers && this.state.currentMarkers.length > 0) ? (this.state.currentMarkers.map((marker) => {
       return (
-        <MapMarker key={marker.place_id} position={marker.position} name={marker.place_name} markerData={marker} onClick={this.onMarkerClick} />
+        <MapMarker key={marker.place_id} iconLink={'/pal4/icon47.png'} position={marker.position} name={marker.place_name} markerData={marker} onClick={this.onMarkerClick} />
       );
     })
     ) : null;
