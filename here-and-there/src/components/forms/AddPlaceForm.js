@@ -40,8 +40,6 @@ class NewPlaceForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const author = this.state.author;
-    // need to trim?
-      // const author = this.state.author.trim();
     const name = this.state.name;
     const city = this.state.city;
     const country = this.state.country;

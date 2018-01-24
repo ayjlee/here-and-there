@@ -1,5 +1,3 @@
-// top level react pages cannot be react class because React Router passes parameters in urls which are passed as parameters not props
-
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import map from '../misc/map.png';

@@ -29,8 +29,6 @@ class NewMapForm extends Component {
     this.setState({ description: e.target.value });
   }
   postNewMap(newMap) {
-    console.log(' in postNew Map, the url is:');
-    console.log(this.props.url);
     axios.post(this.props.url, newMap)
     .then(res => {
       this.setState({ map_id: res.data, savedToUser: true });

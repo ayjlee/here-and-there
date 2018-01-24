@@ -2,7 +2,6 @@ import {GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
 import MapMarkersList from '../widgets/MapMarkersList';
 
 export class EditMapPane extends React.Component {

@@ -22,14 +22,9 @@ class AddMarkerForm extends Component {
   handleNameChange(e) {
     this.setState({ name: e.target.value });
   }
-  addMarkerToMap(marker) {
-    console.log(' in addmarkertomap');
-  }
   handleSubmit(e) {
     e.preventDefault();
     const author = this.state.author;
-    // need to trim?
-      // const author = this.state.author.trim();
     const name = this.state.name;
     const note = this.state.note;
 

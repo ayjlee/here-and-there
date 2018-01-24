@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import MapMarkersList from '../widgets/MapMarkersList';
 
 class ViewMapPane extends React.Component {

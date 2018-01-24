@@ -15,37 +15,24 @@ class NewNoteForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleTextChange(e) {
-    console.log('handling text change in new note form');
     this.setState({ text: e.target.value });
   }
   handleTypeChange(e) {
-    console.log('handling type change in newnoteform');
     this.setState({ type: e.target.value });
   }
   handleAuthorChange(e) {
-    console.log('handling author change in newnoteform');
     this.setState({ author: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log('handling submit');
     const map = this.props.map;
     const place = this.props.place;
     const marker = this.props.marker;
-    // need to trim?
-      // const author = this.state.author.trim();
     const author = this.state.author;
     const text = this.state.text;
     const type = this.state.type;
     const editingMap = this.props.editingMap;
 
-    // if (!author || !text || !type) {
-    //   return;
-    // }
-    console.log(`saved the note for this place: ${place} on this marker: ${marker} with this type: ${type}, with this map: ${map} and this text: ${text}`);
-    // this.props.onPlaceSubmit( {
-    //   author: author, text: text, type: type, saved_to_current_map: true, map_id: map, place_id: place, marker_id: marker,
-    // });
     const newNote = {
       author: author,
       type: type,

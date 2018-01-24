@@ -24,7 +24,6 @@ export class CurrentMap extends Component {
     this.rebindMap = this.rebindMap.bind(this);
   }
   componentDidMount() {
-    console.log('in CurrentMap componentDidMount');
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
@@ -43,7 +42,6 @@ export class CurrentMap extends Component {
     this.loadMap();
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log('in component did update');
     if (prevProps.google !== this.props.google) {
       this.loadMap();
     }
@@ -54,14 +52,9 @@ export class CurrentMap extends Component {
       this.renderChildren();
       this.rebindMap();
     }
-    // if (prevState.currentBounds !== this.state.currentBounds) {
-    //   this.rebindMap();
-    // }
   }
   rebindMap() {
-    console.log('in CurrentMap.rebindMap()');
     const { children } = this.props;
-    console.log(children);
     if ((!children) || (children[0] === null)) return;
     const google = this.props.google;
     const map = this.map;
@@ -73,12 +66,9 @@ export class CurrentMap extends Component {
         }
       }
     });
-    console.log('new bounds is:')
-    console.log(bounds);
     map.fitBounds(bounds);
   }
   recenterMap() {
-    console.log('in recenterMap');
     const map = this.map;
     const curr = this.state.currentLocation;
     const google = this.props.google;
@@ -105,9 +95,7 @@ export class CurrentMap extends Component {
     }
   }
   loadMap() {
-    console.log('in loadMap for CurrentMap');
     if (this.props && this.props.google) {
-      // google is available
       const {google} = this.props;
       const maps = google.maps;
       const mapRef = this.refs.map;
@@ -120,20 +108,7 @@ export class CurrentMap extends Component {
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-      // adding a timeout to the event listener
-        // let centerChangedTimeout;
-        //
-        //
-        // this.map.addListener('dragend', (e) => {
-        //   if (centerChangedTimeout) {
-        //     clearTimeout(centerChangedTimeout);
-        //     centerChangedTimeout = null;
-        //   }
-        //   centerChangedTimeout = setTimeout(() => {
-        //     this.props.onMove(this.map);
-        //   }, 0);
-        // })
-      // refactored the above commented out code to handle multiple events
+      
       evtNames.forEach((e) => {
         this.map.addListener(e, this.handleEvent(e));
       });

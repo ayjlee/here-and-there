@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import MyMapsList from '../widgets/MyMapsList';
-import MyPlacesList from '../widgets/MyPlacesList';
-import MapContainer from '../widgets/MapContainer';
-import ViewMapPane from '../panes/ViewMapPane';
-
 
 class Library extends Component {
   constructor(props) {
