@@ -42,6 +42,7 @@ export class EditMapContainer extends React.Component {
     this.deleteMarker = this.deleteMarker.bind(this);
     this.saveChangesToMap = this.saveChangesToMap.bind(this);
     this.editMarker = this.editMarker.bind(this);
+    this.viewMarker = this.viewMarker.bind(this);
   }
   componentDidMount() {
     this.loadMapDataFromServer();
@@ -104,10 +105,10 @@ export class EditMapContainer extends React.Component {
     });
   }
   updatePlaceDetailsPane(place) {
-    console.log('in updateplace details pane');
+    // console.log('in updateplace details pane');
     const currentState = this.state.showPlaceDetails;
     // return ReactDOM.createPortal(placeDetails, placeRoot);
-    this.setState({ showPlaceDetails: true, showingPlace: place });
+    this.setState({ showPlaceDetails: true, showingPlace: place, showMarkerDetails: false, activeMarker: {} });
   }
   // showUpdateExistingMarkerPane(marker) {
   //   console.log('in showUpdateExistingMarkerPane');
@@ -135,7 +136,14 @@ export class EditMapContainer extends React.Component {
     console.log(newMap);
     axios.put(map_url, newMap)
       .then((res) => {
-        this.setState({ data: res.data, currentMarkers: res.data.savedMarkers, showPlaceDetails: false, showingPlace: null });
+        this.setState({
+          data: res.data,
+          currentMarkers: res.data.savedMarkers, showPlaceDetails: false,
+          showingPlace: null,
+          showMarkerDetails: false,
+          activeMarker: {},
+          activeMarkerIdx: null,
+        });
         this.loadMapDataFromServer();
     });
   }
@@ -154,7 +162,32 @@ export class EditMapContainer extends React.Component {
     // deletes the selected marker, but we returns the spliced marker
     updatingMarkers.splice(marker_idx, 1);
 
-    this.setState({ currentMarkers: updatingMarkers });
+    this.setState({
+      currentMarkers: updatingMarkers,
+      showMarkerDetails: false,
+      activeMarker: {},
+      activeMarkerIdx: null,
+    });
+    // this.setState({
+    //   currentMarkers: updatingMarkers,
+    //   showPlaceDetails: false,
+    //   showingPlace: null,
+    //   showMarkerDetails: false,
+    //   activeMarker: {},
+    //   activeMarkerIdx: null,
+    // });
+
+    console.log('set state after deleting marker')
+  }
+  viewMarker(marker_idx) {
+    const viewingMarker = this.state.currentMarkers[marker_idx];
+    this.setState({
+      showMarkerDetails: true,
+      activeMarker: viewingMarker,
+      activeMarkerIdx: marker_idx,
+      showPlaceDetails: false,
+      showingPlace: {},
+    });
   }
   saveChangesToMap() {
     // will do a put request to save all changes made to this map on our mongo database;
@@ -173,24 +206,34 @@ export class EditMapContainer extends React.Component {
     const newMapData = {
       savedMarkers: updatedMarkers,
     };
-    console.log('new map Data is');
-    console.log(newMapData);
     axios.put(map_url, newMapData)
       .then((res) => {
-        this.setState({ data: res.data, currentMarkers: res.data.savedMarkers });
+        this.setState({
+          data: res.data,
+          currentMarkers: res.data.savedMarkers,
+          showingInfoWindow: false,
+          showMarkerDetails: false,
+          activeMarker: {},
+          activeMarkerIdx: null,
+          selectedPlace: {},
+          showPlaceDetails: false,
+          showingPlace: {},
+        });
         this.loadMapDataFromServer();
-    });
+      });
   }
   render() {
     const map = this.state.map;
     const detailsRoot = document.getElementById('place-note-details-pane');
+    console.log('in render, this.state.showingMarkerDetails is:');
+    console.log(this.state.showMarkerDetails);
 
     const placeDetails = (this.state.showPlaceDetails) ? (
       <EditPlaceDetailsContent place={this.state.showingPlace} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
 
     const markerDetails = (this.state.showMarkerDetails) ? (
-      <ViewMarkerDetailsContent map={map} marker={this.state.activeMarker} idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
+      <ViewMarkerDetailsContent map={map} isEditing={true} marker={this.state.activeMarker} idx={this.state.activeMarkerIdx} editingMap={this.state.data} root={detailsRoot} />
     ) : null;
     const style = {
       width: '40vw',
@@ -223,7 +266,8 @@ export class EditMapContainer extends React.Component {
             <h3 id="map-marker-title">Current Locations on Map:</h3>
           </div>
           <div id="building-map-info">
-            <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers} onAddMarker={this.addMarker} onMarkerSelect={marker_id => this.editMarker(marker_id)}
+            <MapMarkersList mapData={this.state.data} savedMarkers={this.state.currentMarkers}
+            isEditing={true} onAddMarker={this.addMarker} onViewMarker={marker_idx => this.viewMarker(marker_idx)}  onMarkerSelect={marker_id => this.viewMarker(marker_id)}
             onMarkerDelete={marker => this.deleteMarker(marker)} />
           </div>
         </section>

@@ -12,6 +12,7 @@ class ViewMapPane extends React.Component {
     };
   }
   render() {
+    const description = this.props.mapData.description ? <p>{this.props.mapData.description} </p> : <p> No Description</p>;
     return (
       <section id="view-map-pane" className="sidepane-placeholder">
         <div className="link-div">
@@ -25,13 +26,14 @@ class ViewMapPane extends React.Component {
           }} className="map-link" > Edit Map </Link>
         </div>
 
-        <div>
+        <div id="view-pane-header">
           <p>map:  </p>
           <h2> {this.props.mapData.name} </h2>
           <strong><p> Author: {this.props.mapData.author} </p></strong>
+          <p><strong>Description: </strong></p>
+          {description}
         </div>
-        <h3> Places on this map: </h3>
-        <MapMarkersList mapData={this.props.mapData} savedMarkers={this.props.mapData.savedMarkers} onMarkerSelect={selectedMarker => this.setState({ selectedMarker })}/>
+        <MapMarkersList mapData={this.props.mapData} savedMarkers={this.props.mapData.savedMarkers} isEditing={false} onViewMarker={(idx) => this.props.viewMarker(idx)} onMarkerSelect={selectedMarker => this.setState({ selectedMarker })}/>
       </section>
     );
   }

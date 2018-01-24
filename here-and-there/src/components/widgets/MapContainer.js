@@ -9,18 +9,13 @@ import ViewMapPane from '../panes/ViewMapPane';
 import ViewMarkerDetailsContent from './ViewMarkerDetailsContent';
 
 export class ViewMapContainer extends React.Component {
-  // getInitialState() {
-  //   return {
-  //     showingInfoWindow: false,
-  //     activeMarker: {},
-  //     selectedPlace: {},
-  //   };
-  // }
   constructor(props) {
     super(props);
     this.state = {
       showingInfoWindow: false,
+      showMarkerDetails: false,
       activeMarker: {},
+      activeMarkerIdx: null,
       selectedPlace: {},
       map: null,
       data: {},
@@ -33,6 +28,7 @@ export class ViewMapContainer extends React.Component {
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.onMapAdded = this.onMapAdded.bind(this);
     this.loadMapDataFromServer = this.loadMapDataFromServer.bind(this);
+    this.viewMarker = this.viewMarker.bind(this);
   }
   componentDidMount() {
     console.log('in componentDidMount');
@@ -78,6 +74,15 @@ export class ViewMapContainer extends React.Component {
       this.setState({ data: res.data, currentMarkers: res.data.savedMarkers });
     });
   }
+  viewMarker(idx) {
+    console.log('inViewMap container, viewing marker with idx');
+    console.log(idx);
+    const viewingMarker = this.state.currentMarkers[idx];
+    this.setState({
+      showPlaceDetails: true,
+      selectedMarker: viewingMarker,
+    });
+  }
   render() {
     console.log('in MapContainer.render(), this.state is');
     console.log(this.state);
@@ -90,7 +95,7 @@ export class ViewMapContainer extends React.Component {
     })
     ) : null;
     const placeDetails = (this.state.showPlaceDetails) ? (
-      <ViewMarkerDetailsContent place={this.state.selectedMarker} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
+      <ViewMarkerDetailsContent marker={this.state.selectedMarker} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
     const style = {
       width: '80vw',
@@ -105,11 +110,11 @@ export class ViewMapContainer extends React.Component {
     }
     return (
       <section id="view-map-container">
-        <ViewMapPane mapData={this.state.data} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
+        <ViewMapPane mapData={this.state.data} viewMarker={(idx) => this.viewMarker(idx)} onMarkerSelect= {selectedMarker => this.setState({ selectedMarker })} />
         <div className="holds-map">
           <CurrentMap currentMap={this.state.data}  google={this.props.google} onClick={this.onMapClick} action={this.onMapAdded} >
             {mapVisualNodes}
-            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow}onClose={this.onInfoWindowClose}>
+            <InfoWindow marker={this.state.activeMarker} visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
               <div id="info-window-content">
                 <h2> this is the info window </h2>
                 <p>Name: {this.state.selectedPlace.name} </p>
@@ -117,7 +122,6 @@ export class ViewMapContainer extends React.Component {
             </InfoWindow>
           </CurrentMap>
           <div id="marker-details-pane">
-            <p> This will hold details about a particular place/marker </p>
             {placeDetails}
           </div>
         </div>

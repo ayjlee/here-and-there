@@ -18,13 +18,6 @@ class ViewMarkerDetailsContent extends Component {
     }
     this.el = document.createElement('div');
     const marker = this.props.marker;
-    this.newMarker = {
-      position: marker.position,
-      place_name: marker.place_name,
-      notes: [],
-      tags: [],
-      place_id: marker.place_id,
-    };
     this.addNoteToMarker = this.addNoteToMarker.bind(this);
     this.toggleNoteForm = this.toggleNoteForm.bind(this);
   }
@@ -38,23 +31,28 @@ class ViewMarkerDetailsContent extends Component {
     // Remove the element from the DOM when we unmount
     this.props.root.removeChild(this.el);
   }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.marker !== nextProps.marker) {
+      this.setState({ showNoteForm: false });
+    }
+  }
   addMarkerToMap(marker) {
     console.log('adding marker to map in place details content');
     this.props.addMarkerToMap(marker);
   }
   toggleNoteForm() {
-    console.log('inShowNoteForm')
+    console.log('inToggleNoteForm')
     const display = this.state.showNoteForm;
     this.setState({showNoteForm: (!display)});
   }
   addNoteToMarker(note) {
-    console.log('adding note to marker in place details content')
-    const currentNotes = this.newMarker.notes
+    console.log('adding note to marker in view markerdetails')
+    // const currentNotes = this.newMarker.notes
     // const stringNote = `${note.author}: ${note.text} (${note.type})`
-    const updatedNotes = currentNotes.push(note);
-    this.newMarker.notes = currentNotes;
-    console.log('the notes for this marker are:');
-    console.log(this.newMarker.notes);
+    // const updatedNotes = currentNotes.push(note);
+    // this.newMarker.notes = currentNotes;
+    // console.log('the notes for this marker are:');
+    // console.log(this.newMarker.notes);
   }
   updateNotes(updatedNotes) {
     console.log(`updating this marker's notes to` );
@@ -76,6 +74,8 @@ class ViewMarkerDetailsContent extends Component {
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 
+    const noteBtn = this.props.isEditing ? <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} </button> : null;
+
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={marker.placeName} editingMap={this.props.editingMap} onAddNote={note => this.addNoteToMarker(note)} /> : null;
 
     const map = this.props.map;
@@ -93,9 +93,9 @@ class ViewMarkerDetailsContent extends Component {
       <div className="place-notes" >
         <h3>Notes: </h3>
         {currentNotes}
-        <button onClick={() => this.toggleNoteForm()}> {toggleNote} </button>
-        {noteForm}
       </div>
+      {noteBtn}
+      {noteForm}
 
     </div>)
 

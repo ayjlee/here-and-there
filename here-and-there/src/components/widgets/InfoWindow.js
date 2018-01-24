@@ -17,6 +17,11 @@ class InfoWindow extends React.Component {
       this.updateContent();
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.visible !== nextProps.visible) {
+      this.props.visible ? this.openWindow() : this.closeWindow();
+    }
+  }
   updateContent() {
     const content = this.renderChildren();
     this.infowindow.setContent(content);
