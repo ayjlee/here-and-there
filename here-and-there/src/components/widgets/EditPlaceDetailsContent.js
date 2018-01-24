@@ -97,7 +97,7 @@ class EditPlaceDetailsContent extends Component {
 
     const noteForm = (this.state.showNoteForm) ? <NewNoteForm place={place} map={map} marker={this.state.newMarker} editingMap={this.props.editingMap} onAddNote={ note => this.addNoteToMarker(note)}/> : null;
 
-    const currentNotes = (this.state.currentNotes.length > 0) ? <NoteList notes={this.state.currentNotes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} /> : null;
+    const currentNotes = (this.state.currentNotes.length > 0) ? <NoteList isEditing={true} notes={this.state.currentNotes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} /> : null;
 
     const name = place.name ? place.name : 'unavailable';
     const photo = (place.photos && place.photos.length > 0 ) ? place.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200}) : 'photo unavailable';

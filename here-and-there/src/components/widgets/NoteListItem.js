@@ -10,12 +10,13 @@ class NoteListItem extends Component {
     const note= this.props.note;
     const typeClassName = "note-" + note.type;
     const idx = this.props.idx;
+    const deleteNoteBtn = this.props.isEditing ? <button id="delete-note-btn" key={idx} onClick={() => this.props.onNoteDelete(idx)}> <MdIconPack.MdRemoveCircleOutline size={18}/>Delete </button> : null;
 
     return (
       <li key={note.text} className={typeClassName}>
         <div className="note-type">
           <p>{note.type}</p>
-          <button id="delete-note-btn" key={idx} onClick={() => this.props.onNoteDelete(idx)}> <MdIconPack.MdRemoveCircleOutline size={18}/>Delete </button>
+          {deleteNoteBtn}
         </div>
         <div className="note-author">
           <p>{note.author}: </p>

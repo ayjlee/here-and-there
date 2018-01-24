@@ -85,7 +85,7 @@ export class ViewMapContainer extends React.Component {
     })
     ) : null;
     const placeDetails = (this.state.showPlaceDetails) ? (
-      <ViewMarkerDetailsContent marker={this.state.selectedMarker} map={map} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
+      <ViewMarkerDetailsContent marker={this.state.selectedMarker} map={map}  isEditing={false} editingMap={this.state.data} addMarkerToMap={(marker) => this.saveMarkerToMap(marker)} root={detailsRoot} />
     ) : null;
     const style = {
       width: '80vw',

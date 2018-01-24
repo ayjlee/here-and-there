@@ -67,7 +67,7 @@ class ViewMarkerDetailsContent extends Component {
     const website = marker.additional_details.website ? marker.additional_details.website : 'unavailable'
 
     const currentNotes = (marker.notes.length > 0) ?
-      <NoteList notes={marker.notes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)}/> : null;
+      <NoteList notes={marker.notes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} isEditing={this.props.isEditing}/> : null;
 
     const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
 

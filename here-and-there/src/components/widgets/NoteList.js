@@ -20,7 +20,7 @@ class NoteList extends Component {
   render() {
     const noteNodes = this.props.notes.map((note, index) => {
       return (
-        <NoteListItem key={index} note={note} idx={index} onNoteDelete={ idx => this.handleNoteDelete(idx)}/>
+        <NoteListItem isEditing={this.props.isEditing} key={index} note={note} idx={index} onNoteDelete={ idx => this.handleNoteDelete(idx)}/>
       );
     });
     return (
