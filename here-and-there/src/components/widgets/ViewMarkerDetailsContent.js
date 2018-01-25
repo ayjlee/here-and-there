@@ -76,7 +76,7 @@ class ViewMarkerDetailsContent extends Component {
     const currentNotes = (this.state.currentNotes.length > 0) ?
       <NoteList notes={this.state.currentNotes} updateCurrentNotes={ updatedNotes => this.updateNotes(updatedNotes)} isEditing={this.props.isEditing}/> : null;
 
-    const toggleNote = (this.state.showNoteForm) ? 'Hide Note Form' : 'Add Note';
+    const toggleNote = (this.state.showNoteForm) ? <span><MdIconPack.MdKeyboardArrowUp size={24}/>Hide Note Form </span> : <span><MdIconPack.MdNoteAdd size={18}/> Add Note</span>;
 
     const noteBtn = this.props.isEditing ? <button id="show-note-btn" alt="add-note" onClick={() => this.toggleNoteForm()}> {toggleNote} </button> : null;
 
@@ -85,21 +85,23 @@ class ViewMarkerDetailsContent extends Component {
     const map = this.props.map;
     const details = (<div id="place-details">
       <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> <MdIconPack.MdArrowBack  size={21} />Back to Places </button>
-      <h3>Name: {name} </h3>
-      <div className="place-img">
-        <img src={photoUrl} />
-      </div>
-      <div className="helpful-place-info">
-        <p>Rating: {rating} stars</p>
-        <p>Website: {website} </p>
-        <p>Address: {address} </p>
-        <p>Phone Number: {phone_num} </p>
+      <h2>Name: {name} </h2>
+      <div id="google-place-info">
+        <div className="place-img">
+          <img src={photoUrl} />
+        </div>
+        <div className="helpful-place-info">
+          <p>Rating: {rating} stars</p>
+          <div className="website">Website: {website} </div>
+          <p>Address: {address} </p>
+          <p>Phone Number: {phone_num} </p>
+        </div>
       </div>
       <div className="place-notes" >
         <h3>Notes: </h3>
+        {noteBtn}
         {currentNotes}
       </div>
-      {noteBtn}
       {noteForm}
 
     </div>)

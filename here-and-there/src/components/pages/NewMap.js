@@ -5,7 +5,6 @@ class NewMapPage extends Component {
   render() {
     return (
       <div id="new-map-page">
-        <h2 className="form-title"> YOUR NEW MAP: </h2>
         <NewMapForm url="http://localhost:3001/api/maps" pollInterval={2000}/>
       </div>
     );

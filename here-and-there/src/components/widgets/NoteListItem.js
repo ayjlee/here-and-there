@@ -18,11 +18,11 @@ class NoteListItem extends Component {
           <p>{note.type}</p>
           {deleteNoteBtn}
         </div>
-        <div className="note-author">
-          <p>{note.author}: </p>
-        </div>
         <div className="note-text-section">
-          <p> {note.text} </p>
+          {note.text}
+          <div className="note-author">
+             - {note.author}
+          </div>
         </div>
       </li>
     )

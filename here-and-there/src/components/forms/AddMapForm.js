@@ -64,6 +64,7 @@ class NewMapForm extends Component {
     }
     return (
       <form onSubmit={this.handleSubmit} id="new-map-form">
+        <h2 className="form-title"> YOUR NEW MAP: </h2>
         <input
           type="text"
           placeholder='Name of your new map'

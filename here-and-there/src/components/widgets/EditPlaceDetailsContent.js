@@ -119,7 +119,7 @@ class EditPlaceDetailsContent extends Component {
         </div>
         <div className="helpful-place-info">
           <p>Rating: {rating} stars</p>
-          <p>Website: {website} </p>
+          <div className="website">Website: {website} </div>
           <p>Address: {address} </p>
           <p>Phone Number: {phone_num} </p>
           <p>Opening Hours: {open_now}</p>

@@ -133,19 +133,17 @@ export class ViewMapContainer extends React.Component {
     return (
       <section id="view-map-container">
         <section id="view-map-pane" className="sidepane-placeholder">
-          <div className="link-div">
-            <Link to={{
-              pathname: '/library',
-              state: { selectedMap: null }
-            }} className="map-link">Back to Library</Link>
-            <Link to={{
-              pathname: `/edit-map/${this.state.data._id}`,
-              state: { selectedMap: null }
-            }} className="map-link" > Edit Map </Link>
-          </div>
-
           <div id="view-pane-header">
-            <p>Map:  </p>
+            <div className="link-div">
+              <Link to={{
+                pathname: '/library',
+                state: { selectedMap: null }
+              }} className="map-link">Back to Library</Link>
+              <Link to={{
+                pathname: `/edit-map/${this.state.data._id}`,
+                state: { selectedMap: null }
+              }} className="map-link" > Edit Map </Link>
+            </div>
             <h2> {this.state.data.name} </h2>
             <strong><p> Author: {this.state.data.author} </p></strong>
             {description}

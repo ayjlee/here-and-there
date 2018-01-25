@@ -16,9 +16,11 @@ button {
   font-size: 1em;
 }
 
-button:hover {
+button:hover, #add-note-form input[type=submit]:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
+
+
 
 #delete-note-btn {
   padding: 0;
@@ -33,14 +35,18 @@ button:hover {
   color: #d61b1b;
   box-shadow: none;
 }
-
+#show-note-btn, .place-notes h3 {
+  display: inline-block;
+  vertical-align: bottom;
+}
 #show-note-btn {
   padding: 5px;
   background-color: transparent;
   font-size: 14px;
   color: #2057d8;
-  border-bottom: lightgray solid 2px;
-  /*border: lightgray solid 2px;*/
+  /*border-bottom: lightgray solid 2px;*/
+  margin-left: 10px;
+  /*border-bottom: #2057d8 solid 1px;*/
 }
 
 #show-note-btn:hover {
@@ -65,8 +71,8 @@ button:hover {
   vertical-align: bottom;
 }
 
-#remove-marker-btn:hover::before {
-
+#remove-marker-btn {
+  padding-left: 0;
 }
 
 #savebtn-section {
@@ -76,7 +82,7 @@ button:hover {
 #save-changes-btn {
   margin: 8px auto 0 auto;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-align: center;
   /*background-color: #ff6d6d;*/
   background-color: #fc3232;
@@ -87,6 +93,7 @@ button:hover {
 }
 
 #view-place-btn {
+  margin-left: 10px;
   padding: 0;
   display: inline-block;
   background-color: transparent;
@@ -95,6 +102,10 @@ button:hover {
 .marker-details, .marker-name h3, .marker-btns {
   display: inline-block;
   vertical-align: bottom;
+}
+
+.marker-btns {
+  margin-left: 10px;
 }
 
 #view-place-btns, .marker-btns {
@@ -179,6 +190,10 @@ ul {
   /*overflow: scroll;*/
 }
 
+#main {
+  background-color: #fff5ef;
+}
+
 .mapList {
   background-color: #fff5ef;
 }
@@ -189,6 +204,7 @@ ul {
   width: 80%;
   margin: 0 auto;
   border-radius: 5px;
+  /*padding: 30px;*/
 }
 
 .content h2 {
@@ -221,10 +237,27 @@ ul {
   text-align: center;
 }
 
+#view-pane-header h2{
+  margin-left: 10px;
+}
+
+#view-pane-header {
+  background-color: #ffb159;
+  padding-bottom: 10px;
+}
+
+#marker-details-pane {
+  overflow: scroll;
+  position: relative;
+}
+#view-map-container {
+  height: 100vh;
+  overflow: scroll;
+}
 #edit-map-pane, #view-map-pane {
   /*border-right: black solid 2px;*/
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  /*height: 100vh;*/
+  height: 100vh;
   width: 35vw;
   display: inline-block;
   vertical-align: top;
@@ -262,6 +295,7 @@ ul {
 
 .page-name {
   text-align: center;
+  padding-top: 5px;
 }
 
 .myMap:hover {
@@ -270,10 +304,12 @@ ul {
 
 .myMap {
   display: inline-block;
+  border-radius: 10px;
 }
 
 .link-div {
-  padding: 20px 0;
+  padding: 20px 5px;
+  /*float: right;*/
 }
 .map-link {
   margin-left: 5px;
@@ -322,10 +358,12 @@ ul {
 
 #marker-list-container ul {
   background-color: white;
+  height: 80%;
 }
 
 p, h3, h5, h4, h2, h1 {
   margin: 3px;
+  margin-left: 10px;
 }
 
 ul.mapList li{
@@ -386,7 +424,7 @@ ul.mapList li{
   position: relative;
 }
 
-#place-note-details-pane > div:first-child {
+#place-note-details-pane > div:first-child, #marker-details-pane > div:first-child {
   overflow:scroll;
 }
 
@@ -401,12 +439,16 @@ ul.mapList li{
   border: lightgray solid 1px;
 }
 
+#place-details h2 {
+  margin-left: 10px;
+}
+
 #new-map-page {
   height: 100%
 }
 
 #new-map-form {
-  margin: 0 auto;
+  margin: 8% auto;
   width: 60%;
   text-align: center;
   padding: 30px;
@@ -436,7 +478,6 @@ ul.mapList li{
 }
 #new-map-page h2 {
   text-align: center;
-  padding-top: 14vh;
   padding-bottom: 10px;
 }
 
@@ -506,7 +547,7 @@ ul.mapList li{
 #map-marker-title {
   margin-top: 10px;
   background-color: white;
-  padding-left: 4px;
+  margin-left: 15px;
 }
 
 #edit-map-pane-header {
@@ -514,6 +555,7 @@ ul.mapList li{
   background-color: snow;
   border-bottom: lightgray solid 1px;
   padding-bottom: 10px;
+  /*text-align: center;*/
 }
 
 .subtitle {
@@ -566,8 +608,14 @@ ul.mapList li{
   margin: 10px auto;
   padding: 10px;
   border: 1px solid lightgray;
-  width: 20%;
+  max-width: 30%;
+  border-radius: 10px;
 }
+
+#add-note-form input[type=submit]:hover {
+  background-color: #fc3232
+}
+
 
 #notes-header h3, #notes-header button {
   display: inline-block;
@@ -602,8 +650,8 @@ ul.mapList li{
   background-color: white;
   overflow: scroll;
   margin: 0 auto;
-  max-width: 70%;
-  padding-left: 5px;
+  width: 100%;
+  padding: 5px;
 }
 
 .note-author, .note-text-section {
@@ -614,7 +662,8 @@ ul.mapList li{
 }
 
 .note-author {
-  max-width: 20%;
+  padding: 0 15px 0 8px;
+  float: right;
 }
 
 .note-type {
@@ -630,11 +679,15 @@ ul.mapList li{
 }
 
 .note-misc .note-type {
-  background-color: #7af499;
+  background-color: lightblue;
 }
 
 .note-tip .note-type {
-  background-color: lightblue;
+  background-color: #7af499;
+}
+
+.note- .note-type {
+  background-color: #ffdbe4;
 }
 
 .note-type p {
@@ -645,6 +698,10 @@ ul.mapList li{
   display: inline-block;
   vertical-align: middle;
   word-wrap: break-word;
+}
+
+.place-img {
+  margin-left: 8px;
 }
 
 .helpful-place-info {
@@ -672,4 +729,20 @@ ul.mapList li{
   height: 100vh;
   /*position: absolute;*/
   overflow: scroll;
+}
+
+.website {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 10px;
+}
+
+.map-details {
+  text-align: left;
+}
+
+#google-place-info {
+  border-bottom: lightgray 1px solid;
 }
