@@ -49,7 +49,8 @@ button:hover {
 
 #add-marker-btn {
   display: block;
-  margin-top: 5px;
+  margin: 5px auto;
+  width: 65%;
   padding: 10px;
   padding-right: 14px;
   /*border: #15c435 solid 3px;*/
@@ -185,6 +186,9 @@ ul {
 #my-map-list-container {
   /*margin: 20px;*/
   background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 .content h2 {
@@ -207,6 +211,10 @@ ul {
   width: 100%;
   display: inline-block;
   vertical-align: top;
+}
+
+#building-map-info, #place-note-details-pane {
+  overflow: scroll;
 }
 
 #view-map-pane-header {
@@ -272,7 +280,11 @@ ul {
   background: snow;
   border-radius: 5px;
   text-decoration: none;
+  padding: 5px;
+  border: #6d3cf2 solid 1px;
   color: black;
+  /*color: #7772ff;*/
+  /*color: #6d3cf2;*/
   /*border: black solid 1px;*/
 }
 
@@ -306,6 +318,10 @@ ul {
 
 #marker-list-container {
   overflow-y: scroll;
+}
+
+#marker-list-container ul {
+  background-color: white;
 }
 
 p, h3, h5, h4, h2, h1 {
@@ -382,6 +398,7 @@ ul.mapList li{
   overflow:scroll;
   position: relative;
   background-color: white;
+  border: lightgray solid 1px;
 }
 
 #new-map-page {
@@ -400,20 +417,23 @@ ul.mapList li{
 
 #new-map-form input {
   display: block;
-  height: 42px;
-  width: 80%;
+  height: 32px;
+  width: 70%;
   padding: 10px;
-  margin: 5px auto;
+  margin: 14px auto;
   border-radius: 10px;
   font-size: 1.1em;
 }
 
 #new-map-form input[type=submit] {
-  padding: 0;
-  width: 42%;
+  padding: 10px;
+  height: 32px;
+  width: 35%;
   margin-top: 25px;
 }
-
+#new-map-form input[type=submit]:hover {
+  background-color: #fc3232;
+}
 #new-map-page h2 {
   text-align: center;
   padding-top: 14vh;
@@ -486,13 +506,13 @@ ul.mapList li{
 #map-marker-title {
   margin-top: 10px;
   background-color: white;
+  padding-left: 4px;
 }
 
 #edit-map-pane-header {
   /*box-shadow: 0 0 11px rgba(33,33,33,.2);*/
   background-color: snow;
   border-bottom: lightgray solid 1px;
-  height: 30%;
   padding-bottom: 10px;
 }
 
@@ -628,7 +648,8 @@ ul.mapList li{
 }
 
 .helpful-place-info {
-  max-width: 65%;
+  padding-left: 4px;
+  max-width: 50%;
 }
 
 .place-img {
@@ -643,11 +664,12 @@ ul.mapList li{
 #back-to-list-btn {
   padding: 5px;
   margin-top: 10px;
-  color: #7772ff;
+  /*color: #7772ff;*/
+  color: #6d3cf2;
 }
 
 #edit-map-pane {
-  height: 90vh;
+  height: 100vh;
   /*position: absolute;*/
   overflow: scroll;
 }

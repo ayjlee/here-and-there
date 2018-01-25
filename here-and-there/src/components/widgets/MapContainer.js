@@ -145,7 +145,7 @@ export class ViewMapContainer extends React.Component {
           </div>
 
           <div id="view-pane-header">
-            <p>map:  </p>
+            <p>Map:  </p>
             <h2> {this.state.data.name} </h2>
             <strong><p> Author: {this.state.data.author} </p></strong>
             {description}

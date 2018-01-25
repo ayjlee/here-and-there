@@ -109,12 +109,11 @@ class EditPlaceDetailsContent extends Component {
     const phone_num = place.formatted_phone_number ? place.formatted_phone_number : 'unavailable';
     const opening_hours = place.opening_hours ? place.opening_hours.weekday_text.join(" ") : 'unavailable';
     const open_now = (place.opening_hours && place.opening_hours.open_now) ? 'Open Now!' : 'Closed Now';
-    const categories = place.types ? place.types.join(', ') : 'unavailable';
     const website = place.website ? place.website : 'unavailable'
     const details = (
       <div id="place-details">
-        <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> Back to Places </button>
-        <h3>Name: {name} </h3>
+        <button id="back-to-list-btn" onClick={() => this.toggleDetailsView()}> <MdIconPack.MdArrowBack  size={21} />Back to Places </button>
+        <h3>New Place: {name} </h3>
         <div className="place-img">
           <img src={photo} />
         </div>
@@ -124,7 +123,6 @@ class EditPlaceDetailsContent extends Component {
           <p>Address: {address} </p>
           <p>Phone Number: {phone_num} </p>
           <p>Opening Hours: {open_now}</p>
-          <p>Categories: {categories} </p>
         </div>
         <div className="place-notes" >
           <div id="notes-header">
