@@ -219,7 +219,7 @@ export class EditMapContainer extends React.Component {
         <section id="edit-map-pane">
           <div id="edit-map-pane-header">
             <p>Now Editing: </p>
-            <h3 className="page-name">{this.state.data.name} </h3>
+            <h2 className="page-name">{this.state.data.name} </h2>
             <div id="savebtn-section">
               <SaveChangesButton onSave={this.saveChangesToMap} userMapId={this.state.data._id} />
             </div>
